@@ -19,7 +19,7 @@ Goal: five good, tested skills (one per pillar), one working audit script, and a
 | Day | Goal | Status |
 |---|---|---|
 | 1 | Foundation: structure, README, contribution files, license manifest, skill template | Done, awaiting review |
-| 2 | Tooling: skill validator, test of the `npx skills add` install from this repo | Not started |
+| 2 | Tooling: skill validator, test of the `npx skills add` install from this repo | Done, awaiting review |
 | 3 | Pilot skill end to end: `vyson-css-motion` with example, eval file, recorded with/without run | Not started |
 | 4 | `vyson-brief-to-direction` and `vyson-responsive-layouts` | Not started |
 | 5 | `vyson-three-foundations` with example and fallback | Not started |

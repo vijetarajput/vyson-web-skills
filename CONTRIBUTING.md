@@ -35,7 +35,7 @@ Start from [`templates/skill-template/`](templates/skill-template/).
 2. **Fork** the repository and create a branch, for example `skill/vyson-css-motion`.
 3. **Copy the template** and fill it in. Keep instructions specific and practical.
 4. **Add the example and the eval file.**
-5. **Run the checks** once the checking tools exist (planned for Day 2 of the roadmap). Until then, review your work against the pull request checklist.
+5. **Run the checks:** `npm run check` (needs Node.js 22 or newer, nothing to install). Fix every error it reports; each one comes with a plain-English "How to fix" line. Details: [tools/README.md](tools/README.md). Then review your work against the pull request checklist.
 6. **Open a pull request** using the template. Describe how you tested the skill.
 
 ## Commit messages

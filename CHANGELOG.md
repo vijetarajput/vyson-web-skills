@@ -11,3 +11,7 @@ All notable changes to this project are recorded here. The format is based on [K
 - Skill template and eval-file template.
 - GitHub issue forms, pull request template and code owners file.
 - Record of approved project decisions (`docs/decisions.md`).
+- Skill validator (`tools/validate-skills.mjs`) following the Agent Skills specification, with VYSON project rules, plain-English error reports, `--strict` and `--json` modes.
+- Repository-wide Markdown link checker (`tools/check-links.mjs`), including exact-capitalisation checks.
+- Automated tests with valid and intentionally invalid example skills (`tools/test/`), and a rule reference (`docs/validator-rules.md`).
+- `package.json` with `npm run check` and related scripts (no dependencies).

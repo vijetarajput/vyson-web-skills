@@ -1,0 +1,17 @@
+{
+  "name": "vyson-web-skills",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Project tooling for VYSON Web Skills (validator and tests). Not published to npm.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "validate": "node tools/validate-skills.mjs",
+    "validate:template": "node tools/validate-skills.mjs templates/skill-template --profile spec",
+    "check:links": "node tools/check-links.mjs",
+    "test": "node --test \"tools/test/**/*.test.mjs\"",
+    "check": "npm run test && npm run validate:template && npm run validate && npm run check:links"
+  }
+}
