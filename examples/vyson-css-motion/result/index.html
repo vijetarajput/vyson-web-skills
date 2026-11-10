@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Northlight Coffee | Small-batch roastery</title>
+  <meta name="description" content="Northlight Coffee is a made-up roastery used as a demo page for the VYSON CSS Motion skill.">
+  <link rel="stylesheet" href="motion-base.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="reveal.js" defer></script>
+  <script src="panel.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand vy-tap" href="#top">Northlight</a>
+    <nav aria-label="Main">
+      <a class="link" href="#roasts">Roasts</a>
+      <a class="link" href="#process">Process</a>
+      <a class="link" href="#faq">Questions</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <p class="eyebrow vy-enter" style="--vy-i: 0">Small-batch roastery</p>
+      <h1 class="vy-enter" style="--vy-i: 1">Roasted slowly.<br>Poured with care.</h1>
+      <p class="lead vy-enter" style="--vy-i: 2">Three farms, three roasts, and a promise to ship within two days of roasting.</p>
+      <a class="button vy-press vy-enter" style="--vy-i: 3" href="#roasts">Explore the roasts</a>
+    </section>
+
+    <section class="section" id="roasts" aria-labelledby="roasts-title">
+      <h2 id="roasts-title" class="vy-reveal">Three roasts, one rule: no rush</h2>
+      <ul class="card-grid">
+        <li class="vy-reveal" style="--vy-i: 0">
+          <article class="card vy-lift">
+            <div class="card-art art-dawn" aria-hidden="true"></div>
+            <h3>Dawn</h3>
+            <p>Light roast. Bright, floral, with a clean citrus finish.</p>
+          </article>
+        </li>
+        <li class="vy-reveal" style="--vy-i: 1">
+          <article class="card vy-lift">
+            <div class="card-art art-harbor" aria-hidden="true"></div>
+            <h3>Harbor</h3>
+            <p>Medium roast. Round and sweet, with notes of toasted almond.</p>
+          </article>
+        </li>
+        <li class="vy-reveal" style="--vy-i: 2">
+          <article class="card vy-lift">
+            <div class="card-art art-midnight" aria-hidden="true"></div>
+            <h3>Midnight</h3>
+            <p>Dark roast. Deep and smooth, with cocoa and a little smoke.</p>
+          </article>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section section-tint" id="process" aria-labelledby="process-title">
+      <h2 id="process-title" class="vy-reveal">From green bean to your cup</h2>
+      <ol class="steps">
+        <li class="vy-reveal" style="--vy-i: 0"><strong>Sourced.</strong> We buy directly from three farms and pay above market price.</li>
+        <li class="vy-reveal" style="--vy-i: 1"><strong>Roasted.</strong> Small batches, tasted every time, never rushed.</li>
+        <li class="vy-reveal" style="--vy-i: 2"><strong>Shipped.</strong> Packed within two days of roasting, so it arrives fresh.</li>
+      </ol>
+    </section>
+
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title" class="vy-reveal">Questions</h2>
+      <div class="faq vy-reveal">
+        <div class="panel">
+          <h3><button type="button" class="panel-button" aria-expanded="true" aria-controls="faq-1">How fresh is the coffee?</button></h3>
+          <div class="panel-body" id="faq-1">
+            <div class="panel-inner"><p>Every bag is roasted to order and shipped within two days.</p></div>
+          </div>
+        </div>
+        <div class="panel">
+          <h3><button type="button" class="panel-button" aria-expanded="true" aria-controls="faq-2">Do you grind the beans?</button></h3>
+          <div class="panel-body" id="faq-2">
+            <div class="panel-inner"><p>Yes. Choose whole bean, filter, espresso or coarse at checkout.</p></div>
+          </div>
+        </div>
+        <div class="panel">
+          <h3><button type="button" class="panel-button" aria-expanded="true" aria-controls="faq-3">Can I pause my subscription?</button></h3>
+          <div class="panel-body" id="faq-3">
+            <div class="panel-inner"><p>Any time, with one click. There are no fees and no questions.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Northlight Coffee is a made-up brand. This page is a demo for the VYSON CSS Motion skill.</p>
+  </footer>
+</body>
+</html>

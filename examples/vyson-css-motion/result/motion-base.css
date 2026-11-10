@@ -1,0 +1,133 @@
+/* VYSON CSS Motion: starter file.
+ *
+ * Copy this into the project (or merge the parts you need), then use the
+ * classes in your HTML. Plain CSS, no library, no build step.
+ *
+ * What is in here
+ *   1. Motion tokens: durations, easings, distances (change them in one place).
+ *   2. Page-load entrance (.vy-enter) with optional stagger.
+ *   3. Scroll reveal (.vy-reveal), switched on by a tiny script (see references/recipes.md).
+ *   4. Hover and press feedback (.vy-press, .vy-lift) that only runs where hover exists.
+ *   5. A tap-target helper (.vy-tap) for buttons and icon links on touch screens.
+ *   6. A reduced-motion safety net.
+ *
+ * Do not put .vy-reveal and .vy-lift on the same element. They both set
+ * "transition", so they would fight. Wrap one inside the other instead.
+ *
+ * The key idea: every piece of movement lives inside
+ * "@media (prefers-reduced-motion: no-preference)". If the user asked their
+ * system for less motion, or if this CSS fails to load, all content is simply
+ * visible and in place.
+ */
+
+/* 1. Tokens -------------------------------------------------------------- */
+:root {
+  --vy-duration-fast: 140ms;     /* press and hover feedback */
+  --vy-duration-base: 240ms;     /* small interface changes */
+  --vy-duration-slow: 480ms;     /* section reveals */
+  --vy-duration-enter: 700ms;    /* hero entrance, one element */
+
+  --vy-ease-out: cubic-bezier(0.16, 1, 0.3, 1);       /* things arriving */
+  --vy-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);   /* things moving between states */
+  --vy-ease-in: cubic-bezier(0.4, 0, 1, 1);           /* things leaving */
+
+  --vy-distance: 18px;           /* how far a reveal travels */
+  --vy-stagger: 70ms;            /* delay between neighbours */
+}
+
+/* Smaller screens: shorter travel, tighter stagger. */
+@media (max-width: 640px) {
+  :root {
+    --vy-distance: 10px;
+    --vy-stagger: 45ms;
+  }
+}
+
+/* 2 to 4. All movement lives here ---------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+
+  /* Page-load entrance. The hidden state exists only inside the keyframes, so
+     without animation the element is just visible. Set --vy-i on each element
+     (0, 1, 2 ...) to stagger a group. Keep a group to 8 items or fewer. */
+  .vy-enter {
+    animation: vy-rise var(--vy-duration-enter) var(--vy-ease-out) both;
+    animation-delay: calc(var(--vy-i, 0) * var(--vy-stagger));
+  }
+
+  @keyframes vy-rise {
+    from {
+      opacity: 0;
+      transform: translateY(var(--vy-distance));
+    }
+  }
+
+  /* Scroll reveal. The script adds "vy-js" to <html> only after it is sure it
+     can reveal things again, so content is never stuck hidden. */
+  .vy-js .vy-reveal {
+    opacity: 0;
+    transform: translateY(var(--vy-distance));
+    transition: opacity var(--vy-duration-slow) var(--vy-ease-out),
+                transform var(--vy-duration-slow) var(--vy-ease-out);
+    transition-delay: calc(var(--vy-i, 0) * var(--vy-stagger));
+  }
+
+  .vy-js .vy-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Press feedback: works on touch screens too. */
+  .vy-press {
+    transition: transform var(--vy-duration-fast) var(--vy-ease-standard);
+  }
+
+  .vy-press:active {
+    transform: scale(0.97);
+  }
+}
+
+/* Hover effects: only on devices that really hover (mouse, trackpad). On touch
+   screens a hover effect would get stuck after a tap. */
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .vy-lift {
+    transition: transform var(--vy-duration-base) var(--vy-ease-standard);
+  }
+
+  .vy-lift:hover {
+    transform: translateY(-4px);
+  }
+}
+
+/* 5. Tap targets ------------------------------------------------------------
+   Buttons, icon links and toggles need a touch area of at least 44 by 44 CSS
+   pixels on touch screens (never under 24 by 24). Add .vy-tap to such an
+   element. This is layout, not motion, but feedback on a control that is hard
+   to hit does not help anyone. For a text link with an underline that draws in,
+   use the padding version in recipe 6 instead, so the underline stays under
+   the text. */
+@media (pointer: coarse), (max-width: 640px) {
+  .vy-tap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* 6. Safety net ------------------------------------------------------------
+   Use this when you are adding the file to an OLD site whose own CSS already
+   has animations you cannot rewrite yet. It shortens every animation and
+   transition to almost nothing for people who asked for reduced motion.
+   Tip: on a new site, do not rely on this. Write motion inside the
+   "no-preference" block instead, so you can keep gentle fades on purpose. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

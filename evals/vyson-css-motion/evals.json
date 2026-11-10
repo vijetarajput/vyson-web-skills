@@ -1,0 +1,102 @@
+{
+  "skill": "vyson-css-motion",
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": 1,
+      "prompt": "Add tasteful animations to my landing page: the hero should fade in, and sections should appear as I scroll. It is plain HTML and CSS.",
+      "should_activate": true,
+      "must_be_true": [
+        "The agent inspects the existing CSS and scripts for current motion before adding anything",
+        "Only transform and opacity are animated",
+        "All movement is written inside a prefers-reduced-motion: no-preference block, or removed by a reduce block",
+        "The first screen is visible without JavaScript",
+        "Scroll reveals use IntersectionObserver or animation-timeline inside @supports, not a scroll event listener",
+        "The final report says what was and was not tested"
+      ],
+      "must_not_happen": [
+        "transition: all appears in the new CSS",
+        "A JavaScript animation library is added",
+        "Content stays hidden when prefers-reduced-motion is reduce",
+        "The report states frame rates or speed scores that were not measured"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "My animations feel janky when I scroll, and the sidebar widens with a transition. Can you fix it?",
+      "should_activate": true,
+      "must_be_true": [
+        "The agent finds that width (a layout property) is animated and replaces it with transform or opacity, or explains the trade-off",
+        "The agent runs the bundled motion-lint script, or says it could not",
+        "Any remaining budget rule that is broken is named in the report with a reason"
+      ],
+      "must_not_happen": [
+        "The agent adds will-change to many elements as the fix",
+        "The agent claims the page is now faster without measuring it"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Make my site respect reduced-motion settings. It already has lots of animations that I do not want to rewrite right now.",
+      "should_activate": true,
+      "must_be_true": [
+        "The agent adds a prefers-reduced-motion: reduce safety-net block, or moves motion into no-preference blocks",
+        "The agent explains that the safety net also removes helpful fades and cannot stop script-driven animation",
+        "Smooth scrolling is disabled when reduced motion is requested"
+      ],
+      "must_not_happen": [
+        "The agent deletes all animations from the site",
+        "The agent says the site is fully accessible because of this one change"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Add a scrolling logo strip under the hero that moves on its own.",
+      "should_activate": true,
+      "must_be_true": [
+        "The agent adds a visible pause control, or explains why it is needed",
+        "The strip becomes a static or scrollable row when reduced motion is requested",
+        "The strip is the only endless animation on the page"
+      ],
+      "must_not_happen": [
+        "The strip runs with no way to pause it",
+        "The strip keeps moving when reduced motion is requested"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Build a product page with a 3D rotating sneaker that I can drag and zoom.",
+      "should_activate": false,
+      "must_be_true": [
+        "The agent does not apply the CSS motion workflow to the 3D model",
+        "The agent treats this as a 3D task, or says that a 3D skill or library is needed"
+      ],
+      "must_not_happen": [
+        "The agent fakes the 3D model with CSS transforms and calls it done"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Use GSAP ScrollTrigger to pin the hero and scrub a timeline while the user scrolls.",
+      "should_activate": false,
+      "must_be_true": [
+        "The agent does not apply this skill's CSS-only workflow",
+        "If the agent proceeds, it mentions the GSAP license before adding it"
+      ],
+      "must_not_happen": [
+        "The agent copies GSAP source files into the project without mentioning the license"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Change the headline on my homepage to 'Fresh coffee, delivered' and make the footer text smaller.",
+      "should_activate": false,
+      "must_be_true": [
+        "The agent makes only the requested text and style changes"
+      ],
+      "must_not_happen": [
+        "The agent adds animations or motion files to the project"
+      ]
+    }
+  ]
+}
