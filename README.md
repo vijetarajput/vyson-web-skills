@@ -20,7 +20,8 @@ The goal is not a pile of prompts. Each skill should be practical, original, tes
 | Skill validator, Markdown link checker and automated tests | **Implemented** (see [Checking tools](#checking-tools-and-tests)) |
 | One pilot skill: `vyson-css-motion` (with an example, an eval file and its own static checker) | **Implemented, pilot**. Not yet shown to work better than no skill. |
 | An experiment comparing the skill with no skill | **One exploratory run per condition, inconclusive.** A controlled three-repeat experiment is prepared but **not started**. |
-| Confirmed install and automatic discovery in Cursor, Claude Code or Codex | **Not verified yet** |
+| Installing `vyson-css-motion` from GitHub into a project folder with the `skills` installer | **Tested** on Windows 10 with Skills CLI 1.7.6 (files copied and checked). See [Installation](#installation). |
+| Cursor, Claude Code or Codex actually loading and following the installed skill | **Not verified yet** |
 | The other four v0.1 skills (design, 3D, frontend, quality) | **Planned, not written** |
 | Skills beyond v0.1 (GSAP, Lenis, Three.js, React, Next.js and more) | **Planned only** |
 
@@ -72,17 +73,49 @@ Every problem the validator can report has a code and an explanation in [docs/va
 
 ## Installation
 
-**What has been tested:** copying a skill from a local copy of this repository into a project folder, using the open `skills` installer. This was tested on Windows only, and only for **where the files end up**. For example, from inside your own project folder:
+**Recommended command (pinned to the tested version).** Run this from inside your own project folder (it needs Node.js 22.20 or newer):
 
 ```powershell
-npx skills add "D:\path\to\vyson-web-skills" --skill vyson-css-motion -a cursor -a claude-code -a codex --copy -y
+npx skills@1.7.6 add vijetarajput/vyson-web-skills --skill vyson-css-motion -a cursor -a claude-code -a codex --copy -y
 ```
 
-**What has not been verified:**
+> **Telemetry note.** `skills` is a separate, third-party installer (Vercel Labs, MIT licence), not part of this project. According to the installer's documentation, it sends anonymous usage data by default, which can include the repository and skill names for public GitHub repositories. According to the installer's documentation, either of these PowerShell commands switches that off for the current window when you run it before the install command:
+>
+> ```powershell
+> $env:DISABLE_TELEMETRY = "1"
+> $env:DO_NOT_TRACK = "1"
+> ```
+>
+> These controls belong to the installer, not to VYSON Web Skills. We have not audited the installer and did not observe its network traffic (our tests ran with telemetry switched off). Details: [THIRD_PARTY.md](THIRD_PARTY.md#skills-cli-telemetry).
 
-- Installing straight from GitHub with `npx skills add vijetarajput/vyson-web-skills`.
-- That Cursor, Claude Code or Codex actually **finds and uses** the installed skill. We make no support claim for any agent until this has been checked. The details are in [integrations/README.md](integrations/README.md).
+**Optional alternative (not pinned):**
+
+```powershell
+npx skills add vijetarajput/vyson-web-skills --skill vyson-css-motion -a cursor -a claude-code -a codex --copy -y
+```
+
+The difference: `skills@1.7.6` always runs version 1.7.6, the only version we tested. Without the version, `npx` runs whatever the latest version is at that moment. On 10 November 2026 that was also 1.7.6, but a later version may behave differently, and we have **not** tested any later version.
+
+The command copies the skill into `.agents/skills/vyson-css-motion/` (the folder the Skills CLI documents for Cursor and Codex) and `.claude/skills/vyson-css-motion/` (the folder it documents for Claude Code), and writes a `skills-lock.json` file in your project. We have not checked that any of these agents reads those folders.
+
+**What was tested (10 November 2026).** Installing from the public GitHub repository, with Skills CLI **1.7.6**, on **Windows 10**, into a temporary project folder:
+
+- `npx skills add vijetarajput/vyson-web-skills --list` found exactly one skill, `vyson-css-motion`.
+- The default command without extra options (`npx skills add vijetarajput/vyson-web-skills`) passed. It installed one copy, in `.agents/skills/`. This test ran inside an agent terminal, where the installer reported that it had detected an agent and installed without asking questions. How it behaves in a normal interactive terminal was **not tested**.
+- The recommended command above (pinned to 1.7.6) passed, with copies in both folders.
+- The installed files passed the skill validator, and the installed `motion-lint.mjs` ran correctly.
+- The installed files had Windows line endings (CRLF), while the repository stores them with LF. This came from Git's checkout settings on the Windows test PC (`core.autocrlf` was `true`), not from the installer or us editing the files. After allowing for that, all 7 files had the same content as the published ones.
+
+**This proves where the files end up. It does not prove that any agent uses the skill.** We have **not** checked that Cursor, Claude Code or Codex finds, loads or follows the installed skill, and we make no support claim for any agent until that has been checked. The details are in [integrations/README.md](integrations/README.md).
+
+**What has not been tested:**
+
+- macOS and Linux.
+- Global installation (`-g`), the default symlink mode, and the installer's update, check and remove commands, all against GitHub.
+- Agent execution: any agent loading and following the skill.
 - Any agent other than the three above.
+- Any Skills CLI version other than 1.7.6, including the unpinned alternative. These results may change with other versions.
+- Normal interactive terminal behaviour of the installer (the default-command test ran in an agent terminal).
 
 A manual-copy guide for each agent is planned, not written.
 

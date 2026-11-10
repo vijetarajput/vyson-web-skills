@@ -6,15 +6,31 @@ Short install guides, one per AI coding agent. The skills themselves are written
 
 | Agent | Status |
 |---|---|
-| Cursor | Install file placement tested locally (see below). Not yet confirmed that Cursor loads and uses the skill. |
-| Claude Code | Install file placement tested locally. The Claude Code program **is installed** on the test PC (see "What is installed on the test PC" below), but loading of the skill has **not been tested**. |
-| Codex | Install file placement tested locally. The Codex command-line program was **not found** on the test PC. A Codex data folder was found, but that proves nothing about skills (see "What is installed on the test PC" below). Discovery and use of the skill are **untested**. |
+| Cursor | Install file placement tested from a local folder and from GitHub (see below). Not yet confirmed that Cursor loads and uses the skill. |
+| Claude Code | Install file placement tested from a local folder and from GitHub. The Claude Code program **is installed** on the test PC (see "What is installed on the test PC" below), but loading of the skill has **not been tested**. |
+| Codex | Install file placement tested from a local folder and from GitHub. The Codex command-line program was **not found** on the test PC. A Codex data folder was found, but that proves nothing about skills (see "What is installed on the test PC" below). Discovery and use of the skill are **untested**. |
 
 Other agents that support the open [Agent Skills](https://agentskills.io/specification) format should work, but are **untested** and we make no promise for them.
 
 ## Install methods
 
-1. **Recommended:** the open `skills` installer, `npx skills add vijetarajput/vyson-web-skills` (Node.js 22.20 or newer). Local-folder installs were tested on Windows (see below). Installing from GitHub is **not yet tested**. The repository on GitHub contains the Day 1 project foundation, the Day 2 validator and one pilot skill, `vyson-css-motion` (Day 3). The pilot skill is early: its first benchmark was inconclusive (see the [pilot report](../bench/experiments/css-motion-pilot-001/README.md)). Nobody has yet run `npx skills add vijetarajput/vyson-web-skills` against GitHub, so treat that command as untried. Update this line after it has been tried.
+1. **Recommended:** the open `skills` installer (Node.js 22.20 or newer), with this explicit command pinned to the tested version, run inside your project folder:
+
+    ```powershell
+    npx skills@1.7.6 add vijetarajput/vyson-web-skills --skill vyson-css-motion -a cursor -a claude-code -a codex --copy -y
+    ```
+
+    Optional alternative, not pinned:
+
+    ```powershell
+    npx skills add vijetarajput/vyson-web-skills --skill vyson-css-motion -a cursor -a claude-code -a codex --copy -y
+    ```
+
+    The difference: `skills@1.7.6` always runs version 1.7.6, the only version tested. Without the version, `npx` runs the latest version at that moment. On 10 November 2026 that was also 1.7.6, but a later version may behave differently, and later versions are **untested**.
+
+    Installing from the public GitHub repository was tested on 10 November 2026 (Skills CLI 1.7.6, Windows 10, project-level install). See "GitHub install test" below for the results and the limits. The pilot skill is early: its first benchmark was inconclusive (see the [pilot report](../bench/experiments/css-motion-pilot-001/README.md)). **Installing is not the same as an agent using the skill.** Whether Cursor, Claude Code or Codex loads and follows the installed skill is **untested**.
+
+    The installer is a third-party tool. According to the installer's documentation, it sends anonymous usage data by default, and you can opt out by setting `DISABLE_TELEMETRY=1` or `DO_NOT_TRACK=1` (in PowerShell: `$env:DISABLE_TELEMETRY = "1"` or `$env:DO_NOT_TRACK = "1"`). We have not audited the installer or observed its network traffic. See the telemetry note in the [README](../README.md#installation) and the licence record in [THIRD_PARTY.md](../THIRD_PARTY.md#tools-we-recommend-running-not-copied).
 2. **Manual copy:** copy a folder from `skills/` into the agent's skills folder. Each guide will give exact PowerShell commands.
 
 Avoid symlinks: on Windows they often need special permissions.
@@ -52,8 +68,37 @@ Same setup as above: `skills` 1.7.6, Node.js, Windows 10, telemetry off, tempora
 **Not tested:**
 
 - Whether Cursor, Claude Code or Codex actually loads and follows the skill after install. Only the file placement was checked. (Claude Code is installed on the test PC but was not run against the skill. The Codex command-line program was not found, and Codex was not run at all.)
-- Installing from GitHub. The skill is part of the GitHub repository, but the install command has only been run against a local folder, never against GitHub.
+- Installing from GitHub was not part of this local test. It was tested separately (next section).
 - macOS and Linux.
+
+## GitHub install test (10 November 2026)
+
+Setup: public repository `vijetarajput/vyson-web-skills` at commit `b01f875`, `skills` **1.7.6**, Node.js 24, **Windows 10**, project-level installs into empty temporary folders, telemetry switched off (`DISABLE_TELEMETRY=1`, `DO_NOT_TRACK=1`, so we did not observe what the installer sends when telemetry is on), and a temporary home folder so nothing could be written to the real one. The temporary folders were deleted afterwards. No sign-in was needed.
+
+| Question | Result |
+|---|---|
+| `npx skills add vijetarajput/vyson-web-skills --list` | **Passed.** Found exactly one skill, `vyson-css-motion`. The template and the test fixtures in this repository are not found, because they are outside the folders the installer searches. Nothing was installed. |
+| Default command without extra options (`npx skills add vijetarajput/vyson-web-skills`) | **Passed, but only in an agent terminal.** The test ran inside an agent terminal, where the installer reported "Agent detected — installing non-interactively", so it asked no questions. It made one copy in `.agents/skills/vyson-css-motion/` (7 files) and wrote `skills-lock.json`. It made **no** copy in `.claude/skills/`. How the default command behaves in a normal interactive terminal (questions, agent choice, copy or link mode) was **not tested**. |
+| Explicit command with Cursor, Claude Code and Codex targets, `--copy` and `-y` (first run as `npx --yes skills@1.7.6 add ...`; later re-run exactly as written in the README, without `--yes` and with an empty npm cache, where `npx` printed a warning that it would install `skills@1.7.6` and carried on, because the shell was not interactive) | **Passed both times.** 7 files in `.agents/skills/vyson-css-motion/` (the folder the Skills CLI documents for Cursor and Codex) and 7 files in `.claude/skills/vyson-css-motion/` (the folder it documents for Claude Code). No links were created. |
+| `skills list` after the default install | Showed `vyson-css-motion` with source `vijetarajput/vyson-web-skills`. |
+| Does the installed copy pass our validator? | **Yes.** Specification profile: 5 Markdown files and 13 relative links checked, no errors. |
+| Does the installed `motion-lint.mjs` work? | **Yes.** Run from the installed folder on the example result in `examples/vyson-css-motion/result/`: 5 files checked, 0 errors, 0 warnings. This is a static check only. |
+| Why do the installed files have different line endings? | The installed files use Windows line endings (CRLF), while the repository stores them with LF. This came from Git's checkout settings on the Windows test PC (`core.autocrlf` was `true`, and the repository's `.gitattributes` has `* text=auto`), not from the installer or from us editing the files. After allowing for that, all 7 files had the same content as the published ones, and the validator and linter still passed. |
+| Was anything written to the real home folder? | No. The tests used a temporary home folder, which stayed empty. The skill folders in the real home folder (`.agents`, `.claude/skills`, `.cursor/skills`, `.codex/skills`) were compared before and after and did not change. |
+
+**What this shows:** the install command finds the skill on GitHub, copies its files to the folders that the Skills CLI documents for Cursor, Claude Code and Codex, and the copied files are intact and pass our own checks. We did not check that any of these agents reads those folders.
+
+**What this does not show:** that any agent loads or follows the skill. That is **untested**. Only file placement and our own checks were run. No agent was started with the skill.
+
+**Not tested against GitHub:**
+
+- macOS and Linux.
+- Global installation (`-g`).
+- The default symlink mode (the explicit command above uses `--copy`).
+- The installer's update, check and remove commands.
+- Private repositories and access tokens.
+- Any Skills CLI version other than 1.7.6, including the unpinned `npx skills ...` form. These results are specific to that version, and the installer is a separate third-party tool that may change.
+- The installer's behaviour in a normal interactive terminal. All tests ran in a non-interactive agent terminal, so the question that `npx` itself can ask in a normal terminal before downloading a package (and any prompts from the installer) were not seen.
 
 ## What is installed on the test PC
 
