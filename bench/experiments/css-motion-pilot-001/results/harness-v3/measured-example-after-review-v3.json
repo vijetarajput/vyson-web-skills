@@ -1,0 +1,921 @@
+{
+  "meta": {
+    "tool": "vyson measure.mjs",
+    "harnessVersion": 3,
+    "measuredAt": "2026-11-10T16:37:22.543Z",
+    "site": "(folder path not recorded)",
+    "browser": "Chrome/156.0.8078.80",
+    "node": "v24.15.0",
+    "platform": "win32 10.0.26300",
+    "perfRunsPerSetting": 3,
+    "axe": true
+  },
+  "static": {
+    "files": [
+      "index.html",
+      "motion-base.css",
+      "panel.js",
+      "reveal.js",
+      "styles.css"
+    ],
+    "bytes": {
+      "html": 4593,
+      "css": 12116,
+      "js": 2481,
+      "other": 0
+    },
+    "codeLines": 602,
+    "transitionAll": 0,
+    "importantDeclarations": 4,
+    "willChangeDeclarations": 0,
+    "keyframesBlocks": 1,
+    "reducedMotionMentions": 8,
+    "reducedMotionNoPreferenceBlocks": 7,
+    "reducedMotionReduceBlocks": 1,
+    "hoverMediaQueries": 4,
+    "intersectionObserverUses": 2,
+    "scrollEventListeners": 0,
+    "requestAnimationFrameUses": 2,
+    "inlineStyleAttributes": 10,
+    "externalReferences": 0,
+    "animationLibraryMentions": 0
+  },
+  "skillLint": {
+    "note": "Uses the rules shipped with the skill, so it is NOT independent of the skill.",
+    "errors": 0,
+    "warnings": 0,
+    "codes": []
+  },
+  "motionAllowed": {
+    "scrollableHeightPx": 1571,
+    "behaviour": {
+      "heroEntranceElements": 4,
+      "scrollRevealElements": 5,
+      "hoverFeedbackElements": 3,
+      "faq": {
+        "toggleFound": true,
+        "element": "button",
+        "hasAriaExpanded": true,
+        "stateBefore": "true",
+        "stateAfter": "false",
+        "stateChangedByMouse": true,
+        "panelHeightBefore": 43.2,
+        "panelHeightAfter": 0,
+        "toggledByMouse": true,
+        "intermediateHeightsSeen": 6,
+        "animatedOpen": true
+      }
+    },
+    "animations": {
+      "totalDistinct": 19,
+      "cssAnimations": 4,
+      "cssTransitions": 15,
+      "webAnimations": 0,
+      "compositorOnly": 17,
+      "layout": 1,
+      "paintOrOther": 1,
+      "layoutProperties": [
+        "grid-template-rows"
+      ],
+      "otherProperties": [
+        "background-color"
+      ],
+      "infiniteAnimations": 0,
+      "longestFiniteMs": 700
+    },
+    "spatialMovementAnimations": 12,
+    "runningAtEnd": {
+      "total": 0,
+      "infinite": 0
+    },
+    "hiddenTextAfterScrollThrough": [],
+    "scrollBehavior": "auto",
+    "consoleErrors": [],
+    "network": {
+      "requests": 5,
+      "externalRequests": 0,
+      "externalUrls": [],
+      "transferredBytes": 20118
+    },
+    "sampleRecords": [
+      {
+        "kind": "CSSAnimation",
+        "name": "vy-rise",
+        "element": "p.eyebrow.vy-enter",
+        "props": [
+          "transform",
+          "opacity"
+        ],
+        "durationMs": 700,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 104,
+        "pageY": 225
+      },
+      {
+        "kind": "CSSAnimation",
+        "name": "vy-rise",
+        "element": "h1.vy-enter",
+        "props": [
+          "transform",
+          "opacity"
+        ],
+        "durationMs": 700,
+        "delayMs": 70,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 105,
+        "pageY": 258
+      },
+      {
+        "kind": "CSSAnimation",
+        "name": "vy-rise",
+        "element": "p.lead.vy-enter",
+        "props": [
+          "transform",
+          "opacity"
+        ],
+        "durationMs": 700,
+        "delayMs": 140,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 105,
+        "pageY": 543
+      },
+      {
+        "kind": "CSSAnimation",
+        "name": "vy-rise",
+        "element": "a.button.vy-press",
+        "props": [
+          "transform",
+          "opacity"
+        ],
+        "durationMs": 700,
+        "delayMs": 210.00000000000003,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 105,
+        "pageY": 591
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "opacity",
+        "element": "h2#roasts-title.vy-reveal.is-visible",
+        "props": [
+          "opacity"
+        ],
+        "durationMs": 480,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 2307,
+        "pageY": 848
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "h2#roasts-title.vy-reveal.is-visible",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 480,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 2307,
+        "pageY": 848
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "opacity",
+        "element": "li.vy-reveal.is-visible",
+        "props": [
+          "opacity"
+        ],
+        "durationMs": 480,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 2307,
+        "pageY": 926
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "li.vy-reveal.is-visible",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 480,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 2307,
+        "pageY": 926
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "opacity",
+        "element": "h2#process-title.vy-reveal.is-visible",
+        "props": [
+          "opacity"
+        ],
+        "durationMs": 480,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 2667,
+        "pageY": 1416
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "h2#process-title.vy-reveal.is-visible",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 480,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 2667,
+        "pageY": 1416
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "opacity",
+        "element": "h2#faq-title.vy-reveal.is-visible",
+        "props": [
+          "opacity"
+        ],
+        "durationMs": 480,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 3025,
+        "pageY": 1891
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "h2#faq-title.vy-reveal.is-visible",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 480,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 3025,
+        "pageY": 1891
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "opacity",
+        "element": "div.faq.vy-reveal",
+        "props": [
+          "opacity"
+        ],
+        "durationMs": 480,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 3025,
+        "pageY": 1961
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "div.faq.vy-reveal",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 480,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 3025,
+        "pageY": 1961
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "a.link",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 240,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 6025,
+        "pageY": 18
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "background-color",
+        "element": "a.button.vy-press",
+        "props": [
+          "background-color"
+        ],
+        "durationMs": 140,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 6685,
+        "pageY": 573
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "article.card.vy-lift",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 240,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 7315,
+        "pageY": 912
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "opacity",
+        "element": "article.card.vy-lift",
+        "props": [
+          "opacity"
+        ],
+        "durationMs": 240,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 7315,
+        "pageY": 912
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "grid-template-rows",
+        "element": "div#faq-1.panel-body",
+        "props": [
+          "grid-template-rows"
+        ],
+        "durationMs": 240,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "click",
+        "atMs": 14436,
+        "pageY": 2005
+      }
+    ]
+  },
+  "reducedMotion": {
+    "scrollableHeightPx": 1571,
+    "behaviour": {
+      "heroEntranceElements": 0,
+      "scrollRevealElements": 0,
+      "hoverFeedbackElements": 0,
+      "faq": {
+        "toggleFound": true,
+        "element": "button",
+        "hasAriaExpanded": true,
+        "stateBefore": "true",
+        "stateAfter": "false",
+        "stateChangedByMouse": true,
+        "panelHeightBefore": 43.2,
+        "panelHeightAfter": 0,
+        "toggledByMouse": true,
+        "intermediateHeightsSeen": 0,
+        "animatedOpen": false
+      }
+    },
+    "animations": {
+      "totalDistinct": 0,
+      "cssAnimations": 0,
+      "cssTransitions": 0,
+      "webAnimations": 0,
+      "compositorOnly": 0,
+      "layout": 0,
+      "paintOrOther": 0,
+      "layoutProperties": [],
+      "otherProperties": [],
+      "infiniteAnimations": 0,
+      "longestFiniteMs": 0
+    },
+    "spatialMovementAnimations": 0,
+    "runningAtEnd": {
+      "total": 0,
+      "infinite": 0
+    },
+    "hiddenTextAfterScrollThrough": [],
+    "scrollBehavior": "auto",
+    "consoleErrors": [],
+    "network": {
+      "requests": 5,
+      "externalRequests": 0,
+      "externalUrls": [],
+      "transferredBytes": 20118
+    },
+    "sampleRecords": [
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "a.link",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 6379,
+        "pageY": 18
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "background-color",
+        "element": "a.button.vy-press",
+        "props": [
+          "background-color"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 6618,
+        "pageY": 573
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "grid-template-rows",
+        "element": "div#faq-1.panel-body",
+        "props": [
+          "grid-template-rows"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "click",
+        "atMs": 14271,
+        "pageY": 2005
+      }
+    ]
+  },
+  "hoverRules": {
+    "hoverSelectors": 4,
+    "hoverTargetsInPage": 7,
+    "selectedForTest": 5,
+    "rulesSkippedByMedia": 5,
+    "hoverMediaMatches": true,
+    "pointerFineMatches": true,
+    "tested": 5,
+    "skippedCovered": 0,
+    "notHovered": 0,
+    "changedVisibly": 5,
+    "animated": 5,
+    "movementApplied": 4,
+    "declaredMovementNotApplied": [],
+    "noVisibleChange": [],
+    "note": "Elements are chosen from the :hover rules in the stylesheets (up to 2 per rule, 45 in all). Computed styles of the element, its first 24 descendants and their ::before/::after are compared before and after a real mouse move. Rules inside media queries that do not match in headless Chrome are skipped and counted in rulesSkippedByMedia.",
+    "details": [
+      {
+        "label": "article.card.vy-lift",
+        "hovered": true,
+        "changedProps": [
+          "transform",
+          "opacity"
+        ],
+        "movementChanged": true,
+        "animated": true,
+        "declaredMovementNotApplied": []
+      },
+      {
+        "label": "article.card.vy-lift",
+        "hovered": true,
+        "changedProps": [
+          "transform",
+          "opacity"
+        ],
+        "movementChanged": true,
+        "animated": true,
+        "declaredMovementNotApplied": []
+      },
+      {
+        "label": "a.link",
+        "hovered": true,
+        "changedProps": [
+          "transform"
+        ],
+        "movementChanged": true,
+        "animated": true,
+        "declaredMovementNotApplied": []
+      },
+      {
+        "label": "a.link",
+        "hovered": true,
+        "changedProps": [
+          "transform"
+        ],
+        "movementChanged": true,
+        "animated": true,
+        "declaredMovementNotApplied": []
+      },
+      {
+        "label": "a.button.vy-press",
+        "hovered": true,
+        "changedProps": [
+          "background-color"
+        ],
+        "movementChanged": false,
+        "animated": true,
+        "declaredMovementNotApplied": []
+      }
+    ]
+  },
+  "accordion": {
+    "controlsFound": 3,
+    "initialOpen": 1,
+    "openAfterOpeningFirst": 1,
+    "openAfterOpeningSecond": 1,
+    "openAfterPressingSecondAgain": 0,
+    "onlyOneOpenAfterOpeningTwo": true,
+    "note": "Presses panel 1 (if closed), then panel 2, then panel 2 again, with real mouse clicks. \"Only one open\" is true when exactly one panel is expanded after panel 2 was opened."
+  },
+  "scriptsDisabled": {
+    "hiddenTextElements": [],
+    "visibleTextCharacters": 1034,
+    "v3": {
+      "desktop1280": {
+        "textElements": 31,
+        "transparent": [],
+        "visibilityHidden": [],
+        "collapsed": [],
+        "displayNone": [],
+        "disclosures": [
+          {
+            "control": "button.panel-button",
+            "controlVisible": true,
+            "panelFound": true,
+            "panelVisible": true
+          },
+          {
+            "control": "button.panel-button",
+            "controlVisible": true,
+            "panelFound": true,
+            "panelVisible": true
+          },
+          {
+            "control": "button.panel-button",
+            "controlVisible": true,
+            "panelFound": true,
+            "panelVisible": true
+          }
+        ],
+        "unreachablePanels": [],
+        "visibleTextCharacters": 1034
+      },
+      "phone390": {
+        "textElements": 31,
+        "transparent": [],
+        "visibilityHidden": [],
+        "collapsed": [],
+        "displayNone": [],
+        "disclosures": [
+          {
+            "control": "button.panel-button",
+            "controlVisible": true,
+            "panelFound": true,
+            "panelVisible": true
+          },
+          {
+            "control": "button.panel-button",
+            "controlVisible": true,
+            "panelFound": true,
+            "panelVisible": true
+          },
+          {
+            "control": "button.panel-button",
+            "controlVisible": true,
+            "panelFound": true,
+            "panelVisible": true
+          }
+        ],
+        "unreachablePanels": [],
+        "visibleTextCharacters": 1034
+      },
+      "unreadableTextElementsDesktop": 0,
+      "unreadableTextElementsPhone": 0,
+      "unreachablePanelsDesktop": [],
+      "unreachablePanelsPhone": [],
+      "note": "Text that is display:none is listed separately because it can be legitimate (for example content for another breakpoint). Panels are only counted when their control is visible and the panel cannot be seen."
+    }
+  },
+  "responsive": {
+    "viewportMeta": "width=device-width, initial-scale=1",
+    "widths": [
+      {
+        "width": 320,
+        "overflowAtLoadPx": 0,
+        "overflowAfterScroll": 0,
+        "wideElements": [],
+        "interactiveCount": 9,
+        "smallerThan24px": 0,
+        "smallerThan44px": 0,
+        "smallerThan44List": [],
+        "bodyFontPx": 16,
+        "smallestTextPx": 12.8
+      },
+      {
+        "width": 360,
+        "overflowAtLoadPx": 0,
+        "overflowAfterScroll": 0,
+        "wideElements": [],
+        "interactiveCount": 9,
+        "smallerThan24px": 0,
+        "smallerThan44px": 0,
+        "smallerThan44List": [],
+        "bodyFontPx": 16,
+        "smallestTextPx": 12.8
+      },
+      {
+        "width": 390,
+        "overflowAtLoadPx": 0,
+        "overflowAfterScroll": 0,
+        "wideElements": [],
+        "interactiveCount": 9,
+        "smallerThan24px": 0,
+        "smallerThan44px": 0,
+        "smallerThan44List": [],
+        "bodyFontPx": 16,
+        "smallestTextPx": 12.8
+      },
+      {
+        "width": 768,
+        "overflowAtLoadPx": 0,
+        "overflowAfterScroll": 0,
+        "wideElements": [],
+        "interactiveCount": 9,
+        "smallerThan24px": 0,
+        "smallerThan44px": 0,
+        "smallerThan44List": [],
+        "bodyFontPx": 16,
+        "smallestTextPx": 12.8
+      },
+      {
+        "width": 1024,
+        "overflowAtLoadPx": -15,
+        "overflowAfterScroll": -15,
+        "wideElements": [],
+        "interactiveCount": 9,
+        "smallerThan24px": 0,
+        "smallerThan44px": 4,
+        "smallerThan44List": [
+          "a.brand 113x33: Northlight",
+          "a.link 46x26: Roasts",
+          "a.link 53x26: Process",
+          "a.link 71x26: Questions"
+        ],
+        "bodyFontPx": 16,
+        "smallestTextPx": 12.8
+      },
+      {
+        "width": 1280,
+        "overflowAtLoadPx": -15,
+        "overflowAfterScroll": -15,
+        "wideElements": [],
+        "interactiveCount": 9,
+        "smallerThan24px": 0,
+        "smallerThan44px": 4,
+        "smallerThan44List": [
+          "a.brand 113x33: Northlight",
+          "a.link 46x26: Roasts",
+          "a.link 53x26: Process",
+          "a.link 71x26: Questions"
+        ],
+        "bodyFontPx": 16,
+        "smallestTextPx": 12.8
+      },
+      {
+        "width": 1920,
+        "overflowAtLoadPx": -15,
+        "overflowAfterScroll": -15,
+        "wideElements": [],
+        "interactiveCount": 9,
+        "smallerThan24px": 0,
+        "smallerThan44px": 4,
+        "smallerThan44List": [
+          "a.brand 113x33: Northlight",
+          "a.link 46x26: Roasts",
+          "a.link 53x26: Process",
+          "a.link 71x26: Questions"
+        ],
+        "bodyFontPx": 16,
+        "smallestTextPx": 12.8
+      }
+    ],
+    "widthsWithHorizontalScroll": []
+  },
+  "accessibility": {
+    "desktop1280": {
+      "axeVersion": "4.14.0",
+      "violationRules": 0,
+      "violatingNodesByImpact": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "violations": [],
+      "incompleteRules": [
+        "color-contrast"
+      ],
+      "passedRules": 35
+    },
+    "phone390": {
+      "axeVersion": "4.14.0",
+      "violationRules": 0,
+      "violatingNodesByImpact": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "violations": [],
+      "incompleteRules": [
+        "color-contrast"
+      ],
+      "passedRules": 35
+    },
+    "structure": {
+      "htmlLang": "en",
+      "title": "Northlight Coffee | Small-batch roastery",
+      "h1Count": 1,
+      "headingLevelSkips": 0,
+      "landmarks": {
+        "header": 1,
+        "nav": 1,
+        "main": 1,
+        "footer": 1
+      },
+      "imagesWithoutAlt": 0,
+      "ariaExpandedControls": 3,
+      "ariaExpandedWithValidAriaControls": 3,
+      "detailsElements": 0,
+      "skipLinkPresent": true
+    },
+    "keyboard": {
+      "tabStops": 9,
+      "stopsWithoutOutlineOrShadow": 0,
+      "stopsFocusedButNotVisible": 0,
+      "firstStop": "a:Skip to content",
+      "note": "Focus indicator check looks for an outline or box-shadow only, so a colour-only focus style is counted as missing."
+    },
+    "keyboardToggle": {
+      "toggleFound": true,
+      "before": "true|43",
+      "tag": "button",
+      "focusedBeforeKey": true,
+      "after": "false|0",
+      "changedByEnterKey": true
+    }
+  },
+  "performanceDesktop": {
+    "setup": {
+      "mobile": false,
+      "cpuSlowdown": 1,
+      "runs": 3
+    },
+    "runs": [
+      {
+        "frames": 116,
+        "meanFrameMs": 16.67,
+        "p95FrameMs": 17.1,
+        "maxFrameMs": 17.5,
+        "framesOver33ms": 0,
+        "layoutCountDuringScroll": 10,
+        "styleRecalcCountDuringScroll": 85,
+        "layoutMs": 2.15,
+        "styleRecalcMs": 14.12,
+        "scriptMs": 6.95,
+        "taskMs": 90.05,
+        "layoutShiftScore": 0,
+        "longTasks": 0
+      },
+      {
+        "frames": 116,
+        "meanFrameMs": 16.67,
+        "p95FrameMs": 17,
+        "maxFrameMs": 17.2,
+        "framesOver33ms": 0,
+        "layoutCountDuringScroll": 10,
+        "styleRecalcCountDuringScroll": 84,
+        "layoutMs": 1.61,
+        "styleRecalcMs": 14.86,
+        "scriptMs": 6.06,
+        "taskMs": 92.19,
+        "layoutShiftScore": 0,
+        "longTasks": 0
+      },
+      {
+        "frames": 116,
+        "meanFrameMs": 16.66,
+        "p95FrameMs": 16.9,
+        "maxFrameMs": 17.2,
+        "framesOver33ms": 0,
+        "layoutCountDuringScroll": 10,
+        "styleRecalcCountDuringScroll": 84,
+        "layoutMs": 2.11,
+        "styleRecalcMs": 16.58,
+        "scriptMs": 7.71,
+        "taskMs": 104.12,
+        "layoutShiftScore": 0,
+        "longTasks": 0
+      }
+    ],
+    "median": {
+      "frames": 116,
+      "meanFrameMs": 16.67,
+      "p95FrameMs": 17,
+      "maxFrameMs": 17.2,
+      "framesOver33ms": 0,
+      "layoutCountDuringScroll": 10,
+      "styleRecalcCountDuringScroll": 84,
+      "layoutMs": 2.11,
+      "styleRecalcMs": 14.86,
+      "scriptMs": 6.95,
+      "taskMs": 92.19,
+      "layoutShiftScore": 0,
+      "longTasks": 0
+    }
+  },
+  "performancePhoneCpu4x": {
+    "setup": {
+      "mobile": true,
+      "cpuSlowdown": 4,
+      "runs": 3
+    },
+    "runs": [
+      {
+        "frames": 126,
+        "meanFrameMs": 16.67,
+        "p95FrameMs": 16.9,
+        "maxFrameMs": 17,
+        "framesOver33ms": 0,
+        "layoutCountDuringScroll": 8,
+        "styleRecalcCountDuringScroll": 88,
+        "layoutMs": 2.59,
+        "styleRecalcMs": 36.91,
+        "scriptMs": 26.9,
+        "taskMs": 267.39,
+        "layoutShiftScore": 0,
+        "longTasks": 1
+      },
+      {
+        "frames": 127,
+        "meanFrameMs": 16.67,
+        "p95FrameMs": 16.9,
+        "maxFrameMs": 17,
+        "framesOver33ms": 0,
+        "layoutCountDuringScroll": 8,
+        "styleRecalcCountDuringScroll": 89,
+        "layoutMs": 2.88,
+        "styleRecalcMs": 36.27,
+        "scriptMs": 28.08,
+        "taskMs": 284.56,
+        "layoutShiftScore": 0,
+        "longTasks": 1
+      },
+      {
+        "frames": 126,
+        "meanFrameMs": 16.67,
+        "p95FrameMs": 16.8,
+        "maxFrameMs": 17,
+        "framesOver33ms": 0,
+        "layoutCountDuringScroll": 8,
+        "styleRecalcCountDuringScroll": 88,
+        "layoutMs": 4.42,
+        "styleRecalcMs": 32.45,
+        "scriptMs": 25.44,
+        "taskMs": 298.75,
+        "layoutShiftScore": 0,
+        "longTasks": 1
+      }
+    ],
+    "median": {
+      "frames": 126,
+      "meanFrameMs": 16.67,
+      "p95FrameMs": 16.9,
+      "maxFrameMs": 17,
+      "framesOver33ms": 0,
+      "layoutCountDuringScroll": 8,
+      "styleRecalcCountDuringScroll": 88,
+      "layoutMs": 2.88,
+      "styleRecalcMs": 36.27,
+      "scriptMs": 26.9,
+      "taskMs": 284.56,
+      "layoutShiftScore": 0,
+      "longTasks": 1
+    }
+  }
+}

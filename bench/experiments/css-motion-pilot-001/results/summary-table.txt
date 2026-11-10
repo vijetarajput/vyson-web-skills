@@ -1,0 +1,64 @@
+﻿measure                                                        | WITHOUT | WITH
+
+## STATIC CODE
+HTML / CSS / JS bytes                                          | 11154 / 14379 / 1917 | 10268 / 14861 / 1668
+code lines (html+css+js)                                       | 522 | 820
+transition: all                                                | 0 | 0
+!important                                                     | 6 | 0
+will-change                                                    | 0 | 0
+@keyframes blocks                                              | 4 | 1
+reduced-motion mentions (no-pref / reduce)                     | 1 (0 / 1) | 5 (4 / 1)
+(hover: hover) media queries                                   | 0 | 5
+IntersectionObserver uses                                      | 2 | 3
+scroll event listeners                                         | 1 | 0
+requestAnimationFrame uses                                     | 0 | 2
+external references / animation-library mentions               | 0 / 0 | 0 / 0
+skill motion-lint (not independent)                            | 6 errors, 5 warnings ML002@styles.css:36,ML009@styles.css:50,ML009@styles.css:92,ML006@styles.css:111 | 0 errors, 0 warnings 
+
+## ANIMATION BEHAVIOUR (motion allowed)
+hero entrance: elements animated in first screen               | 8 | 4
+scroll reveal: elements animated below first screen            | 6 | 5
+hover feedback: elements that animated on hover                | 10 | 2
+FAQ toggle found / opens by mouse / animated open              | true / true / true | true / true / true
+distinct animations (css anim / css trans / web anim)          | 44 (9 / 35 / 0) | 19 (4 / 15 / 0)
+compositor-only / layout / paint-or-other                      | 31 / 3 / 10 | 18 / 1 / 0
+layout properties animated                                     | 2: padding-left; grid-template-rows | 1: grid-template-rows
+other (paint) properties animated                              | 7: border-bottom-color; border-left-color; border-right-color | 0
+infinite animations / longest finite (ms)                      | 2 / 1400 | 0 / 700
+console errors                                                 | 0 | 0
+requests (external) / bytes                                    | 3 (0) / 28006 | 4 (0) / 27535
+
+## REDUCED MOTION (prefers-reduced-motion: reduce)
+movement animations still present (>1ms)                       | 0 | 0
+all distinct animations still present                          | 0 | 1
+infinite animations running at end                             | 0 | 0
+scroll-behavior                                                | auto | auto
+text hidden after scrolling through                            | 0 | 0
+
+## SCRIPTS DISABLED
+text hidden with scripts off                                   | 0 | 0
+
+## RESPONSIVE
+viewport meta                                                  | width=device-width, initial-scale=1 | width=device-width, initial-scale=1
+widths with horizontal scroll                                  | 0 | 0
+touch targets <24px / <44px at 390px                           | 2 / 3 of 17 | 2 / 7 of 13
+smallest text px at 390                                        | 12 | 12
+
+## ACCESSIBILITY
+axe violations desktop (rules; nodes by impact)                | 1 rules; {"critical":0,"serious":6,"moderate":0,"minor":0} | 0 rules; {"critical":0,"serious":0,"moderate":0,"minor":0}
+axe rule ids desktop                                           | 1: label-content-name-mismatch(6) | 0
+axe violations phone (rules; nodes by impact)                  | 1 rules; {"critical":0,"serious":6,"moderate":0,"minor":0} | 0 rules; {"critical":0,"serious":0,"moderate":0,"minor":0}
+lang / title / h1 count / heading skips                        | en / true / 1 / 0 | en / true / 1 / 0
+landmarks header/nav/main/footer                               | 4/1/1/1 | 1/1/1/1
+aria-expanded controls / with valid aria-controls / details    | 5 / 5 / 0 | 4 / 4 / 0
+tab stops / without outline or shadow / focused but not visible | 20 / 0 / 0 | 13 / 0 / 0
+first tab stop                                                 | a:Skip to content | a:Skip to content
+FAQ toggle works with Enter key                                | true / true | true / true
+
+## PERFORMANCE (median of runs, this PC only)
+desktop: mean / p95 / max frame ms                             | 16.67 / 16.9 / 17.2 | 16.67 / 17 / 17.1
+desktop: layouts / style recalcs while scrolling               | 10 / 186 | 15 / 168
+desktop: script ms / task ms / layout shift                    | 14.11 / 259.82 / 0 | 8.14 / 253.67 / 0
+phone 4x CPU: mean / p95 / max frame ms                        | 16.67 / 16.9 / 17 | 16.67 / 16.9 / 17.1
+phone 4x CPU: frames >33ms / long tasks                        | 0 / 1 | 0 / 2
+phone 4x CPU: layouts / style recalcs                          | 8 / 274 | 8 / 210

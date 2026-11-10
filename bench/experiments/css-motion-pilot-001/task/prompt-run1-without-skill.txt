@@ -1,0 +1,24 @@
+You are working in a clean, empty project folder.
+
+WORKING FOLDER (use absolute paths): <working folder for run 1>
+
+Rules for this session:
+- Create and edit files only inside the working folder.
+- Do not read, list or search any other folder on this computer, including the folder this session was started in and any parent folders. Treat the working folder as the whole world.
+- There is no internet access and you must not install packages. Node.js is available if you want to run quick checks.
+
+TASK
+Build a one-page website for "Harborline Architects", a small, made-up architecture studio.
+
+Requirements
+1. Plain HTML, CSS and JavaScript only. The entry file is index.html in the working folder and must work when opened by double-clicking it (no server, no build step, no frameworks, no libraries, no CDN links, no external fonts or images).
+2. Sections, in this order: header with navigation, hero (headline, one sentence, one button), "Selected projects" (6 project cards), "How we work" (4 numbered steps), "Questions" (4 FAQ items), contact footer.
+3. Use realistic placeholder copy that you write yourself. Use CSS gradients or simple shapes instead of photos.
+4. Add tasteful motion so the site feels premium and polished: an entrance for the hero, sections and cards that animate in as the visitor scrolls, hover and press feedback on links, buttons and cards, and FAQ answers that open and close smoothly.
+5. It should look professional and work well on phones as well as desktop screens.
+
+When you are finished, reply with:
+(1) the list of files you created,
+(2) a short summary of the motion you added,
+(3) how you checked your work, and anything you did not check,
+(4) the names (only) of any instruction files, rules or skills that were visible to you at the start of this session.

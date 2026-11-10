@@ -1,0 +1,111 @@
+/* Harborline motion layer.
+ * Plan (4 moments, each with a purpose):
+ *   1. Hero entrance     - orient: shows where to look first.
+ *   2. Scroll reveals    - orient: content arrives as the visitor reaches it.
+ *   3. Hover and press   - feedback: buttons, links and cards respond.
+ *   4. FAQ panels        - explain a change: answers open instead of jumping.
+ *
+ * All movement sits inside prefers-reduced-motion: no-preference.
+ * Without that, or without JavaScript, everything is visible and in place.
+ */
+
+:root {
+  --vy-duration-fast: 140ms;
+  --vy-duration-base: 240ms;
+  --vy-duration-slow: 480ms;
+  --vy-duration-enter: 700ms;
+
+  --vy-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --vy-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --vy-distance: 18px;
+  --vy-stagger: 70ms;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --vy-distance: 10px;
+    --vy-stagger: 45ms;
+  }
+}
+
+/* 1 and 2 and 3 (press): movement only when allowed ----------------------- */
+@media (prefers-reduced-motion: no-preference) {
+
+  html { scroll-behavior: smooth; }
+
+  /* 1. Hero entrance. The hidden state lives only inside the keyframes. */
+  .vy-enter {
+    animation: vy-rise var(--vy-duration-enter) var(--vy-ease-out) both;
+    animation-delay: calc(var(--vy-i, 0) * var(--vy-stagger));
+  }
+
+  @keyframes vy-rise {
+    from {
+      opacity: 0;
+      transform: translateY(var(--vy-distance));
+    }
+  }
+
+  /* 2. Scroll reveal. "vy-js" is added by script.js only after it has checked
+     that motion is allowed and IntersectionObserver exists. */
+  .vy-js .vy-reveal {
+    opacity: 0;
+    transform: translateY(var(--vy-distance));
+    transition: opacity var(--vy-duration-slow) var(--vy-ease-out),
+                transform var(--vy-duration-slow) var(--vy-ease-out);
+    transition-delay: calc(var(--vy-i, 0) * var(--vy-stagger));
+  }
+
+  .vy-js .vy-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* 3. Press feedback works on touch screens too. */
+  .vy-press {
+    transition: background-color var(--vy-duration-fast) var(--vy-ease-standard),
+                transform var(--vy-duration-fast) var(--vy-ease-standard);
+  }
+
+  .vy-press:active {
+    transform: scale(0.97);
+  }
+
+  /* Link underline draws in. */
+  .vy-link::after {
+    transition: transform var(--vy-duration-base) var(--vy-ease-out);
+  }
+
+  /* 4. FAQ panels: the one documented layout exception (grid rows, one
+     panel at a time, 240ms). Turned on one frame after load so the panels
+     do not animate shut when the page first appears. */
+  .panels-animate .panel-body {
+    transition: grid-template-rows var(--vy-duration-base) var(--vy-ease-standard);
+  }
+
+  .panels-animate .panel-icon {
+    transition: transform var(--vy-duration-base) var(--vy-ease-standard);
+  }
+}
+
+/* Hover effects: only on devices that really hover. ----------------------- */
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .vy-lift {
+    transition: transform var(--vy-duration-base) var(--vy-ease-standard);
+  }
+
+  .vy-lift:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Soft shadow is a second layer that fades in (opacity only). */
+  .card::after {
+    transition: opacity var(--vy-duration-base) var(--vy-ease-standard);
+  }
+}
+
+/* Reduced motion: keep short colour changes, drop all travel. ------------- */
+@media (prefers-reduced-motion: reduce) {
+  .vy-press { transition: background-color var(--vy-duration-fast) linear; }
+}

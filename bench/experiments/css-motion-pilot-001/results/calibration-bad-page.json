@@ -1,0 +1,622 @@
+{
+  "meta": {
+    "tool": "vyson measure.mjs",
+    "measuredAt": "2026-11-10T15:48:58.729Z",
+    "site": "(path removed for publication)",
+    "browser": "Chrome/156.0.8078.80",
+    "node": "v24.15.0",
+    "platform": "win32 10.0.26300",
+    "perfRunsPerSetting": 1,
+    "axe": true
+  },
+  "static": {
+    "files": [
+      "index.html"
+    ],
+    "bytes": {
+      "html": 1403,
+      "css": 0,
+      "js": 0,
+      "other": 0
+    },
+    "codeLines": 37,
+    "transitionAll": 1,
+    "importantDeclarations": 0,
+    "willChangeDeclarations": 0,
+    "keyframesBlocks": 1,
+    "reducedMotionMentions": 0,
+    "reducedMotionNoPreferenceBlocks": 0,
+    "reducedMotionReduceBlocks": 0,
+    "hoverMediaQueries": 0,
+    "intersectionObserverUses": 1,
+    "scrollEventListeners": 0,
+    "requestAnimationFrameUses": 0,
+    "inlineStyleAttributes": 1,
+    "externalReferences": 0,
+    "animationLibraryMentions": 0
+  },
+  "skillLint": {
+    "note": "Uses the rules shipped with the skill, so it is NOT independent of the skill.",
+    "errors": 3,
+    "warnings": 2,
+    "codes": [
+      "ML001@index.html:10",
+      "ML006@index.html:10",
+      "ML003@index.html:10",
+      "ML002@index.html:12",
+      "ML004@index.html:15"
+    ]
+  },
+  "motionAllowed": {
+    "scrollableHeightPx": 843,
+    "behaviour": {
+      "heroEntranceElements": 3,
+      "scrollRevealElements": 1,
+      "hoverFeedbackElements": 0,
+      "faq": {
+        "toggleFound": false
+      }
+    },
+    "animations": {
+      "totalDistinct": 7,
+      "cssAnimations": 1,
+      "cssTransitions": 6,
+      "webAnimations": 0,
+      "compositorOnly": 7,
+      "layout": 0,
+      "paintOrOther": 0,
+      "layoutProperties": [],
+      "otherProperties": [],
+      "infiniteAnimations": 1,
+      "longestFiniteMs": 1600
+    },
+    "spatialMovementAnimations": 4,
+    "runningAtEnd": {
+      "total": 1,
+      "infinite": 1
+    },
+    "hiddenTextAfterScrollThrough": [],
+    "scrollBehavior": "auto",
+    "consoleErrors": [],
+    "network": {
+      "requests": 1,
+      "externalRequests": 0,
+      "externalUrls": [],
+      "transferredBytes": 1586
+    },
+    "sampleRecords": [
+      {
+        "kind": "CSSAnimation",
+        "name": "spin",
+        "element": "div.spin",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 2000,
+        "delayMs": 0,
+        "infinite": true,
+        "phase": "load",
+        "atMs": 53,
+        "pageY": 314
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "opacity",
+        "element": "h1.reveal.on",
+        "props": [
+          "opacity"
+        ],
+        "durationMs": 1600,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 84,
+        "pageY": 101
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "h1.reveal.on",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 1600,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 84,
+        "pageY": 101
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "opacity",
+        "element": "p.reveal.on",
+        "props": [
+          "opacity"
+        ],
+        "durationMs": 1600,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 84,
+        "pageY": 160
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "p.reveal.on",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 1600,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 84,
+        "pageY": 160
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "opacity",
+        "element": "h2.reveal.on",
+        "props": [
+          "opacity"
+        ],
+        "durationMs": 1600,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 2602,
+        "pageY": 1574
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "h2.reveal.on",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 1600,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 2602,
+        "pageY": 1574
+      }
+    ]
+  },
+  "reducedMotion": {
+    "scrollableHeightPx": 843,
+    "behaviour": {
+      "heroEntranceElements": 3,
+      "scrollRevealElements": 1,
+      "hoverFeedbackElements": 0,
+      "faq": {
+        "toggleFound": false
+      }
+    },
+    "animations": {
+      "totalDistinct": 7,
+      "cssAnimations": 1,
+      "cssTransitions": 6,
+      "webAnimations": 0,
+      "compositorOnly": 7,
+      "layout": 0,
+      "paintOrOther": 0,
+      "layoutProperties": [],
+      "otherProperties": [],
+      "infiniteAnimations": 1,
+      "longestFiniteMs": 1600
+    },
+    "spatialMovementAnimations": 4,
+    "runningAtEnd": {
+      "total": 1,
+      "infinite": 1
+    },
+    "hiddenTextAfterScrollThrough": [],
+    "scrollBehavior": "auto",
+    "consoleErrors": [],
+    "network": {
+      "requests": 1,
+      "externalRequests": 0,
+      "externalUrls": [],
+      "transferredBytes": 1586
+    },
+    "sampleRecords": [
+      {
+        "kind": "CSSAnimation",
+        "name": "spin",
+        "element": "div.spin",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 2000,
+        "delayMs": 0,
+        "infinite": true,
+        "phase": "load",
+        "atMs": 45,
+        "pageY": 314
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "opacity",
+        "element": "h1.reveal.on",
+        "props": [
+          "opacity"
+        ],
+        "durationMs": 1600,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 74,
+        "pageY": 101
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "h1.reveal.on",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 1600,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 74,
+        "pageY": 101
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "opacity",
+        "element": "p.reveal.on",
+        "props": [
+          "opacity"
+        ],
+        "durationMs": 1600,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 74,
+        "pageY": 160
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "p.reveal.on",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 1600,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 74,
+        "pageY": 160
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "opacity",
+        "element": "h2.reveal.on",
+        "props": [
+          "opacity"
+        ],
+        "durationMs": 1600,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 2595,
+        "pageY": 1574
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "h2.reveal.on",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 1600,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 2596,
+        "pageY": 1574
+      }
+    ]
+  },
+  "scriptsDisabled": {
+    "hiddenTextElements": [
+      "h1.reveal: Hidden until script runs",
+      "p.reveal: Another line",
+      "h2.reveal: Lower heading"
+    ],
+    "visibleTextCharacters": 88
+  },
+  "responsive": {
+    "viewportMeta": null,
+    "widths": [
+      {
+        "width": 320,
+        "overflowAtLoadPx": 220,
+        "overflowAfterScroll": 220,
+        "wideElements": [
+          "div.wide"
+        ],
+        "interactiveCount": 2,
+        "smallerThan24px": 2,
+        "smallerThan44px": 2,
+        "bodyFontPx": 16,
+        "smallestTextPx": 13.3333
+      },
+      {
+        "width": 360,
+        "overflowAtLoadPx": 60,
+        "overflowAfterScroll": 60,
+        "wideElements": [
+          "div.wide"
+        ],
+        "interactiveCount": 2,
+        "smallerThan24px": 2,
+        "smallerThan44px": 2,
+        "bodyFontPx": 16,
+        "smallestTextPx": 13.3333
+      },
+      {
+        "width": 390,
+        "overflowAtLoadPx": 0,
+        "overflowAfterScroll": 0,
+        "wideElements": [],
+        "interactiveCount": 2,
+        "smallerThan24px": 2,
+        "smallerThan44px": 2,
+        "bodyFontPx": 16,
+        "smallestTextPx": 13.3333
+      },
+      {
+        "width": 768,
+        "overflowAtLoadPx": 0,
+        "overflowAfterScroll": 0,
+        "wideElements": [],
+        "interactiveCount": 2,
+        "smallerThan24px": 2,
+        "smallerThan44px": 2,
+        "bodyFontPx": 16,
+        "smallestTextPx": 13.3333
+      },
+      {
+        "width": 1024,
+        "overflowAtLoadPx": 476,
+        "overflowAfterScroll": 476,
+        "wideElements": [
+          "div.wide"
+        ],
+        "interactiveCount": 2,
+        "smallerThan24px": 2,
+        "smallerThan44px": 2,
+        "bodyFontPx": 16,
+        "smallestTextPx": 13.3333
+      },
+      {
+        "width": 1280,
+        "overflowAtLoadPx": 220,
+        "overflowAfterScroll": 220,
+        "wideElements": [
+          "div.wide"
+        ],
+        "interactiveCount": 2,
+        "smallerThan24px": 2,
+        "smallerThan44px": 2,
+        "bodyFontPx": 16,
+        "smallestTextPx": 13.3333
+      },
+      {
+        "width": 1920,
+        "overflowAtLoadPx": 45,
+        "overflowAfterScroll": -14,
+        "wideElements": [],
+        "interactiveCount": 2,
+        "smallerThan24px": 2,
+        "smallerThan44px": 2,
+        "bodyFontPx": 16,
+        "smallestTextPx": 13.3333
+      }
+    ],
+    "widthsWithHorizontalScroll": [
+      320,
+      360,
+      1024,
+      1280,
+      1920
+    ]
+  },
+  "accessibility": {
+    "desktop1280": {
+      "axeVersion": "4.14.0",
+      "violationRules": 4,
+      "violatingNodesByImpact": {
+        "critical": 0,
+        "serious": 2,
+        "moderate": 4,
+        "minor": 0
+      },
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 1
+        },
+        {
+          "id": "html-has-lang",
+          "impact": "serious",
+          "help": "<html> element must have a lang attribute",
+          "nodes": 1
+        },
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "help": "Document should have one main landmark",
+          "nodes": 1
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "help": "All page content should be contained by landmarks",
+          "nodes": 3
+        }
+      ],
+      "incompleteRules": [],
+      "passedRules": 12
+    },
+    "phone390": {
+      "axeVersion": "4.14.0",
+      "violationRules": 4,
+      "violatingNodesByImpact": {
+        "critical": 0,
+        "serious": 2,
+        "moderate": 4,
+        "minor": 0
+      },
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 1
+        },
+        {
+          "id": "html-has-lang",
+          "impact": "serious",
+          "help": "<html> element must have a lang attribute",
+          "nodes": 1
+        },
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "help": "Document should have one main landmark",
+          "nodes": 1
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "help": "All page content should be contained by landmarks",
+          "nodes": 3
+        }
+      ],
+      "incompleteRules": [],
+      "passedRules": 12
+    },
+    "structure": {
+      "htmlLang": null,
+      "title": "Bad page",
+      "h1Count": 1,
+      "headingLevelSkips": 0,
+      "landmarks": {
+        "header": 0,
+        "nav": 0,
+        "main": 0,
+        "footer": 0
+      },
+      "imagesWithoutAlt": 0,
+      "ariaExpandedControls": 0,
+      "ariaExpandedWithValidAriaControls": 0,
+      "detailsElements": 0,
+      "skipLinkPresent": false
+    },
+    "keyboard": {
+      "tabStops": 2,
+      "stopsWithoutOutlineOrShadow": 2,
+      "stopsFocusedButNotVisible": 1,
+      "firstStop": "button:Question?",
+      "note": "Focus indicator check looks for an outline or box-shadow only, so a colour-only focus style is counted as missing."
+    },
+    "keyboardToggle": {
+      "toggleFound": false
+    }
+  },
+  "performanceDesktop": {
+    "setup": {
+      "mobile": false,
+      "cpuSlowdown": 1,
+      "runs": 1
+    },
+    "runs": [
+      {
+        "frames": 80,
+        "meanFrameMs": 16.67,
+        "p95FrameMs": 17.1,
+        "maxFrameMs": 17.3,
+        "framesOver33ms": 0,
+        "layoutCountDuringScroll": 0,
+        "styleRecalcCountDuringScroll": 80,
+        "layoutMs": 0,
+        "styleRecalcMs": 12.27,
+        "scriptMs": 5.74,
+        "taskMs": 71.67,
+        "layoutShiftScore": 0,
+        "longTasks": 0
+      }
+    ],
+    "median": {
+      "frames": 80,
+      "meanFrameMs": 16.67,
+      "p95FrameMs": 17.1,
+      "maxFrameMs": 17.3,
+      "framesOver33ms": 0,
+      "layoutCountDuringScroll": 0,
+      "styleRecalcCountDuringScroll": 80,
+      "layoutMs": 0,
+      "styleRecalcMs": 12.27,
+      "scriptMs": 5.74,
+      "taskMs": 71.67,
+      "layoutShiftScore": 0,
+      "longTasks": 0
+    }
+  },
+  "performancePhoneCpu4x": {
+    "setup": {
+      "mobile": true,
+      "cpuSlowdown": 4,
+      "runs": 1
+    },
+    "runs": [
+      {
+        "frames": 39,
+        "meanFrameMs": 16.67,
+        "p95FrameMs": 16.9,
+        "maxFrameMs": 16.9,
+        "framesOver33ms": 0,
+        "layoutCountDuringScroll": 0,
+        "styleRecalcCountDuringScroll": 40,
+        "layoutMs": 0,
+        "styleRecalcMs": 24.08,
+        "scriptMs": 14.44,
+        "taskMs": 110.44,
+        "layoutShiftScore": 0,
+        "longTasks": 1
+      }
+    ],
+    "median": {
+      "frames": 39,
+      "meanFrameMs": 16.67,
+      "p95FrameMs": 16.9,
+      "maxFrameMs": 16.9,
+      "framesOver33ms": 0,
+      "layoutCountDuringScroll": 0,
+      "styleRecalcCountDuringScroll": 40,
+      "layoutMs": 0,
+      "styleRecalcMs": 24.08,
+      "scriptMs": 14.44,
+      "taskMs": 110.44,
+      "layoutShiftScore": 0,
+      "longTasks": 1
+    }
+  },
+  "screenshots": {
+    "files": [
+      "desktop-1280-full.png",
+      "phone-390-full.png",
+      "desktop-1280-reduced-motion-no-scroll.png",
+      "desktop-1280-motion-first-screen-no-wait.png"
+    ]
+  }
+}

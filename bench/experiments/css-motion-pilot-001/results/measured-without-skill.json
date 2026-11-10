@@ -1,0 +1,1388 @@
+{
+  "meta": {
+    "tool": "vyson measure.mjs",
+    "measuredAt": "2026-11-10T15:44:21.235Z",
+    "site": "(path removed for publication)",
+    "browser": "Chrome/156.0.8078.80",
+    "node": "v24.15.0",
+    "platform": "win32 10.0.26300",
+    "perfRunsPerSetting": 3,
+    "axe": true
+  },
+  "static": {
+    "files": [
+      "index.html",
+      "script.js",
+      "styles.css"
+    ],
+    "bytes": {
+      "html": 11154,
+      "css": 14379,
+      "js": 1917,
+      "other": 0
+    },
+    "codeLines": 522,
+    "transitionAll": 0,
+    "importantDeclarations": 6,
+    "willChangeDeclarations": 0,
+    "keyframesBlocks": 4,
+    "reducedMotionMentions": 1,
+    "reducedMotionNoPreferenceBlocks": 0,
+    "reducedMotionReduceBlocks": 1,
+    "hoverMediaQueries": 0,
+    "intersectionObserverUses": 2,
+    "scrollEventListeners": 1,
+    "requestAnimationFrameUses": 0,
+    "inlineStyleAttributes": 15,
+    "externalReferences": 0,
+    "animationLibraryMentions": 0
+  },
+  "skillLint": {
+    "note": "Uses the rules shipped with the skill, so it is NOT independent of the skill.",
+    "errors": 6,
+    "warnings": 5,
+    "codes": [
+      "ML002@styles.css:36",
+      "ML009@styles.css:50",
+      "ML009@styles.css:92",
+      "ML006@styles.css:111",
+      "ML009@styles.css:123",
+      "ML002@styles.css:158",
+      "ML009@styles.css:193",
+      "ML002@styles.css:208",
+      "ML002@styles.css:208",
+      "ML002@styles.css:210",
+      "ML002@styles.css:210"
+    ]
+  },
+  "motionAllowed": {
+    "scrollableHeightPx": 2943,
+    "behaviour": {
+      "heroEntranceElements": 8,
+      "scrollRevealElements": 6,
+      "hoverFeedbackElements": 10,
+      "faq": {
+        "toggleFound": true,
+        "element": "button",
+        "hasAriaExpanded": true,
+        "stateBefore": "false",
+        "stateAfter": "true",
+        "stateChangedByMouse": true,
+        "panelHeightBefore": 0,
+        "panelHeightAfter": 73.6,
+        "toggledByMouse": true,
+        "intermediateHeightsSeen": 9,
+        "animatedOpen": true
+      }
+    },
+    "animations": {
+      "totalDistinct": 44,
+      "cssAnimations": 9,
+      "cssTransitions": 35,
+      "webAnimations": 0,
+      "compositorOnly": 31,
+      "layout": 3,
+      "paintOrOther": 10,
+      "layoutProperties": [
+        "padding-left",
+        "grid-template-rows"
+      ],
+      "otherProperties": [
+        "border-bottom-color",
+        "border-left-color",
+        "border-right-color",
+        "border-top-color",
+        "box-shadow",
+        "background-color",
+        "color"
+      ],
+      "infiniteAnimations": 2,
+      "longestFiniteMs": 1400
+    },
+    "spatialMovementAnimations": 27,
+    "runningAtEnd": {
+      "total": 2,
+      "infinite": 2
+    },
+    "hiddenTextAfterScrollThrough": [],
+    "scrollBehavior": "smooth",
+    "consoleErrors": [],
+    "network": {
+      "requests": 3,
+      "externalRequests": 0,
+      "externalUrls": [],
+      "transferredBytes": 28006
+    },
+    "sampleRecords": [
+      {
+        "kind": "CSSAnimation",
+        "name": "fade-down",
+        "element": "header#top.site-header",
+        "props": [
+          "transform",
+          "opacity"
+        ],
+        "durationMs": 700,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 117,
+        "pageY": -16
+      },
+      {
+        "kind": "CSSAnimation",
+        "name": "float",
+        "element": "span.shape.s1",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 12000,
+        "delayMs": 0,
+        "infinite": true,
+        "phase": "load",
+        "atMs": 117,
+        "pageY": 161
+      },
+      {
+        "kind": "CSSAnimation",
+        "name": "float",
+        "element": "span.shape.s2",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 14000,
+        "delayMs": -4000,
+        "infinite": true,
+        "phase": "load",
+        "atMs": 117,
+        "pageY": 547
+      },
+      {
+        "kind": "CSSAnimation",
+        "name": "line-in",
+        "element": "span.shape.s3",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 1400,
+        "delayMs": 600,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 117,
+        "pageY": 699
+      },
+      {
+        "kind": "CSSAnimation",
+        "name": "rise",
+        "element": "p.eyebrow.hero-item",
+        "props": [
+          "transform",
+          "opacity"
+        ],
+        "durationMs": 900,
+        "delayMs": 150,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 117,
+        "pageY": 243
+      },
+      {
+        "kind": "CSSAnimation",
+        "name": "rise",
+        "element": "h1.hero-item",
+        "props": [
+          "transform",
+          "opacity"
+        ],
+        "durationMs": 900,
+        "delayMs": 270,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 117,
+        "pageY": 279
+      },
+      {
+        "kind": "CSSAnimation",
+        "name": "rise",
+        "element": "p.lead.hero-item",
+        "props": [
+          "transform",
+          "opacity"
+        ],
+        "durationMs": 900,
+        "delayMs": 390,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 117,
+        "pageY": 579
+      },
+      {
+        "kind": "CSSAnimation",
+        "name": "rise",
+        "element": "p.hero-item",
+        "props": [
+          "transform",
+          "opacity"
+        ],
+        "durationMs": 900,
+        "delayMs": 510,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 117,
+        "pageY": 678
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "border-bottom-color",
+        "element": "header#top.site-header.scrolled",
+        "props": [
+          "border-bottom-color"
+        ],
+        "durationMs": 300,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 2333,
+        "pageY": 11
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "border-left-color",
+        "element": "header#top.site-header.scrolled",
+        "props": [
+          "border-left-color"
+        ],
+        "durationMs": 300,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 2333,
+        "pageY": 11
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "border-right-color",
+        "element": "header#top.site-header.scrolled",
+        "props": [
+          "border-right-color"
+        ],
+        "durationMs": 300,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 2333,
+        "pageY": 11
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "border-top-color",
+        "element": "header#top.site-header.scrolled",
+        "props": [
+          "border-top-color"
+        ],
+        "durationMs": 300,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 2333,
+        "pageY": 11
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "box-shadow",
+        "element": "header#top.site-header.scrolled",
+        "props": [
+          "box-shadow"
+        ],
+        "durationMs": 300,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 2333,
+        "pageY": 11
+      },
+      {
+        "kind": "CSSAnimation",
+        "name": "fade-down",
+        "element": "header#top.site-header.scrolled",
+        "props": [
+          "transform",
+          "opacity"
+        ],
+        "durationMs": 700,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 2333,
+        "pageY": 11
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "opacity",
+        "element": "header.section-head.reveal",
+        "props": [
+          "opacity"
+        ],
+        "durationMs": 800,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 2423,
+        "pageY": 979
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "header.section-head.reveal",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 800,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 2423,
+        "pageY": 979
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "opacity",
+        "element": "li.card.reveal",
+        "props": [
+          "opacity"
+        ],
+        "durationMs": 800,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 2512,
+        "pageY": 1127
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "li.card.reveal",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 400,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 2512,
+        "pageY": 1127
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "opacity",
+        "element": "li.step.reveal",
+        "props": [
+          "opacity"
+        ],
+        "durationMs": 800,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 3474,
+        "pageY": 2337
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "li.step.reveal",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 800,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 3474,
+        "pageY": 2337
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "opacity",
+        "element": "div.faq.reveal",
+        "props": [
+          "opacity"
+        ],
+        "durationMs": 800,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 3862,
+        "pageY": 2917
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "div.faq.reveal",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 800,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 3862,
+        "pageY": 2917
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "opacity",
+        "element": "div.reveal.in",
+        "props": [
+          "opacity"
+        ],
+        "durationMs": 800,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 4223,
+        "pageY": 3385
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "div.reveal.in",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 800,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 4223,
+        "pageY": 3385
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "opacity",
+        "element": "address.reveal.in",
+        "props": [
+          "opacity"
+        ],
+        "durationMs": 800,
+        "delayMs": 100,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 4223,
+        "pageY": 3385
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "address.reveal.in",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 800,
+        "delayMs": 100,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 4223,
+        "pageY": 3385
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "span.logo-mark",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 500,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 6472,
+        "pageY": 722
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "a",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 350,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 7163,
+        "pageY": 318
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "background-color",
+        "element": "a.btn",
+        "props": [
+          "background-color"
+        ],
+        "durationMs": 250,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 7852,
+        "pageY": 648
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "box-shadow",
+        "element": "a.btn",
+        "props": [
+          "box-shadow"
+        ],
+        "durationMs": 250,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 7852,
+        "pageY": 648
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "a.btn",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 250,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 7852,
+        "pageY": 648
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "span",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 300,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 7853,
+        "pageY": 663
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "box-shadow",
+        "element": "li.card.reveal",
+        "props": [
+          "box-shadow"
+        ],
+        "durationMs": 400,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 9203,
+        "pageY": 1099
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "div.card-art.art-2",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 700,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 9203,
+        "pageY": 1099
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "div.card-art.art-5",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 700,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 9862,
+        "pageY": 1531
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "div.card-art.art-1",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 700,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 10552,
+        "pageY": 1100
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "div.card-art.art-4",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 700,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 11902,
+        "pageY": 1531
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "color",
+        "element": "button#faq-q3.faq-q",
+        "props": [
+          "color"
+        ],
+        "durationMs": 250,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 14634,
+        "pageY": 3020
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "padding-left",
+        "element": "button#faq-q3.faq-q",
+        "props": [
+          "padding-left"
+        ],
+        "durationMs": 300,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 14634,
+        "pageY": 3020
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "color",
+        "element": "button#faq-q1.faq-q",
+        "props": [
+          "color"
+        ],
+        "durationMs": 250,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "click",
+        "atMs": 17094,
+        "pageY": 2890
+      }
+    ]
+  },
+  "reducedMotion": {
+    "scrollableHeightPx": 2943,
+    "behaviour": {
+      "heroEntranceElements": 0,
+      "scrollRevealElements": 0,
+      "hoverFeedbackElements": 0,
+      "faq": {
+        "toggleFound": true,
+        "element": "button",
+        "hasAriaExpanded": true,
+        "stateBefore": "false",
+        "stateAfter": "true",
+        "stateChangedByMouse": true,
+        "panelHeightBefore": 0,
+        "panelHeightAfter": 73.6,
+        "toggledByMouse": true,
+        "intermediateHeightsSeen": 0,
+        "animatedOpen": false
+      }
+    },
+    "animations": {
+      "totalDistinct": 0,
+      "cssAnimations": 0,
+      "cssTransitions": 0,
+      "webAnimations": 0,
+      "compositorOnly": 0,
+      "layout": 0,
+      "paintOrOther": 0,
+      "layoutProperties": [],
+      "otherProperties": [],
+      "infiniteAnimations": 0,
+      "longestFiniteMs": 0
+    },
+    "spatialMovementAnimations": 0,
+    "runningAtEnd": {
+      "total": 0,
+      "infinite": 0
+    },
+    "hiddenTextAfterScrollThrough": [],
+    "scrollBehavior": "auto",
+    "consoleErrors": [],
+    "network": {
+      "requests": 3,
+      "externalRequests": 0,
+      "externalUrls": [],
+      "transferredBytes": 28006
+    },
+    "sampleRecords": [
+      {
+        "kind": "CSSAnimation",
+        "name": "fade-down",
+        "element": "header#top.site-header",
+        "props": [
+          "transform",
+          "opacity"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 58,
+        "pageY": -16
+      },
+      {
+        "kind": "CSSAnimation",
+        "name": "float",
+        "element": "span.shape.s1",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 58,
+        "pageY": 161
+      },
+      {
+        "kind": "CSSAnimation",
+        "name": "float",
+        "element": "span.shape.s2",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 58,
+        "pageY": 558
+      },
+      {
+        "kind": "CSSAnimation",
+        "name": "line-in",
+        "element": "span.shape.s3",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 58,
+        "pageY": 699
+      },
+      {
+        "kind": "CSSAnimation",
+        "name": "rise",
+        "element": "p.eyebrow.hero-item",
+        "props": [
+          "transform",
+          "opacity"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 58,
+        "pageY": 243
+      },
+      {
+        "kind": "CSSAnimation",
+        "name": "rise",
+        "element": "h1.hero-item",
+        "props": [
+          "transform",
+          "opacity"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 58,
+        "pageY": 279
+      },
+      {
+        "kind": "CSSAnimation",
+        "name": "rise",
+        "element": "p.lead.hero-item",
+        "props": [
+          "transform",
+          "opacity"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 58,
+        "pageY": 579
+      },
+      {
+        "kind": "CSSAnimation",
+        "name": "rise",
+        "element": "p.hero-item",
+        "props": [
+          "transform",
+          "opacity"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "load",
+        "atMs": 58,
+        "pageY": 678
+      },
+      {
+        "kind": "CSSAnimation",
+        "name": "fade-down",
+        "element": "header#top.site-header.scrolled",
+        "props": [
+          "transform",
+          "opacity"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "scroll",
+        "atMs": 2264,
+        "pageY": 480
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "border-bottom-color",
+        "element": "header#top.site-header",
+        "props": [
+          "border-bottom-color"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 5984,
+        "pageY": 0
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "border-left-color",
+        "element": "header#top.site-header",
+        "props": [
+          "border-left-color"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 5984,
+        "pageY": 0
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "border-right-color",
+        "element": "header#top.site-header",
+        "props": [
+          "border-right-color"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 5984,
+        "pageY": 0
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "border-top-color",
+        "element": "header#top.site-header",
+        "props": [
+          "border-top-color"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 5984,
+        "pageY": 0
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "box-shadow",
+        "element": "header#top.site-header",
+        "props": [
+          "box-shadow"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 5984,
+        "pageY": 0
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "span.logo-mark",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 6433,
+        "pageY": 23
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "a",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 7514,
+        "pageY": 19
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "box-shadow",
+        "element": "li.card.reveal",
+        "props": [
+          "box-shadow"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 8863,
+        "pageY": 1099
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "div.card-art.art-1",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 8863,
+        "pageY": 1093
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "transform",
+        "element": "div.card-art.art-2",
+        "props": [
+          "transform"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 13063,
+        "pageY": 1100
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "color",
+        "element": "span.faq-icon",
+        "props": [
+          "color"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 13724,
+        "pageY": 2911
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "color",
+        "element": "button#faq-q1.faq-q",
+        "props": [
+          "color"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 14113,
+        "pageY": 2890
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "padding-left",
+        "element": "button#faq-q1.faq-q",
+        "props": [
+          "padding-left"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "hover",
+        "atMs": 14113,
+        "pageY": 2890
+      },
+      {
+        "kind": "CSSTransition",
+        "name": "visibility",
+        "element": "p",
+        "props": [
+          "visibility"
+        ],
+        "durationMs": 0.01,
+        "delayMs": 0,
+        "infinite": false,
+        "phase": "click",
+        "atMs": 16873,
+        "pageY": 2954
+      }
+    ]
+  },
+  "scriptsDisabled": {
+    "hiddenTextElements": [],
+    "visibleTextCharacters": 2087
+  },
+  "responsive": {
+    "viewportMeta": "width=device-width, initial-scale=1",
+    "widths": [
+      {
+        "width": 320,
+        "overflowAtLoadPx": 0,
+        "overflowAfterScroll": 0,
+        "wideElements": [
+          "span.shape"
+        ],
+        "interactiveCount": 17,
+        "smallerThan24px": 2,
+        "smallerThan44px": 3,
+        "bodyFontPx": 16,
+        "smallestTextPx": 12
+      },
+      {
+        "width": 360,
+        "overflowAtLoadPx": 0,
+        "overflowAfterScroll": 0,
+        "wideElements": [
+          "span.shape"
+        ],
+        "interactiveCount": 17,
+        "smallerThan24px": 2,
+        "smallerThan44px": 3,
+        "bodyFontPx": 16,
+        "smallestTextPx": 12
+      },
+      {
+        "width": 390,
+        "overflowAtLoadPx": 0,
+        "overflowAfterScroll": 0,
+        "wideElements": [
+          "span.shape"
+        ],
+        "interactiveCount": 17,
+        "smallerThan24px": 2,
+        "smallerThan44px": 3,
+        "bodyFontPx": 16,
+        "smallestTextPx": 12
+      },
+      {
+        "width": 768,
+        "overflowAtLoadPx": 0,
+        "overflowAfterScroll": 0,
+        "wideElements": [
+          "span.shape"
+        ],
+        "interactiveCount": 17,
+        "smallerThan24px": 2,
+        "smallerThan44px": 3,
+        "bodyFontPx": 16,
+        "smallestTextPx": 12
+      },
+      {
+        "width": 1024,
+        "overflowAtLoadPx": -15,
+        "overflowAfterScroll": -15,
+        "wideElements": [
+          "span.shape"
+        ],
+        "interactiveCount": 20,
+        "smallerThan24px": 2,
+        "smallerThan44px": 7,
+        "bodyFontPx": 16,
+        "smallestTextPx": 12
+      },
+      {
+        "width": 1280,
+        "overflowAtLoadPx": -15,
+        "overflowAfterScroll": -15,
+        "wideElements": [
+          "span.shape"
+        ],
+        "interactiveCount": 20,
+        "smallerThan24px": 2,
+        "smallerThan44px": 7,
+        "bodyFontPx": 16,
+        "smallestTextPx": 12
+      },
+      {
+        "width": 1920,
+        "overflowAtLoadPx": -15,
+        "overflowAfterScroll": -15,
+        "wideElements": [
+          "span.shape"
+        ],
+        "interactiveCount": 20,
+        "smallerThan24px": 2,
+        "smallerThan44px": 7,
+        "bodyFontPx": 16,
+        "smallestTextPx": 12
+      }
+    ],
+    "widthsWithHorizontalScroll": []
+  },
+  "accessibility": {
+    "desktop1280": {
+      "axeVersion": "4.14.0",
+      "violationRules": 1,
+      "violatingNodesByImpact": {
+        "critical": 0,
+        "serious": 6,
+        "moderate": 0,
+        "minor": 0
+      },
+      "violations": [
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "nodes": 6
+        }
+      ],
+      "incompleteRules": [
+        "color-contrast"
+      ],
+      "passedRules": 40
+    },
+    "phone390": {
+      "axeVersion": "4.14.0",
+      "violationRules": 1,
+      "violatingNodesByImpact": {
+        "critical": 0,
+        "serious": 6,
+        "moderate": 0,
+        "minor": 0
+      },
+      "violations": [
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "nodes": 6
+        }
+      ],
+      "incompleteRules": [
+        "color-contrast"
+      ],
+      "passedRules": 40
+    },
+    "structure": {
+      "htmlLang": "en",
+      "title": "Harborline Architects — Quiet, considered buildings",
+      "h1Count": 1,
+      "headingLevelSkips": 0,
+      "landmarks": {
+        "header": 4,
+        "nav": 1,
+        "main": 1,
+        "footer": 1
+      },
+      "imagesWithoutAlt": 0,
+      "ariaExpandedControls": 5,
+      "ariaExpandedWithValidAriaControls": 5,
+      "detailsElements": 0,
+      "skipLinkPresent": true
+    },
+    "keyboard": {
+      "tabStops": 20,
+      "stopsWithoutOutlineOrShadow": 0,
+      "stopsFocusedButNotVisible": 0,
+      "firstStop": "a:Skip to content",
+      "note": "Focus indicator check looks for an outline or box-shadow only, so a colour-only focus style is counted as missing."
+    },
+    "keyboardToggle": {
+      "toggleFound": true,
+      "before": "false|0",
+      "tag": "button",
+      "focusedBeforeKey": true,
+      "after": "true|74",
+      "changedByEnterKey": true
+    }
+  },
+  "performanceDesktop": {
+    "setup": {
+      "mobile": false,
+      "cpuSlowdown": 1,
+      "runs": 3
+    },
+    "runs": [
+      {
+        "frames": 184,
+        "meanFrameMs": 16.67,
+        "p95FrameMs": 17,
+        "maxFrameMs": 17.2,
+        "framesOver33ms": 0,
+        "layoutCountDuringScroll": 10,
+        "styleRecalcCountDuringScroll": 185,
+        "layoutMs": 2.63,
+        "styleRecalcMs": 65.37,
+        "scriptMs": 15.41,
+        "taskMs": 286.06,
+        "layoutShiftScore": 0,
+        "longTasks": 0
+      },
+      {
+        "frames": 186,
+        "meanFrameMs": 16.67,
+        "p95FrameMs": 16.9,
+        "maxFrameMs": 17.4,
+        "framesOver33ms": 0,
+        "layoutCountDuringScroll": 10,
+        "styleRecalcCountDuringScroll": 187,
+        "layoutMs": 2.16,
+        "styleRecalcMs": 50.92,
+        "scriptMs": 13.5,
+        "taskMs": 238.69,
+        "layoutShiftScore": 0,
+        "longTasks": 0
+      },
+      {
+        "frames": 185,
+        "meanFrameMs": 16.67,
+        "p95FrameMs": 16.9,
+        "maxFrameMs": 17.1,
+        "framesOver33ms": 0,
+        "layoutCountDuringScroll": 10,
+        "styleRecalcCountDuringScroll": 186,
+        "layoutMs": 2.21,
+        "styleRecalcMs": 52.84,
+        "scriptMs": 14.11,
+        "taskMs": 259.82,
+        "layoutShiftScore": 0,
+        "longTasks": 0
+      }
+    ],
+    "median": {
+      "frames": 185,
+      "meanFrameMs": 16.67,
+      "p95FrameMs": 16.9,
+      "maxFrameMs": 17.2,
+      "framesOver33ms": 0,
+      "layoutCountDuringScroll": 10,
+      "styleRecalcCountDuringScroll": 186,
+      "layoutMs": 2.21,
+      "styleRecalcMs": 52.84,
+      "scriptMs": 14.11,
+      "taskMs": 259.82,
+      "layoutShiftScore": 0,
+      "longTasks": 0
+    }
+  },
+  "performancePhoneCpu4x": {
+    "setup": {
+      "mobile": true,
+      "cpuSlowdown": 4,
+      "runs": 3
+    },
+    "runs": [
+      {
+        "frames": 272,
+        "meanFrameMs": 16.67,
+        "p95FrameMs": 16.9,
+        "maxFrameMs": 17,
+        "framesOver33ms": 0,
+        "layoutCountDuringScroll": 6,
+        "styleRecalcCountDuringScroll": 273,
+        "layoutMs": 6.01,
+        "styleRecalcMs": 259.82,
+        "scriptMs": 90.85,
+        "taskMs": 1185.84,
+        "layoutShiftScore": 0,
+        "longTasks": 1
+      },
+      {
+        "frames": 273,
+        "meanFrameMs": 16.67,
+        "p95FrameMs": 16.9,
+        "maxFrameMs": 17,
+        "framesOver33ms": 0,
+        "layoutCountDuringScroll": 9,
+        "styleRecalcCountDuringScroll": 274,
+        "layoutMs": 6.13,
+        "styleRecalcMs": 417.94,
+        "scriptMs": 110.39,
+        "taskMs": 1372.36,
+        "layoutShiftScore": 0,
+        "longTasks": 1
+      },
+      {
+        "frames": 273,
+        "meanFrameMs": 16.67,
+        "p95FrameMs": 16.8,
+        "maxFrameMs": 16.9,
+        "framesOver33ms": 0,
+        "layoutCountDuringScroll": 8,
+        "styleRecalcCountDuringScroll": 274,
+        "layoutMs": 7.85,
+        "styleRecalcMs": 406.9,
+        "scriptMs": 101.27,
+        "taskMs": 1405.25,
+        "layoutShiftScore": 0,
+        "longTasks": 1
+      }
+    ],
+    "median": {
+      "frames": 273,
+      "meanFrameMs": 16.67,
+      "p95FrameMs": 16.9,
+      "maxFrameMs": 17,
+      "framesOver33ms": 0,
+      "layoutCountDuringScroll": 8,
+      "styleRecalcCountDuringScroll": 274,
+      "layoutMs": 6.13,
+      "styleRecalcMs": 406.9,
+      "scriptMs": 101.27,
+      "taskMs": 1372.36,
+      "layoutShiftScore": 0,
+      "longTasks": 1
+    }
+  },
+  "screenshots": {
+    "files": [
+      "desktop-1280-full.png",
+      "phone-390-full.png",
+      "desktop-1280-reduced-motion-no-scroll.png",
+      "desktop-1280-motion-first-screen-no-wait.png"
+    ]
+  }
+}
