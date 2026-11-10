@@ -1,0 +1,27 @@
+{
+  "skill": "vyson-example-skill",
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": 1,
+      "prompt": "A realistic request a user would type, for example: Build a landing page for a small interior design studio.",
+      "should_activate": true,
+      "must_be_true": [
+        "A specific, checkable statement about the result",
+        "Another specific, checkable statement"
+      ],
+      "must_not_happen": [
+        "Something that would show the skill was ignored or misused"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "A request that looks related but where this skill should NOT be used.",
+      "should_activate": false,
+      "must_be_true": [
+        "The agent does not apply this skill's workflow"
+      ],
+      "must_not_happen": []
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+name: Skill idea
+description: Propose a new skill or an improvement to an existing one
+title: "[Skill idea]: "
+labels: ["skill-idea"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea. Please describe the problem it solves. You do not need to write the skill yourself.
+  - type: dropdown
+    id: pillar
+    attributes:
+      label: Which pillar does it belong to?
+      options:
+        - Premium website design
+        - Animation and motion
+        - 3D and interactive web
+        - Frontend development
+        - Website quality (accessibility, SEO, performance)
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does it solve?
+      description: What goes wrong today when an AI agent does this job?
+    validations:
+      required: true
+  - type: textarea
+    id: trigger
+    attributes:
+      label: What would a user say to trigger it?
+      description: Example requests, in the user's own words.
+    validations:
+      required: true
+  - type: textarea
+    id: libraries
+    attributes:
+      label: Libraries involved (if any)
+      description: Name them. We will check their licenses.
+  - type: checkboxes
+    id: originality
+    attributes:
+      label: Originality
+      options:
+        - label: This idea is not a copy of an existing skill or product
+          required: true

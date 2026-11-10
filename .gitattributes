@@ -1,0 +1,2 @@
+# Let Git normalise line endings so Windows, macOS and Linux contributors do not create noisy diffs.
+* text=auto
