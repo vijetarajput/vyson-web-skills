@@ -224,6 +224,21 @@ describe('discoverSkillDirs', () => {
     }
   });
 
+  it('follows a link (symlink or Windows junction) to a skill folder, and ignores a broken link', () => {
+    const tmp = makeTempDir('vyson-discover-links-');
+    try {
+      writeFiles(tmp, { 'store/real-skill/SKILL.md': 'z' });
+      fs.mkdirSync(path.join(tmp, 'agents'));
+      // "junction" works on Windows without special permission; other systems treat it as a normal symlink.
+      fs.symlinkSync(path.join(tmp, 'store', 'real-skill'), path.join(tmp, 'agents', 'linked-skill'), 'junction');
+      fs.symlinkSync(path.join(tmp, 'store', 'does-not-exist'), path.join(tmp, 'agents', 'broken-link'), 'junction');
+      const found = discoverSkillDirs(path.join(tmp, 'agents'));
+      assert.deepEqual(found.dirs.map((d) => path.basename(d)), ['linked-skill']);
+    } finally {
+      removeDir(tmp);
+    }
+  });
+
   it('throws a clear message for a path that does not exist', () => {
     assert.throws(() => discoverSkillDirs(path.join(FIXTURES, 'nope')), /Path not found/);
   });

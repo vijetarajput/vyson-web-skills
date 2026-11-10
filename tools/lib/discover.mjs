@@ -5,6 +5,21 @@ import path from 'node:path';
 import { safeReadDir } from './fs-utils.mjs';
 
 /**
+ * True for a real folder, and also for a link (symlink or Windows junction) that points to a folder.
+ * The "skills" installer creates such links in its default mode, so they must be followed.
+ * This goes only one level deep, so a link that loops back cannot cause an endless search.
+ */
+function isFolder(parent, entry) {
+  if (entry.isDirectory()) return true;
+  if (!entry.isSymbolicLink()) return false;
+  try {
+    return fs.statSync(path.join(parent, entry.name)).isDirectory();
+  } catch {
+    return false; // a broken link
+  }
+}
+
+/**
  * Given a path, decide what to validate.
  *
  *  - If the folder itself contains a SKILL.md (in any capitalisation), it IS a skill.
@@ -27,7 +42,7 @@ export function discoverSkillDirs(target) {
     return { mode: 'single', dirs: [abs] };
   }
   const dirs = entries
-    .filter((e) => e.isDirectory() && !e.name.startsWith('.') && e.name !== 'node_modules')
+    .filter((e) => isFolder(abs, e) && !e.name.startsWith('.') && e.name !== 'node_modules')
     .map((e) => path.join(abs, e.name))
     .sort();
   return { mode: 'container', dirs };
