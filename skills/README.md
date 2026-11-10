@@ -17,4 +17,4 @@ Rules (full detail in [CONTRIBUTING.md](../CONTRIBUTING.md)):
 - `SKILL.md` under 500 lines.
 - Every skill has an example in `examples/` and an eval file in `evals/`.
 
-**Status:** no skills published yet. See the [roadmap](../ROADMAP.md). To create one, copy [`templates/skill-template/`](../templates/skill-template/).
+**Status:** one pilot skill, [`vyson-css-motion`](vyson-css-motion/SKILL.md), awaiting review. Nothing is published yet. See the [roadmap](../ROADMAP.md). To create one, copy [`templates/skill-template/`](../templates/skill-template/).

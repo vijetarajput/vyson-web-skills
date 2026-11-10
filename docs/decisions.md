@@ -12,6 +12,17 @@ This file records decisions the maintainer has approved. Change a decision only 
 | 4 | Officially tested agents | **Cursor, Claude Code, Codex** | Test fewer agents properly rather than claim many. Others "should work" through the open standard but are untested. |
 | 5 | Next step | **Day 1 foundation, then pause for review** | Keeps the beginner-friendly, approve-each-step process. |
 
+## Approved on 2026-11-10 (after reviewing the `vyson-css-motion` pilot experiment)
+
+| # | Decision | Chosen option | Why |
+|---|---|---|---|
+| 6 | Accordion and FAQ rule | **Only one panel may stay expanded.** Opening a panel closes the one that was open. It must work with the keyboard. | The old wording "one panel at a time" was unclear, and the pilot's agents read it in different ways. |
+| 7 | Tap-target criterion | **Aim for 44 by 44 CSS pixels on touch screens; never under 24 by 24** (WCAG 2.2 level AA, success criterion 2.5.8, with its exceptions such as links inside a sentence). | The pilot's with-skill output had 7 of 13 controls under 44px on a phone. |
+| 8 | Static checks versus browser tests | **Reported in two separate lists**, and every checker run says it is a static check. | Passing a text checker had been easy to mistake for a real test. |
+| 9 | Status of the pilot result | **Exploratory only: 1 run per condition, known confounds. It must never be quoted as proof that a skill works.** The original findings are kept as they were. | Honest evidence rules (decision 1 and `AGENTS.md` rule 4). |
+| 10 | Personal data in public files | **No personal paths, user names or machine details** in files meant for release. The original, unscrubbed experiment records are kept privately outside the repository. | Privacy and safe publishing. |
+| 11 | Next experiment | **A controlled three-repeat Cursor experiment in two separate clean workspaces, with skill discovery verified independently, is planned but must not start until the maintainer approves it.** | See `bench/experiments/css-motion-repeat-plan.md`. |
+
 ## Defaults adopted from the proposal (change only on request)
 
 | Topic | Default |

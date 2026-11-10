@@ -9,7 +9,7 @@ Goal: five good, tested skills (one per pillar), one working audit script, and a
 | Pillar | Skill | Status |
 |---|---|---|
 | Design | `vyson-brief-to-direction` | Planned |
-| Motion | `vyson-css-motion` | Planned (pilot skill) |
+| Motion | `vyson-css-motion` | Written and improved after review (pilot skill). One exploratory with/without run exists: **1 run per condition, with known confounds**, so it is an anecdote and **proves nothing about effectiveness**. See the [pilot experiment report](bench/experiments/css-motion-pilot-001/README.md). |
 | 3D | `vyson-three-foundations` | Planned |
 | Frontend | `vyson-responsive-layouts` | Planned |
 | Quality | `vyson-site-audit-report` | Planned |
@@ -20,7 +20,7 @@ Goal: five good, tested skills (one per pillar), one working audit script, and a
 |---|---|---|
 | 1 | Foundation: structure, README, contribution files, license manifest, skill template | Done, awaiting review |
 | 2 | Tooling: skill validator, test of the `npx skills add` install from this repo | Done, awaiting review |
-| 3 | Pilot skill end to end: `vyson-css-motion` with example, eval file, recorded with/without run | Not started |
+| 3 | Pilot skill end to end: `vyson-css-motion` with example, eval file, recorded with/without run | Skill, example, eval file and local install tests done and reviewed. The with/without run was done **once per condition** as an exploratory pilot ([report](bench/experiments/css-motion-pilot-001/README.md)). Known confounds: the "without" agent still saw this repository's `AGENTS.md` motion rules, and the skill was supplied through the prompt, not discovered by Cursor itself. Result: not proof of effectiveness. A controlled three-repeat experiment is planned and **not started** ([plan](bench/experiments/css-motion-repeat-plan.md)). |
 | 4 | `vyson-brief-to-direction` and `vyson-responsive-layouts` | Not started |
 | 5 | `vyson-three-foundations` with example and fallback | Not started |
 | 6 | `vyson-site-audit-report` and its audit script | Not started |

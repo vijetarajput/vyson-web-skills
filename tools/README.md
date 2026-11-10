@@ -59,6 +59,14 @@ node tools/check-links.mjs [folder] [--strict] [--json] [--no-color]
 
 Checks relative links in all Markdown files under the repository (default) or the folder you give. The intentionally broken files in `tools/test/fixtures/` are skipped.
 
+## Checkers that ship inside a skill
+
+A skill may carry its own small checker, so it keeps working after the skill is installed into someone's project. The first one is [`motion-lint.mjs`](../skills/vyson-css-motion/scripts/motion-lint.mjs) in `vyson-css-motion`. It has no dependencies and is tested by `tools/test/motion-lint.test.mjs`. It is a **static checker** (it reads files and never opens a browser), so passing it is not a browser test; the manual browser steps are in the skill's `references/verification.md`. It is not part of `npm run validate`; run it on a website's files:
+
+```powershell
+node skills/vyson-css-motion/scripts/motion-lint.mjs path/to/site
+```
+
 ## How the code is organized
 
 ```text

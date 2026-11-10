@@ -23,4 +23,4 @@ Start from [`templates/evals.template.json`](../templates/evals.template.json).
 
 Evals are reviewed and run by people, with an AI agent. They are not run automatically on every commit, because each run uses agent time. The cross-agent comparison lives in [`bench/`](../bench/).
 
-**Status:** empty. The first eval file arrives with the pilot skill.
+**Status:** one eval file so far: [`vyson-css-motion`](vyson-css-motion/evals.json) (4 cases where the skill should activate, 3 where it should not). The cases are written but **have not been run with an agent yet**.
