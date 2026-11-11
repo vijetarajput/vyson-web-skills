@@ -1,0 +1,194 @@
+/*
+  VYSON premium website design: starter tokens and a few layout helpers.
+
+  How to use it
+  1. Copy this file into the project (or merge it into the existing stylesheet).
+     If the project already has design tokens, map these names onto the
+     existing ones and do not keep two sets.
+  2. CHANGE THE COLOURS, FONTS AND RADIUS FIRST. They are a neutral warm
+     starting point, not a finished brand. A site that keeps every default
+     will look like every other site that did.
+  3. After any colour change, run:
+       node scripts/design-lint.mjs path/to/site
+     It checks the contrast of the text and button pairs defined below.
+
+  Names: every custom property starts with --vd- and every class with vd-.
+  This file contains no motion. Use the vyson-css-motion skill for that.
+*/
+
+:root {
+  /* Colour roles (change these). Contrast ratios are checked by design-lint (DL015). */
+  --vd-bg: #fbfaf7;              /* page background */
+  --vd-surface: #f1eee8;         /* panels and cards sitting on the page */
+  --vd-text: #1c1a17;            /* main text */
+  --vd-muted: #5a554d;           /* secondary text: still must be readable */
+  --vd-line: #d6d0c4;            /* hairlines and borders (decorative, not for text) */
+  --vd-accent: #9a3b1f;          /* the one colour that means "act here" */
+  --vd-accent-contrast: #fffaf5; /* text and icons placed on the accent */
+  --vd-link: #9a3b1f;            /* links in running text, on --vd-bg */
+  --vd-focus: #1c1a17;           /* focus ring; needs 3:1 against the page */
+
+  /* Fonts (system stacks, so nothing to download or license). Change per project. */
+  --vd-font-display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", ui-serif, Georgia, serif;
+  --vd-font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Type scale: rem plus a little vw, so text still grows when people zoom. */
+  --vd-text-sm: 0.875rem;
+  --vd-text-base: 1.0625rem;
+  --vd-text-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  --vd-text-xl: clamp(1.375rem, 1.2rem + 0.9vw, 1.875rem);
+  --vd-text-2xl: clamp(1.75rem, 1.4rem + 1.8vw, 2.75rem);
+  --vd-text-3xl: clamp(2.25rem, 1.6rem + 3.2vw, 4rem);
+  --vd-text-display: clamp(2.75rem, 1.5rem + 6vw, 6.25rem);
+
+  --vd-leading-tight: 1.05;
+  --vd-leading-heading: 1.15;
+  --vd-leading-body: 1.6;
+  --vd-measure: 65ch;            /* comfortable line length for paragraphs */
+
+  /* Spacing: one scale, used for everything. Step 4 is 1rem. */
+  --vd-space-1: 0.25rem;
+  --vd-space-2: 0.5rem;
+  --vd-space-3: 0.75rem;
+  --vd-space-4: 1rem;
+  --vd-space-5: 1.5rem;
+  --vd-space-6: 2rem;
+  --vd-space-7: 3rem;
+  --vd-space-8: 4rem;
+  --vd-space-9: 6rem;
+  --vd-section-y: clamp(4rem, 2rem + 8vw, 9rem); /* space above and below each section */
+  --vd-gutter: clamp(1.25rem, 0.5rem + 3vw, 3rem);
+  --vd-container: 72rem;
+
+  /* Shape and depth: pick ONE radius idea and keep it. */
+  --vd-radius: 2px;
+  --vd-border: 1px solid var(--vd-line);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--vd-bg);
+  color: var(--vd-text);
+  font-family: var(--vd-font-body);
+  font-size: var(--vd-text-base);
+  line-height: var(--vd-leading-body);
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--vd-font-display);
+  font-weight: 500;
+  line-height: var(--vd-leading-heading);
+  text-wrap: balance; /* newer feature: browsers without it simply wrap normally */
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty; /* newer feature: optional extra */
+}
+
+a {
+  color: var(--vd-link);
+  text-underline-offset: 0.2em;
+}
+
+::selection {
+  background: var(--vd-accent);
+  color: var(--vd-accent-contrast);
+}
+
+/* Keyboard focus: always visible, never removed without a replacement. */
+:focus-visible {
+  outline: 3px solid var(--vd-focus);
+  outline-offset: 3px;
+}
+
+/* Layout helpers */
+.vd-container {
+  width: min(100% - 2 * var(--vd-gutter), var(--vd-container));
+  margin-inline: auto;
+}
+
+.vd-section {
+  padding-block: var(--vd-section-y);
+}
+
+.vd-stack > * + * {
+  margin-block-start: var(--vd-stack-gap, var(--vd-space-4));
+}
+
+.vd-prose {
+  max-width: var(--vd-measure);
+}
+
+.vd-eyebrow {
+  font-size: var(--vd-text-sm);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--vd-muted);
+}
+
+.vd-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Buttons and links that look like buttons: 44px tall, a clear label, one primary per view. */
+.vd-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.7rem 1.5rem;
+  border: 1px solid var(--vd-accent);
+  border-radius: var(--vd-radius);
+  background: var(--vd-accent);
+  color: var(--vd-accent-contrast);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.vd-button--quiet {
+  background: transparent;
+  color: var(--vd-text);
+  border-color: var(--vd-text);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .vd-button:hover {
+    background: var(--vd-text);
+    border-color: var(--vd-text);
+    color: var(--vd-bg);
+  }
+}

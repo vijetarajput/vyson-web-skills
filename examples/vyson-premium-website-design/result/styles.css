@@ -1,0 +1,457 @@
+/*
+  Marrowfield Studio (a made-up demo): page styles.
+  Everything here builds on the tokens in design-tokens.css.
+  Direction: editorial. Signature move: large serif type with thin
+  architectural line drawings and a single terracotta circle.
+  There is no animation on this page, on purpose. Motion belongs to the
+  vyson-css-motion skill.
+*/
+
+:root {
+  --band-muted: #cdc6b8;   /* muted text on the dark band: 10.2:1 on the band colour */
+  --band-accent: #e8a184;  /* numerals on the dark band: 8.1:1 on the band colour */
+}
+
+/* Skip link: first thing a keyboard user reaches */
+.skip-link {
+  position: absolute;
+  inset-inline-start: var(--vd-space-4);
+  inset-block-start: -5rem;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding-inline: var(--vd-space-4);
+  background: var(--vd-text);
+  color: var(--vd-bg);
+}
+
+.skip-link:focus {
+  inset-block-start: var(--vd-space-4);
+}
+
+/* Header */
+.site-header {
+  border-bottom: var(--vd-border);
+}
+
+.header-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--vd-space-1) var(--vd-space-6);
+  padding-block: var(--vd-space-3);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: baseline;
+  min-height: 2.75rem;
+  padding-block: var(--vd-space-2);
+  font-family: var(--vd-font-display);
+  font-size: var(--vd-text-xl);
+  color: var(--vd-text);
+  text-decoration: none;
+}
+
+.brand small {
+  margin-inline-start: 0.6rem;
+  font-family: var(--vd-font-body);
+  font-size: var(--vd-text-sm);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--vd-muted);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 var(--vd-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  padding-inline: var(--vd-space-2);
+  color: var(--vd-text);
+  text-decoration: none;
+}
+
+.nav .nav-action {
+  margin-inline-start: var(--vd-space-2);
+  padding-inline: var(--vd-space-4);
+  border: 1px solid var(--vd-text);
+  border-radius: var(--vd-radius);
+  font-weight: 600;
+}
+
+/* On narrow screens the hero already shows the same action, so the header keeps only the section links. */
+@media (max-width: 39.99rem) {
+  .nav .nav-action {
+    display: none;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.3em;
+  }
+
+  .nav .nav-action:hover {
+    background: var(--vd-text);
+    color: var(--vd-bg);
+    text-decoration: none;
+  }
+
+  .text-link:hover {
+    text-decoration-thickness: 3px;
+  }
+}
+
+/* Hero */
+.hero {
+  padding-block: clamp(2.5rem, 1rem + 6vw, 6rem) var(--vd-section-y);
+}
+
+.hero-grid {
+  display: grid;
+  gap: var(--vd-space-7);
+}
+
+.hero-copy {
+  --vd-stack-gap: var(--vd-space-5);
+}
+
+.hero h1 {
+  font-size: clamp(2.75rem, 1.5rem + 5vw, 5rem);
+  line-height: var(--vd-leading-tight);
+  letter-spacing: -0.015em;
+}
+
+.lead {
+  max-width: 38ch;
+  font-size: var(--vd-text-lg);
+  color: var(--vd-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--vd-space-3) var(--vd-space-6);
+  padding-block-start: var(--vd-space-2);
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  color: var(--vd-text);
+  font-weight: 600;
+  text-underline-offset: 0.3em;
+}
+
+.plate {
+  margin: 0;
+}
+
+.plate svg {
+  width: 100%;
+  max-width: 34rem;
+  margin-inline: auto;
+}
+
+.plate .sun {
+  fill: var(--vd-accent);
+}
+
+.plate .ink {
+  fill: none;
+  stroke: var(--vd-text);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.plate .paper {
+  fill: var(--vd-bg);
+}
+
+.plate .glass {
+  fill: var(--vd-surface);
+}
+
+.plate .tree {
+  fill: var(--vd-bg);
+  stroke-dasharray: 3 5;
+}
+
+.plate .hatch {
+  stroke: var(--vd-muted);
+  stroke-width: 1;
+}
+
+.plate figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--vd-space-1) var(--vd-space-4);
+  margin-block-start: var(--vd-space-3);
+  padding-block-start: var(--vd-space-3);
+  border-top: var(--vd-border);
+  font-size: var(--vd-text-sm);
+  color: var(--vd-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.plate figcaption span:first-child {
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 60rem) {
+  .hero-grid {
+    grid-template-columns: 7fr 5fr;
+    align-items: end;
+    gap: var(--vd-space-8);
+  }
+}
+
+/* Shared section head */
+.section-head {
+  display: grid;
+  gap: var(--vd-space-3);
+  margin-block-end: var(--vd-space-7);
+}
+
+.section-head h2 {
+  max-width: 20ch;
+  font-size: var(--vd-text-3xl);
+  line-height: var(--vd-leading-tight);
+}
+
+@media (min-width: 60rem) {
+  .section-head {
+    grid-template-columns: 4fr 8fr;
+    align-items: baseline;
+  }
+}
+
+.note {
+  font-size: var(--vd-text-sm);
+  color: var(--vd-muted);
+}
+
+/* Work: an index list, not a card grid */
+.projects {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--vd-text);
+}
+
+.project {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: var(--vd-space-2) var(--vd-space-5);
+  padding-block: var(--vd-space-5);
+  border-bottom: var(--vd-border);
+}
+
+.project .num {
+  grid-row: span 3;
+  font-family: var(--vd-font-display);
+  font-size: var(--vd-text-lg);
+  color: var(--vd-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.project h3 {
+  grid-column: 2;
+  font-size: var(--vd-text-xl);
+}
+
+.project p {
+  grid-column: 2;
+  max-width: 48ch;
+}
+
+.project .meta {
+  grid-column: 2;
+  font-size: var(--vd-text-sm);
+  color: var(--vd-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.work .note {
+  margin-block-start: var(--vd-space-5);
+}
+
+@media (min-width: 48rem) {
+  .project {
+    grid-template-columns: 4rem 1fr 1.3fr 9rem;
+    align-items: baseline;
+  }
+
+  .project .num,
+  .project h3,
+  .project p,
+  .project .meta {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .project .meta {
+    text-align: end;
+  }
+}
+
+/* Dark band: the one strong change of tone on the page */
+.band {
+  background: var(--vd-text);
+  color: var(--vd-bg);
+}
+
+.band .vd-eyebrow {
+  color: var(--band-muted);
+}
+
+.band-grid {
+  display: grid;
+  gap: var(--vd-space-8);
+}
+
+.statement {
+  max-width: 22ch;
+  font-size: var(--vd-text-3xl);
+  line-height: var(--vd-leading-tight);
+}
+
+.principles {
+  display: grid;
+  gap: var(--vd-space-5);
+  margin: 0;
+}
+
+.principles div {
+  padding-block-start: var(--vd-space-4);
+  border-top: 1px solid var(--band-muted);
+}
+
+.principles dt {
+  font-family: var(--vd-font-display);
+  font-size: var(--vd-text-xl);
+  color: var(--band-accent);
+}
+
+.principles dd {
+  max-width: 40ch;
+  margin: var(--vd-space-2) 0 0;
+  color: var(--band-muted);
+}
+
+@media (min-width: 60rem) {
+  .band-grid {
+    grid-template-columns: 7fr 5fr;
+    align-items: end;
+  }
+}
+
+/* Process */
+.steps {
+  display: grid;
+  gap: var(--vd-space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  padding-block-start: var(--vd-space-4);
+  border-top: 1px solid var(--vd-text);
+}
+
+.step .num {
+  display: block;
+  margin-block-end: var(--vd-space-3);
+  font-family: var(--vd-font-display);
+  font-size: var(--vd-text-2xl);
+  line-height: 1;
+  color: var(--vd-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.step h3 {
+  margin-block-end: var(--vd-space-2);
+  font-size: var(--vd-text-xl);
+}
+
+.step p {
+  color: var(--vd-muted);
+}
+
+@media (min-width: 40rem) {
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--vd-space-7) var(--vd-space-6);
+  }
+}
+
+@media (min-width: 72rem) {
+  .steps {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Contact: the single closing action */
+.contact {
+  background: var(--vd-surface);
+}
+
+.contact-grid {
+  display: grid;
+  gap: var(--vd-space-6);
+}
+
+.contact h2 {
+  font-size: var(--vd-text-3xl);
+  line-height: var(--vd-leading-tight);
+}
+
+@media (min-width: 60rem) {
+  .contact-grid {
+    grid-template-columns: 7fr 5fr;
+    align-items: end;
+  }
+}
+
+/* Footer */
+.site-footer {
+  padding-block: var(--vd-space-7);
+  border-top: var(--vd-border);
+}
+
+.footer-row {
+  display: grid;
+  gap: var(--vd-space-4);
+}
+
+.footer-row p {
+  max-width: 48ch;
+}
+
+@media (min-width: 48rem) {
+  .footer-row {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}

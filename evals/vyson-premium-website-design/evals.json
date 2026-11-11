@@ -1,0 +1,130 @@
+{
+  "skill": "vyson-premium-website-design",
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": 1,
+      "prompt": "Build a landing page for a small boutique law firm. It should feel premium and professional, not like a template. Plain HTML and CSS is fine.",
+      "should_activate": true,
+      "must_be_true": [
+        "The agent states a short direction (audience, feeling, one signature move, type, colour) before or alongside building",
+        "Colours, fonts and spacing are defined once as tokens and reused",
+        "There is exactly one h1 and one primary call to action in the first screen",
+        "Text pairs reach 4.5:1 contrast, and keyboard focus is visible",
+        "The final report keeps static checks, design review and browser tests apart and says what was not tested"
+      ],
+      "must_not_happen": [
+        "A row of three equal icon cards, a gradient hero and a pill button are used as the default design",
+        "Lorem ipsum, invented client names or invented statistics appear in the page",
+        "Images or fonts are loaded from another website",
+        "The report claims speed, ranking or conversion results that were not measured"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "My homepage looks generic and amateur, like every template. Can you redesign the hero and the typography so it feels more high-end? I attached the current HTML and CSS.",
+      "should_activate": true,
+      "must_be_true": [
+        "The agent inspects the existing HTML, CSS and brand before changing anything, and keeps the existing brand colours, fonts and logo unless told otherwise",
+        "The agent names what makes the current page look generic and fixes those causes, mainly hierarchy, type scale, spacing and colour use",
+        "The headline is clearly larger than the other text and there is one primary action",
+        "The diff stays within the hero and typography the user asked about"
+      ],
+      "must_not_happen": [
+        "The agent rewrites the whole site or changes the brand without being asked",
+        "The agent adds decoration (glows, gradients, many shadows) instead of fixing hierarchy and spacing",
+        "The agent copies the layout or wording of a named website"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I am building a portfolio for my pottery studio. Pick the fonts, colours and spacing system for me and apply them.",
+      "should_activate": true,
+      "must_be_true": [
+        "The agent defines colour roles, a type scale and a spacing scale as tokens",
+        "The agent starts with system font stacks, or checks and records the licence of any font file it adds",
+        "The agent checks the contrast of the text colours it chose",
+        "The agent asks at most three questions, or states its assumptions"
+      ],
+      "must_not_happen": [
+        "A font is loaded from another website",
+        "More than three font stacks are used",
+        "Text colours with less than 4.5:1 contrast on their background are used for normal text"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "My pricing page looks cramped and random on my phone. Sections have no rhythm and the text is small. Please fix the layout.",
+      "should_activate": true,
+      "must_be_true": [
+        "The agent works mobile first and checks narrow widths down to 320px for sideways scrolling",
+        "Body text is at least 16px and lines are about 45 to 75 characters on wide screens",
+        "Buttons and links reach 44 by 44 CSS pixels on touch screens, or the report says this was not measured",
+        "The report says whether a real phone was used"
+      ],
+      "must_not_happen": [
+        "The agent hides overflow with overflow-x: hidden on the body instead of fixing the cause",
+        "The agent blocks zooming in the viewport tag"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Redesign my portfolio so it feels high-end, and add some subtle animation too.",
+      "should_activate": true,
+      "must_be_true": [
+        "The agent decides the design direction and builds the layout, type and colour first",
+        "The agent handles the animation with the vyson-css-motion skill, or says that skill is needed, or keeps motion minimal and respects prefers-reduced-motion",
+        "The report separates design work from motion work"
+      ],
+      "must_not_happen": [
+        "The agent writes transition: all or animates layout properties",
+        "Movement is added without a prefers-reduced-motion rule"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Add scroll-triggered fade-in animations and hover effects to my existing landing page. Do not change how it looks otherwise.",
+      "should_activate": false,
+      "must_be_true": [
+        "The agent does not redesign the page and uses the motion workflow, for example the vyson-css-motion skill"
+      ],
+      "must_not_happen": [
+        "The agent changes the fonts, colours or layout of the page"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Build a product page with a 3D sneaker I can rotate and zoom with the mouse.",
+      "should_activate": false,
+      "must_be_true": [
+        "The agent treats this as a 3D task, or says that a 3D skill or library is needed",
+        "The agent does not apply the premium design workflow to the 3D model"
+      ],
+      "must_not_happen": [
+        "The agent fakes the 3D model with CSS transforms and calls it done"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "My login form posts twice when I click Sign in. Please fix the bug in the JavaScript.",
+      "should_activate": false,
+      "must_be_true": [
+        "The agent debugs the script and does not apply the design workflow"
+      ],
+      "must_not_happen": [
+        "The agent restyles the page, adds a design system or changes fonts and colours"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Change the headline on my homepage to 'Fresh coffee, delivered' and make the footer text smaller.",
+      "should_activate": false,
+      "must_be_true": [
+        "The agent makes only the requested text and style changes"
+      ],
+      "must_not_happen": [
+        "The agent writes a direction note, adds tokens or redesigns the page"
+      ]
+    }
+  ]
+}

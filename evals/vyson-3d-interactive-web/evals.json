@@ -1,0 +1,132 @@
+{
+  "skill": "vyson-3d-interactive-web",
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": 1,
+      "prompt": "Add a 3D product viewer for our ceramic lamp to the product page. People should be able to rotate it. We use plain HTML and JavaScript, and I have a lamp.glb file exported by our designer.",
+      "should_activate": true,
+      "must_be_true": [
+        "The agent states the job of the 3D view and checks that the model file has a known licence or comes from the user",
+        "The page keeps real text, a still image or drawing and the product facts, so it works without the 3D view",
+        "The canvas has an aria-label and every action (turn, reset, pause) is a real button of at least 44 by 44 CSS pixels with visible focus",
+        "prefers-reduced-motion stops automatic movement and the buttons still work",
+        "The pixel ratio is capped, the loop stops when the canvas is off screen or the tab is hidden, and a failed model load or missing WebGL shows the fallback",
+        "The model is loaded from the project, not from another website, and the report says what was and was not tested on real devices"
+      ],
+      "must_not_happen": [
+        "Three.js, the model or any texture is loaded from a CDN or another website",
+        "The mouse wheel or vertical touch scrolling is captured by the canvas",
+        "The report claims 60 frames per second or 'optimised for mobile' without a measurement on a named device",
+        "A library is installed without telling the user"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Make the hero section of our startup landing page a rotating 3D globe with Three.js. It should look amazing.",
+      "should_activate": true,
+      "must_be_true": [
+        "The agent asks or states what job the globe does, and says plainly if a still image or CSS would do the job as well",
+        "The agent names the library, its licence and the version it pins, and asks before adding a dependency the project does not have",
+        "The hero text and call to action are in the HTML and readable without the globe",
+        "Reduced motion starts the globe still, and phones or save-data get a lighter version or the still image",
+        "Disposal of geometries, materials and the renderer is written for when the scene is removed"
+      ],
+      "must_not_happen": [
+        "Headline text is drawn into the canvas",
+        "The globe spins at full pixel ratio on phones with no cap",
+        "No fallback exists when WebGL is unavailable"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Our Three.js scene is really slow on phones and the laptop fans spin up even when the user scrolls to another part of the page. Can you fix it?",
+      "should_activate": true,
+      "must_be_true": [
+        "The agent inspects the existing scene code before changing anything and names the likely causes (uncapped pixel ratio, a loop that never pauses, heavy assets, too many draw calls)",
+        "The loop is paused when the canvas is off screen or the tab is hidden",
+        "The pixel ratio and total drawing-buffer pixels are capped, with a lighter setting for touch screens",
+        "The report separates what the agent measured from what it assumed, and says which devices were not tested"
+      ],
+      "must_not_happen": [
+        "The agent rewrites the whole scene when the user asked for performance fixes",
+        "The agent claims the page is now fast without measuring it"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Add a shader-based animated gradient background behind our hero. Keep it subtle. We care about accessibility.",
+      "should_activate": true,
+      "must_be_true": [
+        "The canvas is marked aria-hidden (decorative) or named, and the hero text stays in HTML with 4.5:1 contrast over every frame",
+        "Reduced motion shows a still frame and nothing animates by itself",
+        "The shader loop pauses off screen and in hidden tabs, and a CSS gradient or still image is the fallback when WebGL is missing"
+      ],
+      "must_not_happen": [
+        "The background runs at full resolution on phones with no cap",
+        "Essential content is available only inside the canvas"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Make the 3D scene on our homepage fade in on scroll and add a hover animation to the buttons below it.",
+      "should_activate": true,
+      "must_be_true": [
+        "The agent handles the canvas side (loading, pausing, reduced motion) and hands the fade-in and button hover animation to CSS motion practice if available",
+        "The fade-in does not hide the content without a script, and respects reduced motion"
+      ],
+      "must_not_happen": [
+        "The scene is made to load or animate on every scroll event with no throttling or observer",
+        "The agent adds heavy scroll-driven camera motion with no reduced-motion version"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Add a subtle fade-in animation to the cards on my pricing page when they scroll into view, and a hover lift on the buttons.",
+      "should_activate": false,
+      "must_be_true": [
+        "The 3D skill is not used: this is CSS motion work",
+        "No canvas, WebGL or Three.js code is added"
+      ],
+      "must_not_happen": [
+        "A WebGL scene or a canvas is added to the page"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Redesign my landing page so it looks more premium. Better fonts, spacing and colours. No 3D please.",
+      "should_activate": false,
+      "must_be_true": [
+        "The 3D skill is not used: this is a visual design task",
+        "No canvas, WebGL or Three.js code is added"
+      ],
+      "must_not_happen": [
+        "A 3D scene or particle effect is added"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "My signup form submits twice when I double-click the button, and the error messages disappear too quickly. Can you fix the JavaScript?",
+      "should_activate": false,
+      "must_be_true": [
+        "The 3D skill is not used: this is form and logic work",
+        "The fix is limited to the form code"
+      ],
+      "must_not_happen": [
+        "Canvas or WebGL code is added"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Change the headline on the home page to 'Calm rooms, drawn with care' and update the footer copyright year.",
+      "should_activate": false,
+      "must_be_true": [
+        "The change is a text edit only",
+        "No skill-specific process (budget, fallbacks, scene) is started"
+      ],
+      "must_not_happen": [
+        "Unrelated files are modified or a scene is added"
+      ]
+    }
+  ]
+}

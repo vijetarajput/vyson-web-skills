@@ -1,0 +1,115 @@
+/* Styles for the frontend demo page. Plain CSS, system fonts, no animation. */
+
+:root {
+  --bg: #fbfaf7;
+  --surface: #f0ede5;
+  --text: #1d2420;
+  --muted: #4f5a53;
+  --line: #cfc9bb;
+  --accent: #2b6a4f;
+  --accent-ink: #ffffff;
+  --danger: #a3261c;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 1.0625rem/1.6 var(--font);
+}
+
+:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
+
+.skip-link { position: absolute; left: 1rem; top: -4rem; padding: 0.75rem 1rem; background: var(--text); color: var(--bg); }
+.skip-link:focus { top: 1rem; }
+
+.site-header, .site-footer, main { width: min(100% - 2rem, 46rem); margin-inline: auto; }
+
+.site-header { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.25rem 1rem; align-items: baseline; padding-block: 1.25rem; border-bottom: 1px solid var(--line); }
+.brand { margin: 0; font-weight: 700; font-size: 1.25rem; }
+.demo-note { margin: 0; color: var(--muted); font-size: 0.9375rem; }
+
+.intro { padding-block: 2.5rem 1rem; }
+h1 { margin: 0 0 0.75rem; font-size: clamp(2rem, 1.4rem + 3vw, 3rem); line-height: 1.1; }
+h2 { margin: 0 0 1rem; font-size: 1.5rem; line-height: 1.2; }
+h3 { margin: 0; font-size: 1.125rem; }
+.lead { margin: 0; color: var(--muted); font-size: 1.1875rem; max-width: 36rem; }
+.hint { color: var(--muted); font-size: 0.9375rem; margin: 0; }
+
+.simulate { margin-block: 1.5rem; border: 1px dashed var(--line); border-radius: 4px; background: var(--surface); }
+.simulate summary { padding: 0.75rem 1rem; min-height: 2.75rem; cursor: pointer; font-weight: 600; }
+.simulate-body { padding: 0 1rem 1rem; display: grid; gap: 0.5rem; }
+
+.find, .signup { padding-block: 1.5rem; }
+.signup { padding-bottom: 3rem; }
+
+.field { display: grid; gap: 0.35rem; margin-bottom: 1rem; }
+.field.check { grid-template-columns: auto 1fr; align-items: start; gap: 0.75rem; }
+label { font-weight: 600; }
+label .hint { font-weight: 400; }
+
+input[type="text"], input[type="email"], input[type="search"], input[type="number"], select {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 2px solid var(--muted);
+  border-radius: 2px;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+}
+input[type="checkbox"] { width: 1.5rem; height: 1.5rem; margin: 0.625rem 0 0 0.35rem; accent-color: var(--accent); }
+.field.check label { display: flex; align-items: center; min-height: 2.75rem; } /* the label is the 44px tap target for the 24px checkbox */
+
+[aria-invalid="true"] { border-color: var(--danger); }
+.field-error { margin: 0; color: var(--danger); font-weight: 600; }
+
+#filters { display: grid; gap: 0 1rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+
+button {
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  padding: 0.5rem 1.25rem;
+  border: 2px solid var(--accent);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--accent);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+button.primary { background: var(--accent); color: var(--accent-ink); }
+button[aria-disabled="true"] { opacity: 0.7; cursor: progress; }
+
+@media (hover: hover) and (pointer: fine) {
+  button:hover { background: var(--text); border-color: var(--text); color: var(--bg); }
+}
+
+.results { min-height: 8rem; }
+.workshop-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.workshop-list li { display: grid; gap: 0.25rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+.workshop-list button { justify-self: start; margin-top: 0.5rem; }
+
+.state { margin: 0; color: var(--muted); }
+.state-error { padding: 1rem; border: 2px solid var(--danger); border-radius: 2px; }
+.state-error p { margin: 0 0 0.75rem; color: var(--text); font-weight: 600; }
+
+.form-summary { margin-bottom: 1.5rem; padding: 1rem; border: 3px solid var(--danger); border-radius: 2px; }
+.form-summary[hidden] { display: none; }
+.form-summary h2 { margin-bottom: 0.5rem; font-size: 1.25rem; }
+.form-summary ul { margin: 0; padding-left: 1.25rem; }
+.form-summary a { color: var(--danger); font-weight: 600; display: inline-block; padding-block: 0.25rem; }
+
+.form-status { min-height: 1.6em; margin: 1rem 0 0; font-weight: 600; }
+
+dialog { max-width: min(92vw, 28rem); border: 2px solid var(--text); border-radius: 4px; padding: 1.5rem; background: var(--bg); color: var(--text); }
+dialog::backdrop { background: rgb(29 36 32 / 0.6); }
+dialog h2 { font-size: 1.375rem; }
+
+.visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.site-footer { padding-block: 1.5rem 3rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9375rem; }
+.site-footer p { margin: 0; }

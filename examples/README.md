@@ -19,4 +19,4 @@ Rules:
 - Every asset must have a recorded license. See [THIRD_PARTY.md](../THIRD_PARTY.md).
 - Results are shown as produced. We do not hand-polish output and present it as the skill's work.
 
-**Status:** one example so far: [`vyson-css-motion`](vyson-css-motion/README.md). Each example's own README says what was checked and what was not.
+**Status:** five examples so far: [`vyson-css-motion`](vyson-css-motion/README.md), [`vyson-premium-website-design`](vyson-premium-website-design/README.md), [`vyson-3d-interactive-web`](vyson-3d-interactive-web/README.md), [`vyson-frontend-development`](vyson-frontend-development/README.md) and [`vyson-website-quality-engineering`](vyson-website-quality-engineering/README.md). The last one has no single `result/` folder: it holds a flawed site and its repaired version, with the saved output of both tools. Each example's own README says what was checked and what was not.

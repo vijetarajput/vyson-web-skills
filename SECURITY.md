@@ -29,4 +29,4 @@ We aim to acknowledge reports within 7 days. This is a volunteer project, so thi
 
 ## Supported versions
 
-The project is pre-alpha. Only the latest version on the `main` branch is supported.
+The project is a v0.1 Beta that has not been published as a release. Only the latest version on the `main` branch is supported.

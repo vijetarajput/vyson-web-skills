@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Marrowfield Studio: architecture and interiors (demo site)</title>
+  <meta name="description" content="A demo site for Marrowfield Studio, a made-up architecture and interiors studio. It shows the vyson-premium-website-design skill in use.">
+  <meta name="theme-color" content="#fbfaf7">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%239a3b1f'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="design-tokens.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="vd-container header-row">
+      <a class="brand" href="#top" aria-label="Marrowfield Studio, back to the top">Marrowfield <small>Studio</small></a>
+      <nav aria-label="Main">
+        <ul class="nav">
+          <li><a href="#work">Work</a></li>
+          <li><a href="#approach">Approach</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a class="nav-action" href="#contact">Start a project</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="vd-container hero-grid">
+        <div class="hero-copy vd-stack">
+          <p class="vd-eyebrow">Architecture and interiors</p>
+          <h1 id="hero-title">Calm rooms, drawn with care.</h1>
+          <p class="lead">Marrowfield is a small studio that designs houses, extensions and interiors for people who plan to stay. We draw every room before we build it.</p>
+          <p class="actions">
+            <a class="vd-button" href="#contact">Start a project</a>
+            <a class="text-link" href="#work">See selected work</a>
+          </p>
+        </div>
+
+        <figure class="plate">
+          <svg viewBox="0 0 520 560" role="img" aria-labelledby="plate-title plate-desc">
+            <title id="plate-title">Line drawing of a courtyard house</title>
+            <desc id="plate-desc">A section drawing of a house: a pitched roof over a tall central block, a lower flat-roofed wing on the right, a tree on the left, a ground line with hatching below it, and a solid terracotta circle behind the roof.</desc>
+            <circle class="sun" cx="392" cy="176" r="86"/>
+            <g class="ink">
+              <path class="hatch" d="M30 470l-12 12M70 470l-12 12M110 470l-12 12M150 470l-12 12M190 470l-12 12M230 470l-12 12M270 470l-12 12M310 470l-12 12M350 470l-12 12M390 470l-12 12M430 470l-12 12M470 470l-12 12M510 470l-12 12"/>
+              <path d="M16 470H504"/>
+              <circle class="tree" cx="38" cy="378" r="38"/>
+              <path d="M38 470V416"/>
+              <rect class="paper" x="100" y="250" width="240" height="220"/>
+              <path class="paper" d="M78 252L220 138L362 252Z"/>
+              <path d="M100 250L220 154L340 250"/>
+              <path class="paper" d="M290 196V150h28v64"/>
+              <circle class="glass" cx="220" cy="212" r="17"/>
+              <path d="M203 212h34M220 195v34"/>
+              <rect class="glass" x="124" y="284" width="34" height="122"/>
+              <rect class="glass" x="184" y="284" width="34" height="122"/>
+              <rect class="glass" x="244" y="284" width="34" height="122"/>
+              <path d="M124 345h34M184 345h34M244 345h34"/>
+              <rect class="paper" x="296" y="372" width="32" height="98"/>
+              <rect class="paper" x="340" y="350" width="150" height="120"/>
+              <rect class="paper" x="326" y="338" width="178" height="12"/>
+              <rect class="glass" x="362" y="378" width="108" height="92"/>
+              <path d="M398 378v92M434 378v92"/>
+              <path d="M100 96H340M100 86v20M340 86v20M100 96l10-6M100 96l10 6M340 96l-10-6M340 96l-10 6"/>
+            </g>
+          </svg>
+          <figcaption><span>Plate 01</span><span>Courtyard house, section</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="vd-section work" id="work" aria-labelledby="work-title">
+      <div class="vd-container">
+        <div class="section-head">
+          <p class="vd-eyebrow">Selected work</p>
+          <h2 id="work-title">Four houses, drawn before they were built.</h2>
+        </div>
+        <ol class="projects">
+          <li class="project">
+            <span class="num">01</span>
+            <h3>Salt Lane House</h3>
+            <p>A narrow terrace opened to the garden with a double-height kitchen and one long window seat.</p>
+            <span class="meta">New build, 2024</span>
+          </li>
+          <li class="project">
+            <span class="num">02</span>
+            <h3>The Long Barn</h3>
+            <p>A cold stone barn made into a family home without hiding the old roof timbers.</p>
+            <span class="meta">Conversion, 2023</span>
+          </li>
+          <li class="project">
+            <span class="num">03</span>
+            <h3>Orchard Rooms</h3>
+            <p>Two small rooms added to a house for a grandparent, planned around morning light.</p>
+            <span class="meta">Extension, 2023</span>
+          </li>
+          <li class="project">
+            <span class="num">04</span>
+            <h3>Quarry Studio</h3>
+            <p>A workshop and gallery for a ceramicist, built from reclaimed brick and one steel beam.</p>
+            <span class="meta">Interior, 2022</span>
+          </li>
+        </ol>
+        <p class="note">Project names, places and descriptions are invented for this demo.</p>
+      </div>
+    </section>
+
+    <section class="vd-section band" id="approach" aria-labelledby="approach-title">
+      <div class="vd-container band-grid">
+        <div class="vd-stack">
+          <p class="vd-eyebrow">Approach</p>
+          <h2 id="approach-title" class="statement">We draw every room twice: once for the light, and once for the person who will live in it.</h2>
+        </div>
+        <dl class="principles">
+          <div>
+            <dt>Light first</dt>
+            <dd>We study where the sun falls before we decide where a wall goes.</dd>
+          </div>
+          <div>
+            <dt>Fewer, better materials</dt>
+            <dd>A short list of materials, chosen to age well and repeated throughout the house.</dd>
+          </div>
+          <div>
+            <dt>Built to be repaired</dt>
+            <dd>Fixings you can reach, parts you can replace, and drawings you can hand to the next owner.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="vd-section process" id="process" aria-labelledby="process-title">
+      <div class="vd-container">
+        <div class="section-head">
+          <p class="vd-eyebrow">Process</p>
+          <h2 id="process-title">From first conversation to the keys, in four steps.</h2>
+        </div>
+        <ol class="steps">
+          <li class="step">
+            <span class="num">01</span>
+            <h3>Listen</h3>
+            <p>We visit the site, meet the household and write a short brief you can read in five minutes.</p>
+          </li>
+          <li class="step">
+            <span class="num">02</span>
+            <h3>Draw</h3>
+            <p>Sketches, plans and models until the rooms feel right, with a cost range at every stage.</p>
+          </li>
+          <li class="step">
+            <span class="num">03</span>
+            <h3>Build</h3>
+            <p>We check the work on site every week and answer builders&rsquo; questions quickly.</p>
+          </li>
+          <li class="step">
+            <span class="num">04</span>
+            <h3>Hand over</h3>
+            <p>A care guide, a set of as-built drawings and a visit after the first winter.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="vd-section contact" id="contact" aria-labelledby="contact-title">
+      <div class="vd-container contact-grid">
+        <h2 id="contact-title">Tell us about the house you have in mind.</h2>
+        <div class="vd-stack">
+          <p class="lead">A few lines are enough: where it is, what you would like to change and when you hope to move in.</p>
+          <p><a class="vd-button" href="mailto:hello@example.com">Email the studio</a></p>
+          <p class="note">hello@example.com is a reserved example address. This demo has no working contact form.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="vd-container footer-row">
+      <p><strong>Marrowfield Studio</strong><br>12 Example Lane, Sampletown</p>
+      <p class="note">Marrowfield Studio is a made-up name for a demo site. It is not a real business. Page design by an AI agent using the vyson-premium-website-design skill.</p>
+    </div>
+  </footer>
+</body>
+</html>

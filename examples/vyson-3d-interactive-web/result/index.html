@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Facet paperweight | Halden Glassworks (demo)</title>
+  <meta name="description" content="A demo page for a made-up glass studio. It shows a 3D object that turns with buttons or a drag, and still works as a plain page when 3D is not available.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 1l6 5-2 8H4L2 6z' fill='%237fd6c8'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <p class="brand">Halden Glassworks</p>
+    <p class="demo-note">Demo site</p>
+  </header>
+
+  <main id="main">
+    <section class="intro">
+      <p class="eyebrow">Hand-finished glass</p>
+      <h1>The Facet paperweight</h1>
+      <p class="lead">A solid glass form with cut faces that catch the light from every side. Turn it below to see how the facets change.</p>
+    </section>
+
+    <section class="viewer-section" aria-labelledby="viewer-heading">
+      <h2 id="viewer-heading">Turn it in your hands</h2>
+      <figure class="viewer" data-viewer data-state="loading">
+        <div class="viewer-frame">
+          <canvas aria-label="A 3D view of a faceted glass paperweight, slowly turning. Use the buttons below the picture to turn it, or drag it sideways."></canvas>
+          <div class="fallback" data-fallback>
+            <svg viewBox="0 0 320 320" width="320" height="320" role="img" aria-label="Drawing of a faceted glass paperweight with an oval outline and light and dark cut faces.">
+              <path d="M160 24 258 82 292 176 226 288H94L28 176 62 82Z" fill="#1a5a62"/>
+              <path d="M160 24 258 82 160 120 62 82Z" fill="#3b9aa0"/>
+              <path d="M258 82 292 176 214 190 160 120Z" fill="#26747b"/>
+              <path d="M62 82 160 120 106 190 28 176Z" fill="#2a8189"/>
+              <path d="M160 120 214 190 226 288 160 226 94 288 106 190Z" fill="#144a52"/>
+              <path d="M106 190 160 226 94 288Z" fill="#1d6b73"/>
+              <path d="M214 190 226 288 160 226Z" fill="#0f3d44"/>
+              <path d="M160 24 258 82 292 176 226 288H94L28 176 62 82ZM160 120 214 190 160 226 106 190Z" fill="none" stroke="#a6efe3" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="controls" data-controls hidden>
+          <button type="button" data-action="left">Turn left</button>
+          <button type="button" data-action="right">Turn right</button>
+          <button type="button" data-action="toggle">Pause rotation</button>
+          <button type="button" data-action="reset" class="quiet">Reset view</button>
+        </div>
+        <p class="status" role="status" data-status></p>
+        <button type="button" class="load" data-load hidden>Load the 3D view</button>
+        <noscript><p class="status">The 3D view needs JavaScript. The drawing and the details below describe the same object.</p></noscript>
+        <figcaption>
+          A clear glass body about the size of a plum, covered in cut faces and slightly taller than it is wide. Light enters one face and leaves through another, so the colour shifts as you turn it.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="details" aria-labelledby="details-heading">
+      <h2 id="details-heading">Details</h2>
+      <dl class="facts">
+        <div><dt>Material</dt><dd>Lead-free clear glass</dd></div>
+        <div><dt>Cut</dt><dd>One facet at a time, by hand</dd></div>
+        <div><dt>Height</dt><dd>9 cm</dd></div>
+        <div><dt>Finish</dt><dd>Polished by hand</dd></div>
+      </dl>
+      <p class="made-up">Halden Glassworks and this product are made up for a demo. Nothing here is for sale.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Demo page for the vyson-3d-interactive-web skill. No images, fonts or scripts are loaded from other websites.</p>
+  </footer>
+
+  <script type="module" src="scene.js"></script>
+</body>
+</html>

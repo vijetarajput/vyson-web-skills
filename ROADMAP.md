@@ -2,17 +2,19 @@
 
 This roadmap shows intent, not promises. Dates depend on testing results.
 
-## v0.1 (in progress)
+## v0.1 (Beta: written and checked, not yet published)
+
+State on 11 November 2026: all five skills are written and pass `npm run check`. **Not verified:** any agent loading or following a skill, running the eval files with an agent, browsers other than headless Chrome 157 on one Windows 10 PC, real phones and GPUs, installing the four newer skills from GitHub (tested from a local folder only), and `skills update`.
 
 Goal: five good, tested skills (one per pillar), one working audit script, and a small honest benchmark.
 
 | Pillar | Skill | Status |
 |---|---|---|
-| Design | `vyson-brief-to-direction` | Planned |
+| Design | `vyson-premium-website-design` | Draft written (direction note, layout, type, colour, imagery, responsive design, details, checker, example and eval file). **Not tested with an agent**, so it proves nothing about effectiveness yet. It replaces the earlier planned `vyson-brief-to-direction`: that idea is covered by steps 1 to 3 of the new skill. Revisit if a separate brief-writing skill turns out to be needed. |
 | Motion | `vyson-css-motion` | Written and improved after review (pilot skill). One exploratory with/without run exists: **1 run per condition, with known confounds**, so it is an anecdote and **proves nothing about effectiveness**. See the [pilot experiment report](bench/experiments/css-motion-pilot-001/README.md). |
-| 3D | `vyson-three-foundations` | Planned |
-| Frontend | `vyson-responsive-layouts` | Planned |
-| Quality | `vyson-site-audit-report` | Planned |
+| 3D | `vyson-3d-interactive-web` | Draft written (decide whether 3D is worth it, approach choice, a starter stage file, a local server, a static checker, an example and an eval file). The example was checked in headless Chrome with software-rendered WebGL only. **Not tested with an agent, on a real GPU or on a phone.** It replaces the earlier planned `vyson-three-foundations`. |
+| Frontend | `vyson-frontend-development` | Draft written (HTML first, forms, data states, widgets, safe DOM updates, two helper modules, a React hook and a Vue composable checked in Node only, a static checker, an example and an eval file). **Not tested with an agent.** It replaces the earlier planned `vyson-responsive-layouts`: responsive layout is covered by the design skill, and behaviour was the larger gap. |
+| Quality | `vyson-website-quality-engineering` | Draft written (a static site audit, a real-browser check, a report method, an example with saved before and after output, and an eval file). **Not tested with an agent**, and the tools were run on one Windows PC with headless Chrome only. It replaces the earlier planned `vyson-site-audit-report`. |
 
 ### Seven-day plan
 
@@ -21,10 +23,10 @@ Goal: five good, tested skills (one per pillar), one working audit script, and a
 | 1 | Foundation: structure, README, contribution files, license manifest, skill template | Done, awaiting review |
 | 2 | Tooling: skill validator, test of the `npx skills add` install from this repo | Done, awaiting review |
 | 3 | Pilot skill end to end: `vyson-css-motion` with example, eval file, recorded with/without run | Skill, example, eval file and local install tests done and reviewed. The with/without run was done **once per condition** as an exploratory pilot ([report](bench/experiments/css-motion-pilot-001/README.md)). Known confounds: the "without" agent still saw this repository's `AGENTS.md` motion rules, and the skill was supplied through the prompt, not discovered by Cursor itself. Result: not proof of effectiveness. A controlled three-repeat experiment is planned and **not started** ([plan](bench/experiments/css-motion-repeat-plan.md)). |
-| 4 | `vyson-brief-to-direction` and `vyson-responsive-layouts` | Not started |
-| 5 | `vyson-three-foundations` with example and fallback | Not started |
-| 6 | `vyson-site-audit-report` and its audit script | Not started |
-| 7 | Release: install guides tested on Cursor, Claude Code and Codex, benchmark v0, tag `v0.1.0` | Not started |
+| 4 | The design skill | `vyson-premium-website-design` written as a draft, awaiting review. |
+| 5 | The 3D skill with example and fallback | `vyson-3d-interactive-web` written as a draft with an example, awaiting review. |
+| 6 | The frontend and quality skills, and the audit tools | `vyson-frontend-development` and `vyson-website-quality-engineering` (with `site-audit.mjs` and `browser-check.mjs`) written as drafts with examples, awaiting review. |
+| 7 | Release: install guides tested on Cursor, Claude Code and Codex, benchmark v0, tag `v0.1.0` | Not started. Open items: run the eval files and the benchmark with agents, check that each agent loads the skills, publish, and test installing from GitHub. |
 
 If a day reveals a problem in the process, we fix the process before building more skills.
 

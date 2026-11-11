@@ -4,10 +4,10 @@ Thank you for helping. This guide explains how to propose and add a skill. You d
 
 ## Ground rules
 
-1. **Original work only.** Write skill text, examples, and code yourself. Do not copy text, code, images, or structure from other skill repositories, component libraries, or websites. Use other work only as inspiration for *ideas*.
-2. **License-compatible only.** Everything you submit must be your own work, or released under a license compatible with MIT with the required attribution kept. If you are not sure, ask first.
+1. **Reuse first, with the licence checked.** Look for existing open-source work before writing your own, and do not duplicate a skill that already exists (point to it instead). You may adapt text or code from a repository only if it has a licence file that permits it (MIT, Apache-2.0, BSD or ISC). Keep its copyright notice and licence text next to what you adapted, mark the adapted passage in the file (for Apache-2.0 also say what you changed and keep any NOTICE file), and add a row to the "Adapted material" table in [THIRD_PARTY.md](THIRD_PARTY.md). A README that says "MIT" with no licence file does not count. If the licence is missing or unclear, use the work only as inspiration for *ideas* and write your own words. Never copy from websites, images or documentation without a licence that allows it.
+2. **Licence status is clear.** Everything you submit is either your own work, which is released under this repository's MIT licence, or adapted material that follows rule 1. Original and adapted work must stay distinguishable. A repository with no licence file, or an unclear licence, must not be copied. If you are not sure, ask first.
 3. **Declare libraries.** If a skill recommends a library, add it to [THIRD_PARTY.md](THIRD_PARTY.md) with its license. Check the license yourself on the project's official page or npm listing. Do not add libraries with unknown or restrictive licenses. Do not copy a library's own files into this repository.
-4. **No invented results.** Do not claim a skill improves anything unless you measured it and can show how. Benchmark results go in `bench/results/` with raw data.
+4. **No invented results.** Do not claim a skill improves anything unless you measured it and can show how. Benchmark results go in `bench/results/` with raw data. Do not imply a partnership, endorsement or verified integration with another project or agent without evidence.
 5. **No remote instructions.** A skill must not tell the agent to download its rules from a URL at run time. Put the content in the skill.
 6. **Be kind.** See the [Code of Conduct](CODE_OF_CONDUCT.md).
 
@@ -48,8 +48,8 @@ Example: `feat(vyson-css-motion): add scroll-driven reveal guidance`
 
 ## Review
 
-We review for: originality, clarity, correctness, accessibility, performance honesty, and license safety. We may ask for changes. Maintainers aim to respond within a few days, but this is a volunteer project and timing is not guaranteed.
+We review for: licence safety, clear separation of original and adapted work, clarity, correctness, accessibility, and performance honesty. We may ask for changes. Maintainers aim to respond within a few days, but this is a volunteer project and timing is not guaranteed.
 
 ## Using AI to help you contribute
 
-AI assistance is welcome. You remain responsible for what you submit: you must understand it, have checked that it is original, and have tested it.
+AI assistance is welcome. You remain responsible for what you submit: you must understand it, have checked that anything reused has a licence that permits it and is recorded, and have tested it.

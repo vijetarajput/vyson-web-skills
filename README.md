@@ -2,57 +2,161 @@
 
 **Turn Your Website Vision into Reality.**
 
-An open-source toolkit of Agent Skills for building premium, responsive, animated and production-ready websites with AI coding agents.
+[![Licence: MIT](https://img.shields.io/github/license/vijetarajput/vyson-web-skills)](LICENSE) ![Status: v0.1 beta](https://img.shields.io/badge/status-v0.1%20beta-orange)
 
-> **Status: pre-alpha (v0.1 in progress).** One pilot skill, [`vyson-css-motion`](skills/vyson-css-motion/SKILL.md), is written, and the checking tools and tests are working. The other four planned v0.1 skills are not written yet. **No AI coding agent has been confirmed to find and use the skill automatically yet.** The first CSS Motion experiment is inconclusive (see [Evidence](#evidence-and-honesty)). See the [roadmap](ROADMAP.md).
+An open-source toolkit of **Agent Skills** that help AI coding agents (Cursor, Claude Code, Codex and tools that read the same format) build premium, responsive, animated and production-ready websites. Each skill is a folder of instructions, with small checker scripts, a working example and a test prompt file, following the open [Agent Skills specification](https://agentskills.io/specification).
 
-## What this is
+> **Status: v0.1 Beta.** Five skills are written and pass this repository's own checks. This is an early beta: read [Limitations](#limitations-read-this-first) before relying on it.
 
-VYSON Web Skills is a collection of **Agent Skills**: folders of instructions that teach an AI coding agent how to do one specific web development job well. Skills follow the open [Agent Skills specification](https://agentskills.io/specification).
+## Contents
 
-The goal is not a pile of prompts. Each skill should be practical, original, tested, and backed by a small example.
+[Limitations](#limitations-read-this-first) · [The five skills](#the-five-skills) · [Which skill should I use?](#which-skill-should-i-use) · [Frameworks](#frameworks) · [Installation](#installation) · [Examples](#examples) · [Checking tools and tests](#checking-tools-and-tests) · [Repository structure](#repository-structure) · [Contributing](#contributing) · [Licensing and attribution](#licensing-and-attribution) · [Roadmap](#roadmap)
 
-## What exists today, and what does not
+## Limitations (read this first)
 
-| Area | Status |
-|---|---|
-| Project structure, contribution rules, licence and third-party list | **Implemented** |
-| Skill validator, Markdown link checker and automated tests | **Implemented** (see [Checking tools](#checking-tools-and-tests)) |
-| One pilot skill: `vyson-css-motion` (with an example, an eval file and its own static checker) | **Implemented, pilot**. Not yet shown to work better than no skill. |
-| An experiment comparing the skill with no skill | **One exploratory run per condition, inconclusive.** A controlled three-repeat experiment is prepared but **not started**. |
-| Installing `vyson-css-motion` from GitHub into a project folder with the `skills` installer | **Tested** on Windows 10 with Skills CLI 1.7.6 (files copied and checked). See [Installation](#installation). |
-| Cursor, Claude Code or Codex actually loading and following the installed skill | **Not verified yet** |
-| The other four v0.1 skills (design, 3D, frontend, quality) | **Planned, not written** |
-| Skills beyond v0.1 (GSAP, Lenis, Three.js, React, Next.js and more) | **Planned only** |
+We would rather tell you what is not proven than have you find out later.
 
-## The five pillars
+- **No agent-level results yet.** No AI coding agent has been confirmed to find, load or follow any of the five skills. The test prompts in [`evals/`](evals/) are written but **have never been run with an agent**. The one with/without experiment, for `vyson-css-motion`, had one run per condition and is **inconclusive**: it does not show that a skill helps ([report](bench/experiments/css-motion-pilot-001/README.md)).
+- **GitHub installation is not yet verified.** Installing `vyson-css-motion` from the public GitHub repository was tested on 10 November 2026. Installing the other four skills, or all five at once, was tested **only from a local folder** (11 November 2026). The four newer skills reach GitHub with this beta, so installing them from GitHub is untested. `skills update` is untested.
+- **Limited browser and device testing.** Every browser check ran in **headless Chrome 157 on one Windows 10 computer**, with software-rendered WebGL for the 3D example. **Not tested:** Firefox, Safari, Edge by hand, a real phone or tablet, a real GPU, a screen reader, a slow network, Linux and macOS.
+- **Not independent.** The examples and the checkers were written by the same AI agent as the skills, so they are not independent tests.
+- **No guarantees.** Nothing here guarantees a result, a speed, an accessibility level, security or compatibility. Numbers in the skills are VYSON defaults, not measurements. The checkers cannot certify anything.
 
-These are the five areas the project aims to cover. Only the motion pillar has a skill so far.
+Skill status: `vyson-css-motion` is a **pilot**. The other four have the metadata status **draft** until they have been tried with real agents.
 
-| Pillar | Focus | Status |
+## The five skills
+
+Each skill installs on its own. Every skill has its own checker, an example in [`examples/`](examples/) and a test file in [`evals/`](evals/).
+
+| Skill | What it helps you do | Bundled helpers |
 |---|---|---|
-| **Premium design** | Luxury, SaaS, agency, interior and architecture, real estate, and high-converting landing pages | Planned |
-| **Animation and motion** | Native CSS first. GSAP, Lenis, scroll-based animation and cinematic transitions are later goals | One pilot skill (CSS only) |
-| **3D and interactive web** | Three.js, WebGL, 3D objects, interactive product experiences | Planned |
-| **Frontend development** | React, Next.js, responsive layouts, reusable components, design systems | Planned |
-| **Website quality** | Accessibility, SEO, performance, responsive testing, website audits | Planned |
+| **`vyson-premium-website-design`** | Make a site look decided, not generated. Write a short direction note (audience, feeling, one signature move), then set type, colour, spacing, layout, imagery and finishing details. | 6 references, a design-token stylesheet, `design-lint.mjs` (18 rules) |
+| **`vyson-css-motion`** *(pilot)* | Add CSS-only motion that stays fast and accessible: page-load entrances, scroll reveals, hovers, an accordion, a marquee, page transitions, a progress bar. Includes reduced-motion handling and a mobile fallback. | 10 recipes, a starter stylesheet, `motion-lint.mjs` (14 rules) |
+| **`vyson-3d-interactive-web`** | Decide whether 3D is worth it, then add the lightest option (CSS, 2D canvas, plain WebGL or Three.js) with a performance budget, a fallback ladder (high, low, still image, no WebGL), reduced motion and context-loss handling. | 4 references, `canvas-stage.js`, a local server, `3d-lint.mjs` (14 rules) |
+| **`vyson-frontend-development`** | Build forms, data loading, dialogs, tabs and menus that work without JavaScript first and fail politely: every state visible (loading, empty, error, success), no HTML built from variables, safe handling of secrets and storage. | 5 references, `fetch-state.js`, `form-helpers.js`, a React hook, a Vue composable, `frontend-lint.mjs` (15 rules) |
+| **`vyson-website-quality-engineering`** | Check a finished site before launch and report honestly: a static audit of the built files, a real-browser check, the manual checks a tool cannot do, and a report that keeps the three apart. | 4 references, `site-audit.mjs` (28 rules), `browser-check.mjs` (14 rules) |
 
-## Available skill: `vyson-css-motion` (pilot)
+Each skill names the others in its "when not to use" section, so an agent can hand a task to the right one. VYSON does not try to replace library-specific skill packs (see [Licensing and attribution](#licensing-and-attribution)).
 
-Adds CSS-based motion to a website while keeping it fast and accessible. It is a pilot, so expect rough edges.
+## Which skill should I use?
 
-- **Recipes (10):** page-load entrance, scroll reveal (with and without JavaScript), button hover and press, card lift, link underline, FAQ or accordion panel (one open at a time, keyboard accessible), marquee, page transition, scroll progress bar.
-- **Safety rules:** a performance budget, `prefers-reduced-motion` handling, a mobile fallback, and a tap-target size guide (aim for 44 by 44 CSS pixels; 24 by 24 is the minimum, with a few exceptions).
-- **Starter CSS:** [`assets/motion-base.css`](skills/vyson-css-motion/assets/motion-base.css).
-- **Its own checker:** [`scripts/motion-lint.mjs`](skills/vyson-css-motion/scripts/motion-lint.mjs) reads CSS, JavaScript and HTML files and applies 14 rules. It is a **static check**: it never opens a browser, and passing it does not mean a page works. The manual browser steps are in [`references/verification.md`](skills/vyson-css-motion/references/verification.md).
-- **Example site:** [`examples/vyson-css-motion/`](examples/vyson-css-motion/README.md), with notes on what was and was not checked.
-- **Eval cases:** [`evals/vyson-css-motion/evals.json`](evals/vyson-css-motion/evals.json) (cases are written; they have not been run with an agent yet).
+| You want to... | Use | If you also use another skill |
+|---|---|---|
+| Redesign a landing page so it stops looking like a template; choose fonts, colours, spacing, layout | `vyson-premium-website-design` | Add `vyson-css-motion` afterwards for animation |
+| Add fade-ins, scroll reveals, hover effects, a smooth accordion, with `prefers-reduced-motion` respected | `vyson-css-motion` | |
+| Put a 3D product viewer, WebGL background or Three.js scene on a page without breaking mobile | `vyson-3d-interactive-web` | |
+| Add a contact or signup form, search and filter, an API call with loading and error states, a modal or tabs | `vyson-frontend-development` | |
+| Check a site before launch: accessibility basics, broken links, tap targets, speed hints, SEO basics | `vyson-website-quality-engineering` | Run it last, after the others |
+| Make a whole site from scratch | Install all five. Typical order: design, frontend, motion (and 3D if needed), then quality | |
 
-It is not for 3D scenes, or for timeline libraries such as GSAP.
+Not covered yet: back-end work, e-commerce, content writing, GSAP or timeline animation, and component-library-specific skills.
+
+## Frameworks
+
+The skills are written to work on plain HTML, CSS and JavaScript first, so they do not force a framework or a dependency. Here is what exists for each stack and how far it has been checked. "Checked" means by this repository's own tools, in the environment described under [Limitations](#limitations-read-this-first).
+
+| Stack | What the skills give you | Verification |
+|---|---|---|
+| **Plain HTML, CSS, JavaScript** | All five skills. The five examples are plain HTML, CSS and JavaScript (the 3D example uses plain WebGL, no library). | The examples and checkers were run in headless Chrome 157 on Windows 10. |
+| **React** | `vyson-frontend-development` has a data-loading hook (`use-fetch-state.react.js`) and React notes. `vyson-3d-interactive-web` has written guidance for mounting a scene. | The hook passed 8 logic checks in Node with React 19.3.1 and its test renderer. **Not tested in a browser.** The 3D guidance is **untested**. |
+| **Next.js** | Notes in `vyson-frontend-development` (client components, hydration, which settings are public) and written 3D mounting guidance. | **Untested.** No Next.js project was built. |
+| **Vue 3 / Nuxt** | `vyson-frontend-development` has a composable (`use-fetch-state.vue.js`) and Vue notes. `frontend-lint.mjs` also reads the `<script>` blocks and `v-html` in `.vue` files. | The composable passed 6 logic checks in Node with Vue 3.5.45. **Not tested in a browser or in Nuxt.** The 3D guidance is **untested**. |
+
+Reproduce the Node checks with `node tools/framework-checks/run.mjs` (it installs the pinned React and Vue packages in a temporary folder, then deletes it).
+
+## Installation
+
+You need **Node.js 22.20 or newer**. VYSON installs through the open `skills` installer (a separate third-party tool, see the telemetry note below), pinned to the one version we tested, **1.7.6**. Run the commands inside your own project folder. The examples are PowerShell; the commands themselves are the same in other shells, except for the quoting of `'*'`.
+
+### What has been tested
+
+| Install | Tested? |
+|---|---|
+| `vyson-css-motion` from the public GitHub repository | **Yes**, 10 November 2026 |
+| The other four skills, or all five with `--skill '*'`, from a **local folder** (a copy of this repository) | **Yes**, 11 November 2026 |
+| The other four skills, or all five, from the **public GitHub repository** | **No, not yet verified** |
+| `skills update` | **No** |
+| macOS, Linux, other `skills` versions | **No** |
+| An agent loading and following an installed skill | **No** (all five skills) |
+
+Tests ran on Windows 10 with project-level installs and `--copy`. Details and limits: [integrations/README.md](integrations/README.md).
+
+### Install all five skills
+
+```powershell
+npx skills@1.7.6 add vijetarajput/vyson-web-skills --skill '*' -a cursor -a claude-code -a codex --copy -y
+```
+
+### Install one skill
+
+Change the `--skill` name:
+
+```powershell
+npx skills@1.7.6 add vijetarajput/vyson-web-skills --skill vyson-frontend-development -a cursor -a claude-code -a codex --copy -y
+```
+
+| Skill | `--skill` name |
+|---|---|
+| Premium website design | `vyson-premium-website-design` |
+| CSS motion (pilot) | `vyson-css-motion` |
+| 3D and interactive web | `vyson-3d-interactive-web` |
+| Frontend development | `vyson-frontend-development` |
+| Website quality engineering | `vyson-website-quality-engineering` |
+
+To see what the installer finds before installing, leave out `--skill` and add `--list`:
+
+```powershell
+npx skills@1.7.6 add vijetarajput/vyson-web-skills --list
+```
+
+The command copies each skill into `.agents/skills/<name>/` (the folder the installer documents for Cursor and Codex) and `.claude/skills/<name>/` (for Claude Code), and writes a `skills-lock.json` file in your project. **We have not checked that any of these agents reads those folders.**
+
+### List, update and remove
+
+These are the commands from the installer's own `--help` for version 1.7.6.
+
+| Job | Command | Tested here |
+|---|---|---|
+| List installed skills | `npx skills@1.7.6 list` | Yes, from a local copy |
+| Remove one skill | `npx skills@1.7.6 remove vyson-3d-interactive-web -y` | Yes, from a local copy |
+| Update all installed skills | `npx skills@1.7.6 update` | **No** |
+| Update one skill | `npx skills@1.7.6 update vyson-css-motion` | **No** |
+| Update by hand | Delete the skill's folders in `.agents/skills/` and `.claude/skills/`, then run the install command again | No |
+
+Installed files are copies, so a skill does not change until you update it. Read [CHANGELOG.md](CHANGELOG.md) before updating. `update` accepts `-p` (project skills only), `-g` (global skills only) and `-y` (skip the scope question).
+
+### Manual copy
+
+Copy a folder from [`skills/`](skills/) into your agent's skills folder (for example `.agents/skills/` or `.claude/skills/` in your project). Avoid symlinks on Windows. Per-agent copy guides are planned, not written.
+
+### Telemetry note
+
+`skills` is a separate third-party installer (Vercel Labs, MIT licence), not part of this project. According to its documentation it sends anonymous usage data by default, which can include the repository and skill names for public GitHub repositories. According to that documentation, either of these PowerShell commands switches it off for the current window when run before the install command:
+
+```powershell
+$env:DISABLE_TELEMETRY = "1"
+$env:DO_NOT_TRACK = "1"
+```
+
+These settings belong to the installer. We have not audited it and did not observe its network traffic (our tests ran with telemetry switched off). VYSON adds no telemetry, no background hooks and no instructions fetched from the internet. See [THIRD_PARTY.md](THIRD_PARTY.md#skills-cli-telemetry).
+
+## Examples
+
+Each skill has a small example site with the exact prompt used and notes on what was and was not checked. All content is made up, and nothing is sent anywhere.
+
+| Example | What it is | How to open it |
+|---|---|---|
+| [`examples/vyson-premium-website-design/`](examples/vyson-premium-website-design/README.md) | An architecture studio page (plain HTML and CSS, no script) | Double-click `result/index.html` |
+| [`examples/vyson-css-motion/`](examples/vyson-css-motion/README.md) | A coffee roaster page with entrances, reveals and an accordion | Double-click `result/index.html` |
+| [`examples/vyson-3d-interactive-web/`](examples/vyson-3d-interactive-web/README.md) | A glass paperweight viewer in plain WebGL, with fallbacks | `node skills/vyson-3d-interactive-web/scripts/serve.mjs examples/vyson-3d-interactive-web/result`, then open the printed address |
+| [`examples/vyson-frontend-development/`](examples/vyson-frontend-development/README.md) | A workshop programme with search, a dialog and a form, plus buttons that simulate a slow, empty or failing server | Serve the folder as above with `examples/vyson-frontend-development/result` |
+| [`examples/vyson-website-quality-engineering/`](examples/vyson-website-quality-engineering/README.md) | A deliberately flawed bakery site, its repaired version, and the unedited tool output before and after | Read the README and [REPORT.md](examples/vyson-website-quality-engineering/REPORT.md) |
+
+The examples were checked in headless Chrome only (see [Limitations](#limitations-read-this-first)).
 
 ## Checking tools and tests
 
-Everything below is implemented and uses only Node.js, with no packages to install. It needs Node.js 22 or newer. It has been run on **Windows 10 with Node.js 24**. Linux and macOS are **untested**.
+Everything below uses only Node.js (22 or newer), with nothing to install. It was run on **Windows 10 with Node.js 24**; Linux and macOS are untested.
 
 ```powershell
 git clone https://github.com/vijetarajput/vyson-web-skills.git
@@ -60,110 +164,75 @@ cd vyson-web-skills
 npm run check
 ```
 
-`npm run check` runs the automated tests, checks the skill template and every skill against the Agent Skills specification and the project rules, and checks every relative link in the Markdown files. You can also run each step on its own:
+`npm run check` runs the automated tests, validates the skill template and every skill against the Agent Skills specification and the project rules (including strict mode for warnings), and checks every relative link in the Markdown files.
 
 | Command | What it does |
 |---|---|
-| `npm test` | Automated tests of the validator, link checker and the CSS Motion skill |
+| `npm run check` | Everything below, in order |
+| `npm test` | Automated tests of the validator, link checker, all five skills and their checkers. The tests that open headless Chrome or Edge are skipped if none is installed, or when `VYSON_SKIP_BROWSER_TESTS=1` is set |
 | `npm run validate` | Validates every skill in `skills/` |
-| `npm run validate:template` | Validates the skill template against the specification only |
+| `npm run validate:template` | Validates the skill template against the specification |
 | `npm run check:links` | Checks relative links in Markdown files |
 
-Every problem the validator can report has a code and an explanation in [docs/validator-rules.md](docs/validator-rules.md). To run the CSS Motion checker on a site: `node skills/vyson-css-motion/scripts/motion-lint.mjs path\to\your\site`.
+Rules the validator can report are explained in [docs/validator-rules.md](docs/validator-rules.md).
 
-## Installation
+### Checkers inside the skills
 
-**Recommended command (pinned to the tested version).** Run this from inside your own project folder (it needs Node.js 22.20 or newer):
+Each skill carries small checkers that keep working after the skill is installed. Adjust the path if you installed a skill into a project.
 
-```powershell
-npx skills@1.7.6 add vijetarajput/vyson-web-skills --skill vyson-css-motion -a cursor -a claude-code -a codex --copy -y
-```
-
-> **Telemetry note.** `skills` is a separate, third-party installer (Vercel Labs, MIT licence), not part of this project. According to the installer's documentation, it sends anonymous usage data by default, which can include the repository and skill names for public GitHub repositories. According to the installer's documentation, either of these PowerShell commands switches that off for the current window when you run it before the install command:
->
-> ```powershell
-> $env:DISABLE_TELEMETRY = "1"
-> $env:DO_NOT_TRACK = "1"
-> ```
->
-> These controls belong to the installer, not to VYSON Web Skills. We have not audited the installer and did not observe its network traffic (our tests ran with telemetry switched off). Details: [THIRD_PARTY.md](THIRD_PARTY.md#skills-cli-telemetry).
-
-**Optional alternative (not pinned):**
-
-```powershell
-npx skills add vijetarajput/vyson-web-skills --skill vyson-css-motion -a cursor -a claude-code -a codex --copy -y
-```
-
-The difference: `skills@1.7.6` always runs version 1.7.6, the only version we tested. Without the version, `npx` runs whatever the latest version is at that moment. On 10 November 2026 that was also 1.7.6, but a later version may behave differently, and we have **not** tested any later version.
-
-The command copies the skill into `.agents/skills/vyson-css-motion/` (the folder the Skills CLI documents for Cursor and Codex) and `.claude/skills/vyson-css-motion/` (the folder it documents for Claude Code), and writes a `skills-lock.json` file in your project. We have not checked that any of these agents reads those folders.
-
-**What was tested (10 November 2026).** Installing from the public GitHub repository, with Skills CLI **1.7.6**, on **Windows 10**, into a temporary project folder:
-
-- `npx skills add vijetarajput/vyson-web-skills --list` found exactly one skill, `vyson-css-motion`.
-- The default command without extra options (`npx skills add vijetarajput/vyson-web-skills`) passed. It installed one copy, in `.agents/skills/`. This test ran inside an agent terminal, where the installer reported that it had detected an agent and installed without asking questions. How it behaves in a normal interactive terminal was **not tested**.
-- The recommended command above (pinned to 1.7.6) passed, with copies in both folders.
-- The installed files passed the skill validator, and the installed `motion-lint.mjs` ran correctly.
-- The installed files had Windows line endings (CRLF), while the repository stores them with LF. This came from Git's checkout settings on the Windows test PC (`core.autocrlf` was `true`), not from the installer or us editing the files. After allowing for that, all 7 files had the same content as the published ones.
-
-**This proves where the files end up. It does not prove that any agent uses the skill.** We have **not** checked that Cursor, Claude Code or Codex finds, loads or follows the installed skill, and we make no support claim for any agent until that has been checked. The details are in [integrations/README.md](integrations/README.md).
-
-**What has not been tested:**
-
-- macOS and Linux.
-- Global installation (`-g`), the default symlink mode, and the installer's update, check and remove commands, all against GitHub.
-- Agent execution: any agent loading and following the skill.
-- Any agent other than the three above.
-- Any Skills CLI version other than 1.7.6, including the unpinned alternative. These results may change with other versions.
-- Normal interactive terminal behaviour of the installer (the default-command test ran in an agent terminal).
-
-A manual-copy guide for each agent is planned, not written.
-
-## Evidence and honesty
-
-We publish how skills are tested, including weak results.
-
-- A first exploratory comparison of `vyson-css-motion` with and without the skill is recorded in [`bench/experiments/css-motion-pilot-001/`](bench/experiments/css-motion-pilot-001/README.md). It had **one run per condition and known flaws** (the "without" run was not a clean baseline). **It does not show that the skill works.** It did surface real problems in both generated sites (for example accordions that left two panels open, and small tap targets) and gaps in the skill's own guidance and example. The skill and example were changed afterwards, so the current skill text is not the text that was tested.
-- A controlled experiment with three runs per condition in two separate clean workspaces is planned: [css-motion-repeat-plan.md](bench/experiments/css-motion-repeat-plan.md). **It has not started**, and there are no results from it. Even when it finishes, three runs per condition is a small sample, so it can suggest, not prove.
-- The proposed larger benchmark is described in [bench/](bench/README.md). It does not exist yet.
-
-## Principles
-
-- **Evidence over claims.** Nothing is claimed that we have not measured, and we say "untested" when something is untested.
-- **Safe motion and 3D.** Animation and 3D skills must state their performance budget and their reduced-motion and mobile fallbacks.
-- **Original work.** Skills and examples are written from scratch. We do not copy or rebrand other projects. See [CONTRIBUTING.md](CONTRIBUTING.md).
-- **Trust by default.** No telemetry, no background hooks, and no instructions fetched from the internet at run time.
-- **Licences are checked.** Every library a skill recommends is listed in [THIRD_PARTY.md](THIRD_PARTY.md) with its licence.
-
-## Roadmap
-
-The full plan is in [ROADMAP.md](ROADMAP.md). In short:
-
-| Stage | Goal | State |
+| Skill | Command | Kind |
 |---|---|---|
-| v0.1 | Five tested skills (one per pillar), one audit script, a small honest benchmark, and install guides tested on Cursor, Claude Code and Codex | In progress. Foundation, validator and the pilot skill are done. The next skills are not started. |
-| v1.0 | About 15 skills across the five pillars | Planned |
-| Later | Plugin manifests, a documentation website, a before-and-after gallery built from real benchmark runs | Not scheduled |
+| `vyson-css-motion` | `node skills/vyson-css-motion/scripts/motion-lint.mjs path\to\site` | Static check |
+| `vyson-premium-website-design` | `node skills/vyson-premium-website-design/scripts/design-lint.mjs path\to\site` | Static check |
+| `vyson-3d-interactive-web` | `node skills/vyson-3d-interactive-web/scripts/3d-lint.mjs path\to\site` | Static check |
+| `vyson-frontend-development` | `node skills/vyson-frontend-development/scripts/frontend-lint.mjs path\to\site` | Static check |
+| `vyson-website-quality-engineering` | `node skills/vyson-website-quality-engineering/scripts/site-audit.mjs path\to\built\site` | Static check |
+| `vyson-website-quality-engineering` | `node skills/vyson-website-quality-engineering/scripts/browser-check.mjs path\to\built\site` | **Browser test**: needs Chrome or Edge installed, runs one headless pass |
 
-The roadmap shows intent, not promises. Dates depend on testing results.
+A **static check** reads files and never opens a browser. The browser check serves your folder on `127.0.0.1` only, downloads nothing and removes its temporary browser profile. Passing any of these is **not** a design review, a security review, an accessibility audit or a performance measurement.
 
-## Repository layout
+## Repository structure
 
-| Folder | Purpose |
+| Path | Purpose |
 |---|---|
-| [`skills/`](skills/) | The product: one folder per skill |
-| [`examples/`](examples/) | Small demo websites showing what each skill produces |
-| [`evals/`](evals/) | Per-skill behaviour tests (written, not yet run with an agent) |
-| [`bench/`](bench/) | VYSON Bench: experiments and the planned with-and-without comparison |
-| [`integrations/`](integrations/) | Install notes for each AI agent, with what was and was not tested |
-| [`docs/`](docs/) | Documentation, validator rules and project decisions |
-| [`templates/`](templates/) | Starting point for new skills |
-| [`tools/`](tools/) | The validator, link checker and their tests |
+| [`skills/`](skills/) | **The product:** one folder per skill (`SKILL.md`, `references/`, `assets/`, `scripts/`) |
+| [`examples/`](examples/) | One demo site per skill, with the prompt and honest notes |
+| [`evals/`](evals/) | One `evals.json` per skill: test prompts, including cases where the skill should not activate (written, not yet run with an agent) |
+| [`tools/`](tools/) | The validator, the link checker, the test suite and the optional React/Vue checks (`tools/framework-checks/`) |
+| [`bench/`](bench/) | The CSS Motion pilot experiment records and the repeat plan |
+| [`integrations/`](integrations/) | Install notes and the install test results for each agent |
+| [`docs/`](docs/) | Validator rules and the project's approved decisions |
+| [`templates/`](templates/) | A starting point for a new skill |
+| `AGENTS.md`, `CONTRIBUTING.md`, `THIRD_PARTY.md`, `CHANGELOG.md`, `ROADMAP.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md`, `LICENSE` | Project policy and history |
 
 ## Contributing
 
-Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md) first. To report a security problem, see [SECURITY.md](SECURITY.md). Changes are listed in [CHANGELOG.md](CHANGELOG.md).
+Contributions are welcome, including small ones (a wording fix, a bug in a checker, a new test prompt).
 
-## Licence
+1. Read [CONTRIBUTING.md](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md).
+2. Open an issue first for a new skill, using the "Skill idea" form, so we can check it does not duplicate an existing one.
+3. Start from [`templates/skill-template/`](templates/skill-template/), add an example and an eval file, and run `npm run check`.
+4. Open a pull request using the template. Say how you tested it, and do not claim results you did not measure.
 
-[MIT](LICENSE). Third-party libraries mentioned by skills keep their own licences. See [THIRD_PARTY.md](THIRD_PARTY.md).
+Reuse of other open-source work is welcome only when its licence file allows it. See the policy below. To report a security problem, see [SECURITY.md](SECURITY.md). The Code of Conduct does not yet list a private contact address; the maintainer has to add one.
+
+## Licensing and attribution
+
+- **Original VYSON work** is under the [MIT licence](LICENSE).
+- **Adapted third-party material** is allowed only when the source repository has a licence file that permits it (MIT, Apache-2.0, BSD or ISC). The copyright notice and licence text stay next to it, it is marked as adapted in the file, and it is listed in [THIRD_PARTY.md](THIRD_PARTY.md). Material with no licence file or an unclear licence is never copied; we write our own version.
+- **Today** one short piece is adapted: a five-step "removal test" in `vyson-premium-website-design`, from [MengTo/skills](https://github.com/MengTo/skills) (MIT, Copyright (c) 2026 Meng To). The full notice is in [`skills/vyson-premium-website-design/NOTICE.md`](skills/vyson-premium-website-design/NOTICE.md). No third-party library code is included.
+- **Libraries the skills mention** (React, Next.js, Vue, Vite, Three.js and others) are not bundled. Each is listed in [THIRD_PARTY.md](THIRD_PARTY.md) with the licence we read and the date. GSAP is not open source; the file explains how we treat it.
+- **Other skill packs** were reviewed and are listed there too (shadcn-ui/ui, magicuidesign/magicui, vercel-labs/agent-skills). Nothing was copied from them, and naming them is **not** an endorsement, a partnership or a tested integration.
+- **No telemetry**, no background hooks and no instructions fetched from the internet at run time in any skill.
+
+## Roadmap
+
+See [ROADMAP.md](ROADMAP.md) for the full plan and [CHANGELOG.md](CHANGELOG.md) for what changed. In short:
+
+| Stage | Goal | State |
+|---|---|---|
+| v0.1 Beta | Five skills (one per pillar), checkers, examples, install tests | Written and checked by this repository's tools. Not done: agent-level tests of the skills, GitHub install verification for the four newer skills, wider browser and device testing |
+| v1.0 | About 15 skills across the five pillars | Planned |
+| Later | Plugin manifests, a documentation website, a before-and-after gallery built from real benchmark runs | Not scheduled |
+
+The roadmap shows intent, not promises.

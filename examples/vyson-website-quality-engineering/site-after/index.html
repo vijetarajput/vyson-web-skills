@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pinewick Bakery | Fresh bread every morning (demo)</title>
+  <meta name="description" content="A demo page for a made-up bakery. It is the repaired version of a page with launch problems, used to show the website quality checks.">
+  <meta property="og:title" content="Pinewick Bakery | Fresh bread every morning (demo)">
+  <meta property="og:description" content="A demo page for a made-up bakery, used to show the website quality checks.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cellipse cx='8' cy='9' rx='7' ry='4.5' fill='%23c98b4b'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="top">
+    <p class="logo">Pinewick Bakery</p>
+    <nav aria-label="Main">
+      <a href="menu.html">Menu</a>
+      <a href="menu.html#prices">Prices</a>
+      <a href="about.html">About</a>
+      <a href="mailto:orders@pinewick.example">Order</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <h1>Fresh bread, every morning</h1>
+    <p class="lead">Pinewick Bakery is a made-up bakery used to demonstrate website checks. Nothing here can be ordered.</p>
+
+    <section aria-labelledby="bakes">
+      <h2 id="bakes">Today's bakes</h2>
+      <div class="pictures">
+        <figure>
+          <img src="images/loaf.svg" width="480" height="240" alt="A round sourdough loaf with three cuts across the top">
+          <figcaption>Sourdough, baked at six</figcaption>
+        </figure>
+        <figure>
+          <img src="images/croissant.svg" width="480" height="240" alt="A golden croissant">
+          <figcaption>Croissants, butter only</figcaption>
+        </figure>
+      </div>
+      <ul class="breads">
+        <li>Sourdough</li>
+        <li>Rye</li>
+        <li>Seeded</li>
+        <li>Baguette</li>
+        <li>Focaccia</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="hours">
+      <h2 id="hours">Opening hours</h2>
+      <p>Open Tuesday to Sunday. Closed on bank holidays.</p>
+    </section>
+
+    <section aria-labelledby="list">
+      <h2 id="list">Join the list</h2>
+      <form id="news-form" novalidate>
+        <label for="news-email">Your email</label>
+        <input id="news-email" name="email" type="email" autocomplete="email" required>
+        <button type="submit">Join the list</button>
+        <p id="news-status" role="status"></p>
+      </form>
+    </section>
+
+    <p class="pulse">New: Saturday buns</p>
+  </main>
+
+  <footer class="foot">
+    <p>Pinewick Bakery is a made-up business for a demo.</p>
+  </footer>
+</body>
+</html>

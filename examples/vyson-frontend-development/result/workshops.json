@@ -1,0 +1,8 @@
+[
+  { "id": "bread", "title": "Sourdough for beginners", "when": "weekend", "day": "Saturday mornings", "places": 6, "summary": "Mix, fold and bake one loaf, and take a jar of starter home. No experience needed." },
+  { "id": "bike", "title": "Fix your own bike", "when": "evening", "day": "Tuesday evenings", "places": 4, "summary": "Learn to fix a puncture, adjust brakes and gears, and oil a chain. Bring your own bike." },
+  { "id": "print", "title": "Lino printing", "when": "evening", "day": "Thursday evenings", "places": 8, "summary": "Carve a simple design and print a small run of cards on the studio press." },
+  { "id": "soil", "title": "Soil, seeds and small spaces", "when": "weekend", "day": "Sunday afternoons", "places": 10, "summary": "Plan a productive balcony or windowsill and start your first seeds." },
+  { "id": "repair", "title": "Repair cafe skills: sewing", "when": "evening", "day": "Wednesday evenings", "places": 5, "summary": "Darn, patch and re-hem. Bring one item that needs mending." },
+  { "id": "ink", "title": "Pen and ink drawing", "when": "weekend", "day": "Saturday afternoons", "places": 7, "summary": "Build up texture and shade with a dip pen. Materials are provided." }
+]

@@ -1,0 +1,141 @@
+VYSON site audit (static checks only: no browser was opened, nothing was measured, no internet was used)
+Checked: 2 pages, 6 files in the folder
+
+WARN  examples\vyson-website-quality-engineering\site-before\index.html:1  QA008  Several pages share the same title
+      The title "Bakery" is used by 2 pages.
+      How to fix: Give each page its own title so people and search engines can tell them apart.
+
+FAIL  examples\vyson-website-quality-engineering\site-before\index.html:2  QA005  The page has no language
+      The <html> tag has no lang attribute.
+      How to fix: Add a language to the opening tag, for example <html lang="en">. Screen readers and translation tools use it.
+
+WARN  examples\vyson-website-quality-engineering\site-before\index.html:2  QA009  The page has no meta description
+      There is no <meta name="description"> with content.
+      How to fix: Add <meta name="description" content="..."> with one or two plain sentences about this page.
+
+WARN  examples\vyson-website-quality-engineering\site-before\index.html:2  QA020  No Open Graph title or description
+      og:title or og:description is missing.
+      How to fix: Add <meta property="og:title"> and <meta property="og:description"> (and an image if you have one) so shared links show a proper preview.
+
+WARN  examples\vyson-website-quality-engineering\site-before\index.html:2  QA019  No favicon
+      No <link rel="icon"> and no favicon.ico in the site root.
+      How to fix: Add <link rel="icon" href="..."> or put a favicon.ico in the site root, so browsers do not request a missing file and tabs have an icon.
+
+FAIL  examples\vyson-website-quality-engineering\site-before\index.html:5  QA006  No viewport tag, or the viewport blocks zooming
+      The viewport "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" blocks zooming.
+      How to fix: Use <meta name="viewport" content="width=device-width, initial-scale=1"> and remove user-scalable=no and maximum-scale=1.
+
+FAIL  examples\vyson-website-quality-engineering\site-before\index.html:8  QA022  A resource is loaded over insecure http
+      <link> loads http://fonts.example.invalid/css?family=Lora over http.
+      How to fix: Use https:// (or a local file). Browsers block or warn about insecure files on a secure page.
+
+WARN  examples\vyson-website-quality-engineering\site-before\index.html:8  QA023  A resource is loaded from another website
+      <link> loads a file from fonts.example.invalid.
+      How to fix: Each other website can see your visitors and can change what they load. Prefer local copies (after checking licences), and list third parties in your privacy notice.
+
+WARN  examples\vyson-website-quality-engineering\site-before\index.html:9  QA024  A script in the head blocks the page
+      A <script src> in the <head> has no defer, async or type="module".
+      How to fix: Add defer (or type="module") so the page can render while the script downloads.
+
+FAIL  examples\vyson-website-quality-engineering\site-before\index.html:15  QA001  Broken link to a page or file on this site
+      The link "Menu.html#prices" points to a file that does not exist.
+      How to fix: Fix the address, or add the missing page or file. Check capital letters: many servers treat Page.html and page.html as different files.
+
+FAIL  examples\vyson-website-quality-engineering\site-before\index.html:16  QA001  Broken link to a page or file on this site
+      The link "about.html" points to a file that does not exist.
+      How to fix: Fix the address, or add the missing page or file. Check capital letters: many servers treat Page.html and page.html as different files.
+
+WARN  examples\vyson-website-quality-engineering\site-before\index.html:17  QA017  A link goes nowhere
+      An <a> has href="#".
+      How to fix: Replace href="#", an empty href and javascript: links with a real address, or use a <button> for an action.
+
+WARN  examples\vyson-website-quality-engineering\site-before\index.html:18  QA015  Button or link with no accessible name
+      A <button> has no text and no aria-label.
+      How to fix: Put text inside it, or add aria-label for an icon-only control. Screen readers say just "button" or "link" otherwise.
+
+WARN  examples\vyson-website-quality-engineering\site-before\index.html:22  QA010  The page does not have exactly one h1
+      Found 2 <h1> elements; expected exactly 1.
+      How to fix: Use one <h1> that names the page, and <h2> and below for sections.
+
+FAIL  examples\vyson-website-quality-engineering\site-before\index.html:23  QA012  Image without an alt attribute
+      An <img> has no alt attribute.
+      How to fix: Add alt="..." that says what the image shows. Use alt="" (empty) only for purely decorative images.
+
+WARN  examples\vyson-website-quality-engineering\site-before\index.html:23  QA013  Image without width and height
+      An <img> is missing width or height.
+      How to fix: Add width and height attributes (the real pixel size) so the browser reserves space and the page does not jump while images load.
+
+WARN  examples\vyson-website-quality-engineering\site-before\index.html:24  QA013  Image without width and height
+      An <img> is missing width or height.
+      How to fix: Add width and height attributes (the real pixel size) so the browser reserves space and the page does not jump while images load.
+
+WARN  examples\vyson-website-quality-engineering\site-before\index.html:26  QA011  A heading level is skipped
+      A <h4> follows a <h1>, so level 2 is skipped.
+      How to fix: Use heading levels in order (h1, h2, h3). Choose the level for the structure, and use CSS for the size.
+
+WARN  examples\vyson-website-quality-engineering\site-before\index.html:26  QA021  Placeholder text
+      Found "Lorem ipsum".
+      How to fix: Replace lorem ipsum and "your text here" with real content before launch.
+
+FAIL  examples\vyson-website-quality-engineering\site-before\index.html:32  QA014  Form field without a label
+      A <input> has no label.
+      How to fix: Give every input, select and textarea a visible <label for="id"> (or wrap it in a label). A placeholder is not a label.
+
+FAIL  examples\vyson-website-quality-engineering\site-before\index.html:33  QA004  The same id is used twice on a page
+      The id "news" is used more than once.
+      How to fix: Make every id unique on the page. Duplicate ids break links, labels and scripts that look an element up by id.
+
+WARN  examples\vyson-website-quality-engineering\site-before\menu.html:1  QA008  Several pages share the same title
+      The title "Bakery" is used by 2 pages.
+      How to fix: Give each page its own title so people and search engines can tell them apart.
+
+FAIL  examples\vyson-website-quality-engineering\site-before\menu.html:2  QA005  The page has no language
+      The <html> tag has no lang attribute.
+      How to fix: Add a language to the opening tag, for example <html lang="en">. Screen readers and translation tools use it.
+
+WARN  examples\vyson-website-quality-engineering\site-before\menu.html:2  QA009  The page has no meta description
+      There is no <meta name="description"> with content.
+      How to fix: Add <meta name="description" content="..."> with one or two plain sentences about this page.
+
+WARN  examples\vyson-website-quality-engineering\site-before\menu.html:2  QA020  No Open Graph title or description
+      og:title or og:description is missing.
+      How to fix: Add <meta property="og:title"> and <meta property="og:description"> (and an image if you have one) so shared links show a proper preview.
+
+WARN  examples\vyson-website-quality-engineering\site-before\menu.html:2  QA019  No favicon
+      No <link rel="icon"> and no favicon.ico in the site root.
+      How to fix: Add <link rel="icon" href="..."> or put a favicon.ico in the site root, so browsers do not request a missing file and tabs have an icon.
+
+WARN  examples\vyson-website-quality-engineering\site-before\menu.html:7  QA018  The page asks search engines not to index it
+      The robots meta tag says "noindex".
+      How to fix: Remove noindex from the robots meta tag if the page should appear in search results. Keep it only on pages that are meant to stay private.
+
+WARN  examples\vyson-website-quality-engineering\site-before\menu.html:13  QA011  A heading level is skipped
+      A <h3> follows a <h1>, so level 2 is skipped.
+      How to fix: Use heading levels in order (h1, h2, h3). Choose the level for the structure, and use CSS for the size.
+
+FAIL  examples\vyson-website-quality-engineering\site-before\menu.html:15  QA002  A file the page needs is missing
+      <img> uses "images/menu-board.svg", which does not exist.
+      How to fix: Add the missing image, script, stylesheet or font, or correct its address. The browser will show a broken image or skip the file.
+
+WARN  examples\vyson-website-quality-engineering\site-before\menu.html:15  QA013  Image without width and height
+      An <img> is missing width or height.
+      How to fix: Add width and height attributes (the real pixel size) so the browser reserves space and the page does not jump while images load.
+
+WARN  examples\vyson-website-quality-engineering\site-before\menu.html:16  QA003  Link to a section that does not exist
+      The link "#specials" points to a section (#specials) that does not exist in menu.html.
+      How to fix: Add the matching id to the target element, or correct the link. A link such as #pricing needs an element with id="pricing".
+
+WARN  examples\vyson-website-quality-engineering\site-before\menu.html:16  QA016  Positive tabindex
+      tabindex="3" is above 0.
+      How to fix: Remove tabindex values above 0. They override the natural keyboard order and confuse people. Use tabindex="0" or "-1" only.
+
+WARN  examples\vyson-website-quality-engineering\site-before\styles.css:1  QA027  Focus outline removed with no replacement
+      A stylesheet sets outline to none or 0, and no :focus-visible rule exists.
+      How to fix: If you remove the default outline, style :focus-visible with a clear outline so keyboard users can see where they are.
+
+WARN  examples\vyson-website-quality-engineering\site-before\styles.css:1  QA028  Animation but no reduced-motion rule
+      CSS uses animation or transitions, but "prefers-reduced-motion" appears nowhere in the CSS.
+      How to fix: Add a @media (prefers-reduced-motion: reduce) block that turns off or shortens animation and transitions.
+
+RESULT: FAILED. 10 errors, 24 warnings.
+Static checks only. Passing does not replace a browser test, an accessibility review or a performance measurement (see references/quality-plan.md).

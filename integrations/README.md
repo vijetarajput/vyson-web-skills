@@ -2,7 +2,9 @@
 
 Short install guides, one per AI coding agent. The skills themselves are written once in [`skills/`](../skills/). Integrations only explain how to get them into each tool.
 
-## Officially tested agents for v0.1 (planned)
+## Target agents for v0.1 (file placement tested; use by the agent not verified)
+
+These three agents are the project's targets (decision 4 in `docs/decisions.md`). Being a target is not support, endorsement or a verified integration.
 
 | Agent | Status |
 |---|---|
@@ -31,6 +33,19 @@ Other agents that support the open [Agent Skills](https://agentskills.io/specifi
     Installing from the public GitHub repository was tested on 10 November 2026 (Skills CLI 1.7.6, Windows 10, project-level install). See "GitHub install test" below for the results and the limits. The pilot skill is early: its first benchmark was inconclusive (see the [pilot report](../bench/experiments/css-motion-pilot-001/README.md)). **Installing is not the same as an agent using the skill.** Whether Cursor, Claude Code or Codex loads and follows the installed skill is **untested**.
 
     The installer is a third-party tool. According to the installer's documentation, it sends anonymous usage data by default, and you can opt out by setting `DISABLE_TELEMETRY=1` or `DO_NOT_TRACK=1` (in PowerShell: `$env:DISABLE_TELEMETRY = "1"` or `$env:DO_NOT_TRACK = "1"`). We have not audited the installer or observed its network traffic. See the telemetry note in the [README](../README.md#installation) and the licence record in [THIRD_PARTY.md](../THIRD_PARTY.md#tools-we-recommend-running-not-copied).
+
+    The repository has five skills; choose one with `--skill`: `vyson-css-motion`, `vyson-premium-website-design`, `vyson-3d-interactive-web`, `vyson-frontend-development` or `vyson-website-quality-engineering`. To install all five at once, use `--skill '*'` (keep the quotes in PowerShell):
+
+    ```powershell
+    npx skills@1.7.6 add vijetarajput/vyson-web-skills --skill '*' -a cursor -a claude-code -a codex --copy -y
+    ```
+
+    | Install | Tested? |
+    |---|---|
+    | `vyson-css-motion` from the **public GitHub repository** | **Tested** on 10 November 2026 (section "GitHub install test"). |
+    | The other four skills, and `--skill '*'`, from a **local folder** | **Tested** on 11 November 2026 (section "Local install test of the four draft skills"). |
+    | The other four skills, and `--skill '*'`, from the **public GitHub repository** | **Untested.** They are not published yet. Test it once after publishing. |
+    | `skills update` for any VYSON skill | **Untested.** |
 2. **Manual copy:** copy a folder from `skills/` into the agent's skills folder. Each guide will give exact PowerShell commands.
 
 Avoid symlinks: on Windows they often need special permissions.
@@ -48,7 +63,7 @@ Tested with `skills` 1.7.6, Node.js 22, Windows 10, using a throwaway probe skil
 | Was the installed skill still valid? | Yes. `node tools/validate-skills.mjs <folder> --profile spec` passed on the installed copy. |
 | Was anything written to the home folder? | No. Nothing was created in `~/.agents`, `~/.claude/skills` or `~/.cursor/skills`. |
 
-**Watch out:** the installer looks in `skills/` first. Only if it finds nothing there does it search the whole repository. While `skills/` was empty, `npx skills add` on this repository listed our template and the intentionally broken test fixtures (7 "skills"). Now that `skills/` holds a real skill, it lists only `vyson-css-motion` (tested, see below).
+**Watch out:** the installer looks in `skills/` first. Only if it finds nothing there does it search the whole repository. While `skills/` was empty, `npx skills add` on this repository listed our template and the intentionally broken test fixtures (7 "skills"). Now that `skills/` holds real skills, it lists those and not the template or the fixtures. Run from a local copy of this repository on 11 November 2026 it listed all five skills (see "Local install test of the four draft skills"). The public GitHub repository listed only `vyson-css-motion` when it was tested on 10 November 2026, because the other four were not published yet; a GitHub listing of all five has **not** been tested.
 
 ## Local install test with the real skill (Day 3 findings)
 
@@ -56,7 +71,7 @@ Same setup as above: `skills` 1.7.6, Node.js, Windows 10, telemetry off, tempora
 
 | Question | Result |
 |---|---|
-| What does the installer find in this repository? | Exactly one skill: `vyson-css-motion`. |
+| What does the installer find in this repository? | Exactly one skill, `vyson-css-motion` (this was the only skill in `skills/` on 10 November 2026; for the five-skill result see the 11 November section below). |
 | Project install with `--copy` for Cursor, Claude Code and Codex | Worked. The 6 skill files (the skill has 7 files now, and this test was not repeated) were copied to `.agents/skills/vyson-css-motion/` (Cursor and Codex) and `.claude/skills/vyson-css-motion/` (Claude Code). No links were created. |
 | Are the installed files identical to the source? | Yes. 6 of 6 files in both places have the same checksum as the source. |
 | Does the installed copy pass our validator? | Yes (specification profile, strict mode). |
@@ -70,6 +85,24 @@ Same setup as above: `skills` 1.7.6, Node.js, Windows 10, telemetry off, tempora
 - Whether Cursor, Claude Code or Codex actually loads and follows the skill after install. Only the file placement was checked. (Claude Code is installed on the test PC but was not run against the skill. The Codex command-line program was not found, and Codex was not run at all.)
 - Installing from GitHub was not part of this local test. It was tested separately (next section).
 - macOS and Linux.
+
+## Local install test of the four draft skills (11 November 2026)
+
+Setup: the working copy of this repository (not yet published), `skills` **1.7.6** run offline from the package cache (`npx --offline`, so nothing was downloaded), Node.js 24, **Windows 10**, telemetry switched off (`DISABLE_TELEMETRY=1`, `DO_NOT_TRACK=1`), an empty temporary project folder, `--copy`, `-a cursor -a claude-code -a codex`, `-y`. The temporary folder was deleted afterwards.
+
+| Question | Result |
+|---|---|
+| `npx --offline skills@1.7.6 add <path to this repository> --list` | **Passed.** Found 5 skills: `vyson-3d-interactive-web`, `vyson-css-motion`, `vyson-frontend-development`, `vyson-premium-website-design` and `vyson-website-quality-engineering`. Nothing was installed. |
+| The recommended command with the repository path, once for each of the four draft skills | **Passed** for all four. Each installed on its own into `.agents/skills/<name>/` and `.claude/skills/<name>/`: 32 files in each folder in total (the count at that time; the skills have a few more files now, see the re-run note below). No links were created. |
+| Are the installed files identical to the source? | **Yes.** 64 of 64 files (4 skills, 2 folders) had the same content as the source, ignoring line endings. |
+| Does each installed copy pass our validator? | **Yes.** All four, in strict mode. |
+| Do the installed checkers work from the installed location? | **Yes.** `design-lint.mjs`, `3d-lint.mjs`, `frontend-lint.mjs` and `site-audit.mjs` passed on their example sites. `browser-check.mjs` ran in headless Chrome on the repaired quality example (widths 390 and 1280) and passed. |
+
+**Re-run after the framework and notice files were added (11 November 2026, later the same day), from the same local copy:** `--skill '*'` installed all five skills in one command; `skills list` listed them; `skills remove vyson-3d-interactive-web -y` removed one. For the four skills still installed after the removal (`vyson-css-motion`, `vyson-frontend-development`, `vyson-premium-website-design`, `vyson-website-quality-engineering`) every installed file matched its source (7, 11, 10 and 7 files), including the new `NOTICE.md` and the React and Vue helper files. `vyson-3d-interactive-web` was not compared in this re-run.
+
+**What this shows:** the four draft skills are in the folder shape the installer expects, can be installed one at a time, and keep working after being copied on their own.
+
+**What this does not show:** that installing from GitHub works for them (they are not published, so that is **untested**), or that any agent loads or follows them (**untested**). Everything listed under "Not tested" above still applies.
 
 ## GitHub install test (10 November 2026)
 

@@ -17,4 +17,4 @@ Rules (full detail in [CONTRIBUTING.md](../CONTRIBUTING.md)):
 - `SKILL.md` under 500 lines.
 - Every skill has an example in `examples/` and an eval file in `evals/`.
 
-**Status:** one pilot skill, [`vyson-css-motion`](vyson-css-motion/SKILL.md), awaiting review. Nothing is published yet. See the [roadmap](../ROADMAP.md). To create one, copy [`templates/skill-template/`](../templates/skill-template/).
+**Status:** five skills, all awaiting review: the pilot [`vyson-css-motion`](vyson-css-motion/SKILL.md) (motion) and four drafts, [`vyson-premium-website-design`](vyson-premium-website-design/SKILL.md) (design), [`vyson-3d-interactive-web`](vyson-3d-interactive-web/SKILL.md) (3D), [`vyson-frontend-development`](vyson-frontend-development/SKILL.md) (frontend) and [`vyson-website-quality-engineering`](vyson-website-quality-engineering/SKILL.md) (quality). None has been tested with an agent. Only the pilot is published. See the [roadmap](../ROADMAP.md). To create one, copy [`templates/skill-template/`](../templates/skill-template/).

@@ -23,6 +23,12 @@ This file records decisions the maintainer has approved. Change a decision only 
 | 10 | Personal data in public files | **No personal paths, user names or machine details** in files meant for release. The original, unscrubbed experiment records are kept privately outside the repository. | Privacy and safe publishing. |
 | 11 | Next experiment | **A controlled three-repeat Cursor experiment in two separate clean workspaces, with skill discovery verified independently, is planned but must not start until the maintainer approves it.** | See `bench/experiments/css-motion-repeat-plan.md`. |
 
+## Approved on 2026-11-11 (maintainer instruction)
+
+| # | Decision | Chosen option | Why |
+|---|---|---|---|
+| 12 | Reuse and adoption | **Reuse first, licence checked.** Adapt open-source skills, components and workflows only when a licence file permits it, keep the notice, and record it in `THIRD_PARTY.md`. Original VYSON work stays under this repository's MIT licence and stays distinguishable from adapted material, which keeps its own copyright notice and licence text (Apache-2.0 also needs a note of changes and any NOTICE file). Material with no licence file or an unclear licence is never copied; write it independently. No partnership, endorsement or verified integration is implied without evidence. Do not duplicate skills that already exist; point to them. Build for daily usefulness and easy adoption (React, Next.js, Vue and plain HTML/CSS/JS where relevant, no forced dependencies), and never exaggerate compatibility, performance, quality or adoption. | The maintainer asked for maximum genuine adoption and reuse. This replaces the earlier "originality only" rule in `AGENTS.md` and `CONTRIBUTING.md`. The contribution legal model below is now "MIT plus a licence statement in the pull request template". |
+
 ## Defaults adopted from the proposal (change only on request)
 
 | Topic | Default |
@@ -32,14 +38,24 @@ This file records decisions the maintainer has approved. Change a decision only 
 | Script language | Node.js (`.mjs`), few dependencies |
 | Example websites | Plain HTML/CSS/JS first; Vite for 3D examples |
 | Versioning | One repository version (SemVer), with a version in each skill's `metadata` |
-| Contribution legal model | MIT plus an originality statement in the pull request template. No CLA. |
+| Contribution legal model | MIT plus a licence statement in the pull request template (changed from "originality statement" by decision 12). No CLA. |
 | Documentation | Markdown in the repository. No documentation website before v1.0. |
 | Telemetry, hooks, remote instructions | None |
 | Language | English |
 
 ## Open items for the maintainer
 
-- A private contact method for the Code of Conduct (see `CODE_OF_CONDUCT.md`).
-- Enable GitHub "Private vulnerability reporting" (see `SECURITY.md`).
+None of these is a technical blocker for the v0.1 Beta. Only the maintainer can do them, so they are not invented or filled in by an agent.
+
+**Before the first public release (project-hygiene tasks):**
+
+- Add a private contact method for the Code of Conduct. `CODE_OF_CONDUCT.md` still has a TODO and currently names **no** contact. The maintainer chooses it (for example a dedicated project address, not a personal one they do not want published).
+- Enable GitHub "Private vulnerability reporting" (see `SECURITY.md`, which also has a TODO).
+
+**Before wide promotion (not needed for a quiet beta):**
+
+- Do a basic name and trademark search for "VYSON". Until it is done, nothing should claim that the name is free to use or protected.
+
+**Whenever convenient:**
+
 - Decide whether the copyright holder in `LICENSE` stays as a personal name or moves to an organization later.
-- Do a basic name and trademark search for "VYSON" before wide promotion.

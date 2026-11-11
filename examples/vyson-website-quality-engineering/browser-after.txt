@@ -1,0 +1,18 @@
+VYSON browser check (a real-browser test: one headless run on this computer, not a static check)
+Browser: Chrome/157.0.8103.50
+Page: (a local copy of the folder, served on 127.0.0.1)
+
+Width   Sideways scroll   Controls (under 44 / under 24)   Broken images   Layout shift   LCP
+  320   no                7 (0 / 0)                        0               0.000          80 ms
+  390   no                7 (0 / 0)                        0               0.000          40 ms
+  768   no                7 (0 / 0)                        0               0.000          36 ms
+ 1280   no                7 (not judged: not a touch width) 0               0.000          56 ms
+ 1440   no                7 (not judged: not a touch width) 0               0.000          52 ms
+
+(Layout shift and LCP are lab numbers from one run with no throttling. They are not field data and not a pass or fail on their own.)
+
+Keyboard walk: 7 Tab stops reached (7 elements in the page could take focus; hidden ones cannot be reached). First stops: a "Skip to content" > a "Menu" > a "Prices" > a "About" > a "Order" > input "news-email" > button "Join the list".
+Reduced motion: 0 looping animations running with prefers-reduced-motion: reduce.
+
+RESULT: PASSED. 0 errors, 0 warnings.
+Browser test: one headless run. Not tested: a real phone, Firefox, Safari, a screen reader, a slow network, 200 percent zoom by hand.

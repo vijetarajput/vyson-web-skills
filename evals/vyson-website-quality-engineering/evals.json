@@ -1,0 +1,138 @@
+{
+  "skill": "vyson-website-quality-engineering",
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": 1,
+      "prompt": "We launch our bakery website on Friday. It is a small static site in the dist folder. Can you check it is ready and fix anything that would embarrass us?",
+      "should_activate": true,
+      "must_be_true": [
+        "The agent runs a static audit on the built folder and a real-browser check at phone and desktop widths, or says 'browser test: not performed' with the reason",
+        "Errors are fixed or explicitly accepted by the user, and warnings are fixed or explained",
+        "Both checks are run again after the fixes and the before and after results are reported",
+        "The report keeps the static audit, the browser test and the manual checks in separate lists and says what was not tested (real phone, other browsers, screen reader, field data)",
+        "Fixes are listed one by one and copy or design is not changed beyond what a fix needs"
+      ],
+      "must_not_happen": [
+        "The report says the site is 'accessible', 'WCAG compliant', 'fast' or 'mobile-friendly' without naming what was measured",
+        "The agent audits a source folder of a framework instead of the build output, without saying so",
+        "A library or tool is installed into the project without asking"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Check our landing page on mobile. People say the buttons are hard to tap and the page wiggles sideways.",
+      "should_activate": true,
+      "must_be_true": [
+        "The agent opens the page in a real browser at phone widths such as 320 and 390 and measures sideways scrolling and control sizes, not just reads the CSS",
+        "The agent names the element that is wider than the screen and the controls under the size limit (44 by 44 CSS pixels as the aim, never under 24 by 24)",
+        "The agent says that a narrow desktop window is not a real phone and states which devices were not tested"
+      ],
+      "must_not_happen": [
+        "The agent claims the page 'works on all phones' after a desktop test",
+        "The agent hides the overflow with overflow-x: hidden on the body without finding the cause"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Run a Lighthouse audit and an accessibility check on our homepage and tell me what to fix for launch.",
+      "should_activate": true,
+      "must_be_true": [
+        "Lab scores are reported as lab results from one setup, and are not described as real-user speed or as Core Web Vitals passing",
+        "The agent says that automated accessibility tools find only part of the problems and lists the manual checks (keyboard, zoom, reading order, contrast, screen reader) as done or not performed",
+        "Each finding comes with a specific fix"
+      ],
+      "must_not_happen": [
+        "The agent states that the site 'passes Core Web Vitals' from a single lab run",
+        "The agent claims the site is fully accessible because a tool gave a high score"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Give us a pre-launch checklist for SEO and performance for our new site, and set it up so we can re-run the checks before each release.",
+      "should_activate": true,
+      "must_be_true": [
+        "The checklist covers titles, descriptions, headings, a leftover noindex, link previews, image sizes, third-party requests and a favicon",
+        "The re-runnable setup uses the project's own files, such as README steps or package scripts, and the agent asks before adding scripts or dependencies",
+        "The agent does not promise search rankings or results"
+      ],
+      "must_not_happen": [
+        "The agent adds keyword stuffing, hidden text or invented structured data such as fake reviews",
+        "The agent downloads and runs a script from the internet as part of the setup"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Build a pricing page for our SaaS product with three tiers, a monthly and yearly toggle, and a nice layout. Then make sure it is ready to ship.",
+      "should_activate": true,
+      "must_be_true": [
+        "The agent builds the page first (with the design and frontend skills if they are installed, or on its own) and then runs the audit and browser check on the result",
+        "The final report separates what the tools checked from what they did not, and lists any remaining warnings"
+      ],
+      "must_not_happen": [
+        "The agent skips the checks because it just built the page",
+        "The agent reports the page as ready without running any tool"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Design a more premium-looking homepage for my law firm: better fonts, spacing, colours and a stronger hero.",
+      "should_activate": false,
+      "must_be_true": [
+        "The quality skill is not used: this is a visual design task",
+        "No audit or launch report is produced unless the user asks for one"
+      ],
+      "must_not_happen": [
+        "The agent starts a launch audit instead of designing the page"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Add a smooth fade-in animation to the feature cards when they scroll into view.",
+      "should_activate": false,
+      "must_be_true": [
+        "The quality skill is not used: this is CSS motion work",
+        "The change is limited to the motion code"
+      ],
+      "must_not_happen": [
+        "A site audit or browser check is run and reported"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Add a rotating 3D model of our chair to the product page using Three.js.",
+      "should_activate": false,
+      "must_be_true": [
+        "The quality skill is not used: this is 3D feature work",
+        "No launch report is produced"
+      ],
+      "must_not_happen": [
+        "The agent runs a site-wide audit instead of building the 3D view"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "My contact form posts twice when someone double-clicks the button and the error text disappears too quickly. Fix the JavaScript.",
+      "should_activate": false,
+      "must_be_true": [
+        "The quality skill is not used: this is form logic work",
+        "The fix is limited to the form code"
+      ],
+      "must_not_happen": [
+        "The agent runs a full-site audit before fixing the form"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Change the footer copyright year to 2027 and fix the typo 'recieve' on the About page.",
+      "should_activate": false,
+      "must_be_true": [
+        "The change is a text edit only",
+        "No audit, browser check or launch report is started"
+      ],
+      "must_not_happen": [
+        "Unrelated files are modified"
+      ]
+    }
+  ]
+}

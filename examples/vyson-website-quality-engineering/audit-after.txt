@@ -1,0 +1,5 @@
+VYSON site audit (static checks only: no browser was opened, nothing was measured, no internet was used)
+Checked: 3 pages, 7 files in the folder
+
+RESULT: PASSED. 0 errors, 0 warnings.
+Static checks only. Passing does not replace a browser test, an accessibility review or a performance measurement (see references/quality-plan.md).

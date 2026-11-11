@@ -1,0 +1,118 @@
+VYSON browser check (a real-browser test: one headless run on this computer, not a static check)
+Browser: Chrome/157.0.8103.50
+Page: (a local copy of the folder, served on 127.0.0.1)
+
+Width   Sideways scroll   Controls (under 44 / under 24)   Broken images   Layout shift   LCP
+  320   YES (728px)       7 (7 / 6)                        0               0.000          96 ms
+  390   YES (728px)       7 (7 / 6)                        0               0.000          32 ms
+  768   no                7 (7 / 6)                        0               0.000          28 ms
+ 1280   no                7 (not judged: not a touch width) 0               0.000          48 ms
+ 1440   no                7 (not judged: not a touch width) 0               0.000          76 ms
+
+(Layout shift and LCP are lab numbers from one run with no throttling. They are not field data and not a pass or fail on their own.)
+
+Keyboard walk: 7 Tab stops reached (7 elements in the page could take focus; hidden ones cannot be reached). First stops: a "Menu" > a "Prices" > a "About" > a "Order" > button "(button)" > input "(input)" > button "Join the list".
+Reduced motion: 1 looping animation running with prefers-reduced-motion: reduce.
+
+FAIL  BC004  The page scrolls sideways at this width  (at 320px)
+      At 320px the page is 728px wide. Widest: <table class="wide-table"> reaches 728px; <tbody> reaches 726px; <tr> reaches 726px.
+      How to fix: Find the element that is wider than the screen (the check names the widest ones) and let it wrap or shrink. Avoid fixed widths and width: 100vw.
+
+FAIL  BC005  A control is under 24 by 24 CSS pixels on a touch width  (at 320px)
+      6 controls under 24x24: Menu (34x15), Prices (35x15), About (35x15), Order (34x15), (button) (14x20).
+      How to fix: Make every button, link and field at least 24 by 24 CSS pixels (WCAG 2.2 level AA, SC 2.5.8), and aim for 44 by 44.
+
+WARN  BC006  A control is under 44 by 44 CSS pixels on a touch width  (at 320px)
+      1 control under 44x44: Your email (181x27).
+      How to fix: Aim for 44 by 44 CSS pixels with padding. Links inside a sentence are exempt; a small checkbox can sit inside a 44 pixel high label.
+
+WARN  BC011  Body text under 16px on a phone-sized screen  (at 320px)
+      The body text is 14px.
+      How to fix: Set the base font size to 1rem (16px) or more so people do not need to zoom to read.
+
+WARN  BC010  Text under 12px  (at 320px)
+      Text under 12px, for example "Lorem ipsum dolor sit amet, consectetur " at 11px, "Open Tuesday to Sunday. Closed on bank h" at 10px.
+      How to fix: Raise the size of very small text. Keep body text at 16px or more and small print at 12px or more.
+
+FAIL  BC004  The page scrolls sideways at this width  (at 390px)
+      At 390px the page is 728px wide. Widest: <table class="wide-table"> reaches 728px; <tbody> reaches 726px; <tr> reaches 726px.
+      How to fix: Find the element that is wider than the screen (the check names the widest ones) and let it wrap or shrink. Avoid fixed widths and width: 100vw.
+
+FAIL  BC005  A control is under 24 by 24 CSS pixels on a touch width  (at 390px)
+      6 controls under 24x24: Menu (34x15), Prices (35x15), About (35x15), Order (34x15), (button) (20x20).
+      How to fix: Make every button, link and field at least 24 by 24 CSS pixels (WCAG 2.2 level AA, SC 2.5.8), and aim for 44 by 44.
+
+WARN  BC006  A control is under 44 by 44 CSS pixels on a touch width  (at 390px)
+      1 control under 44x44: Your email (181x27).
+      How to fix: Aim for 44 by 44 CSS pixels with padding. Links inside a sentence are exempt; a small checkbox can sit inside a 44 pixel high label.
+
+WARN  BC011  Body text under 16px on a phone-sized screen  (at 390px)
+      The body text is 14px.
+      How to fix: Set the base font size to 1rem (16px) or more so people do not need to zoom to read.
+
+WARN  BC010  Text under 12px  (at 390px)
+      Text under 12px, for example "Lorem ipsum dolor sit amet, consectetur " at 11px, "Open Tuesday to Sunday. Closed on bank h" at 10px.
+      How to fix: Raise the size of very small text. Keep body text at 16px or more and small print at 12px or more.
+
+FAIL  BC005  A control is under 24 by 24 CSS pixels on a touch width  (at 768px)
+      6 controls under 24x24: Menu (34x15), Prices (35x15), About (35x15), Order (34x15), (button) (20x20).
+      How to fix: Make every button, link and field at least 24 by 24 CSS pixels (WCAG 2.2 level AA, SC 2.5.8), and aim for 44 by 44.
+
+WARN  BC006  A control is under 44 by 44 CSS pixels on a touch width  (at 768px)
+      1 control under 44x44: Your email (181x27).
+      How to fix: Aim for 44 by 44 CSS pixels with padding. Links inside a sentence are exempt; a small checkbox can sit inside a 44 pixel high label.
+
+WARN  BC011  Body text under 16px on a phone-sized screen  (at 768px)
+      The body text is 14px.
+      How to fix: Set the base font size to 1rem (16px) or more so people do not need to zoom to read.
+
+WARN  BC010  Text under 12px  (at 768px)
+      Text under 12px, for example "Lorem ipsum dolor sit amet, consectetur " at 11px, "Open Tuesday to Sunday. Closed on bank h" at 10px.
+      How to fix: Raise the size of very small text. Keep body text at 16px or more and small print at 12px or more.
+
+WARN  BC010  Text under 12px  (at 1280px)
+      Text under 12px, for example "Lorem ipsum dolor sit amet, consectetur " at 11px, "Open Tuesday to Sunday. Closed on bank h" at 10px.
+      How to fix: Raise the size of very small text. Keep body text at 16px or more and small print at 12px or more.
+
+WARN  BC010  Text under 12px  (at 1440px)
+      Text under 12px, for example "Lorem ipsum dolor sit amet, consectetur " at 11px, "Open Tuesday to Sunday. Closed on bank h" at 10px.
+      How to fix: Raise the size of very small text. Keep body text at 16px or more and small print at 12px or more.
+
+FAIL  BC003  A request failed
+      1 failed request: net::ERR_NAME_NOT_RESOLVED http://fonts.example.invalid/css?family=Lora.
+      How to fix: The file or request returned an error (404, 500) or was blocked. Fix the address, add the file, or handle the failure.
+
+FAIL  BC007  Keyboard focus is not visible on a Tab stop
+      <a> "Menu" gets focus but nothing visible changes.
+      How to fix: Style :focus-visible with a clear outline (for example outline: 3px solid; outline-offset: 3px). Do not remove the outline without a replacement.
+
+FAIL  BC007  Keyboard focus is not visible on a Tab stop
+      <a> "Prices" gets focus but nothing visible changes.
+      How to fix: Style :focus-visible with a clear outline (for example outline: 3px solid; outline-offset: 3px). Do not remove the outline without a replacement.
+
+FAIL  BC007  Keyboard focus is not visible on a Tab stop
+      <a> "About" gets focus but nothing visible changes.
+      How to fix: Style :focus-visible with a clear outline (for example outline: 3px solid; outline-offset: 3px). Do not remove the outline without a replacement.
+
+FAIL  BC007  Keyboard focus is not visible on a Tab stop
+      <a> "Order" gets focus but nothing visible changes.
+      How to fix: Style :focus-visible with a clear outline (for example outline: 3px solid; outline-offset: 3px). Do not remove the outline without a replacement.
+
+FAIL  BC007  Keyboard focus is not visible on a Tab stop
+      <button> "(button)" gets focus but nothing visible changes.
+      How to fix: Style :focus-visible with a clear outline (for example outline: 3px solid; outline-offset: 3px). Do not remove the outline without a replacement.
+
+FAIL  BC007  Keyboard focus is not visible on a Tab stop
+      <button> "Join the list" gets focus but nothing visible changes.
+      How to fix: Style :focus-visible with a clear outline (for example outline: 3px solid; outline-offset: 3px). Do not remove the outline without a replacement.
+
+WARN  BC013  Animation keeps running with reduced motion
+      1 looping animation is still running: p.pulse.
+      How to fix: Add @media (prefers-reduced-motion: reduce) rules that stop looping animation, and check scripts that animate by themselves.
+
+WARN  BC014  The page talks to other websites
+      Requests went to 1 other host: fonts.example.invalid (7).
+      How to fix: List these hosts in your privacy review. Prefer local copies of scripts, fonts and images (after checking licences) and remove what you do not need.
+
+RESULT: FAILED. 12 errors, 13 warnings.
+Browser test: one headless run. Not tested: a real phone, Firefox, Safari, a screen reader, a slow network, 200 percent zoom by hand.

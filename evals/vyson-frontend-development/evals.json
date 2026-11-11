@@ -1,0 +1,132 @@
+{
+  "skill": "vyson-frontend-development",
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": 1,
+      "prompt": "Add a contact form to my plain HTML site: name, email, and message. It should validate, work with a keyboard, and post to /api/contact (that endpoint exists already).",
+      "should_activate": true,
+      "must_be_true": [
+        "Every control has a visible label, the right type and an autocomplete hint, and the form has method=\"post\" and native validation attributes so it works without JavaScript",
+        "Validation errors appear next to the fields, linked with aria-describedby, with an error summary that takes focus",
+        "The submit is guarded against double submit, and a failure shows a message and keeps what the user typed",
+        "Success and failure are announced in a role=\"status\" or role=\"alert\" region",
+        "The report says that the server must validate again and that browser validation is not security"
+      ],
+      "must_not_happen": [
+        "A placeholder is used instead of a label",
+        "The button is disabled in a way that loses keyboard focus, or the form can be submitted twice",
+        "A secret or API key is put into the client code",
+        "A third-party form service, tracker or script is added without being asked"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Fetch our events from https://api.example.com/events and show them in a list on the page. Add a search box.",
+      "should_activate": true,
+      "must_be_true": [
+        "The response status is checked and a 4xx or 5xx is shown as an error with a retry button",
+        "The list shows loading, empty and error states",
+        "A newer search cancels or overrides an older one, and typing is debounced",
+        "Event data is written to the page with textContent or createElement, not innerHTML",
+        "The report separates what was run (static check, project tests, browser steps) from what was not"
+      ],
+      "must_not_happen": [
+        "innerHTML is used with data from the API",
+        "The spinner has no timeout or error path",
+        "The agent claims the feature is secure or fully accessible"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "My newsletter form submits twice when people double-click and the error messages are not announced by screen readers. Can you fix the JavaScript?",
+      "should_activate": true,
+      "must_be_true": [
+        "The agent reads the existing form code before changing it and limits the diff to the form",
+        "A guard prevents a second submit while one is running, without using the disabled attribute in a way that loses focus",
+        "Messages use role=\"status\" or role=\"alert\" regions that exist in the page before the text changes, and errors are linked to fields",
+        "The agent tests double click and keyboard submit and reports what it did and did not run"
+      ],
+      "must_not_happen": [
+        "The agent rewrites the whole page or adds a framework",
+        "Inline onclick handlers are added"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Add a modal that shows more details when someone clicks a product card, and a mobile menu button for the navigation.",
+      "should_activate": true,
+      "must_be_true": [
+        "The modal uses the native dialog element with showModal, a heading, a visible close button, Escape to close and focus returned to the opener",
+        "The cards that open the modal are real buttons or links, not divs with click handlers",
+        "The mobile menu is a real button with aria-expanded and aria-controls, the links are a plain list in a nav, and the navigation still works without JavaScript"
+      ],
+      "must_not_happen": [
+        "A div with onclick opens the modal",
+        "The navigation is given role=\"menu\"",
+        "Animation is added by this work; motion is left to CSS motion practice"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Should I use React or plain JavaScript for a one-page site with a booking form and a filtered list of 20 items? I have no build tools set up yet.",
+      "should_activate": true,
+      "must_be_true": [
+        "The agent recommends the lightest option that does the job (plain HTML and JavaScript modules) and says why",
+        "The agent states when a framework would become worth it",
+        "No dependency is installed without asking"
+      ],
+      "must_not_happen": [
+        "A framework and build tooling are installed for a small page without being asked"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Make my landing page look more premium: better fonts, spacing, colours and hierarchy.",
+      "should_activate": false,
+      "must_be_true": [
+        "The frontend skill is not used: this is visual design work",
+        "No new JavaScript behaviour is added"
+      ],
+      "must_not_happen": [
+        "Forms, fetching or widgets are added"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Add a subtle fade-in animation to the sections as they scroll into view.",
+      "should_activate": false,
+      "must_be_true": [
+        "The frontend skill is not used: this is CSS motion work",
+        "No data fetching, forms or widgets are added"
+      ],
+      "must_not_happen": [
+        "A framework or state library is added for an animation"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Add a rotating 3D model of our product to the hero using Three.js.",
+      "should_activate": false,
+      "must_be_true": [
+        "The frontend skill is not used: this is a 3D scene task",
+        "No form or data-loading code is added"
+      ],
+      "must_not_happen": [
+        "Unrelated forms or API calls are added"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Fix the typo 'recieve' in the footer text of every page.",
+      "should_activate": false,
+      "must_be_true": [
+        "The change is a text edit only",
+        "No states, forms or checks are added"
+      ],
+      "must_not_happen": [
+        "Unrelated files are modified"
+      ]
+    }
+  ]
+}

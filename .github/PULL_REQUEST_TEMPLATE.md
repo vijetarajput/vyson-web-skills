@@ -15,7 +15,8 @@
 
 ## Checklist
 
-- [ ] Original work: I wrote this myself, or it is MIT-compatible with attribution kept. I did not copy from other skill repositories, libraries or websites.
+- [ ] Licence-safe work: I wrote this myself, or I adapted it from a repository whose licence file permits it (MIT, Apache-2.0, BSD or ISC), kept the notice next to it, marked it as adapted in the file, and added it to "Adapted material" in `THIRD_PARTY.md`. I did not copy anything with a missing or unclear licence.
+- [ ] I do not claim a partnership, endorsement, compatibility or integration with another project or agent unless I verified it and say how.
 - [ ] Skill folder name starts with `vyson-` and matches `name` in `SKILL.md`.
 - [ ] `SKILL.md` is under 500 lines and the description says what it does and when to use it.
 - [ ] I added an example in `examples/` and an eval file in `evals/` (including a case where the skill should not activate).

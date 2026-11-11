@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find a workshop | Fernside Workshops (demo)</title>
+  <meta name="description" content="A demo page for a made-up community workshop programme. It shows a searchable list with loading, empty and error states, a details dialog and an accessible sign-up form.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%232b6a4f'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <p class="brand">Fernside Workshops</p>
+    <p class="demo-note">Demo site: nothing is sent anywhere</p>
+  </header>
+
+  <main id="main">
+    <section class="intro">
+      <h1>Find a workshop</h1>
+      <p class="lead">Short, friendly evening and weekend classes run by neighbours. Search the list, then reserve a place.</p>
+    </section>
+
+    <details class="simulate">
+      <summary>Demo controls: pretend the server misbehaves</summary>
+      <div class="simulate-body">
+        <label for="simulate">What should the pretend server do?</label>
+        <select id="simulate" name="simulate">
+          <option value="works">Work normally</option>
+          <option value="slow">Be slow (2.5 seconds)</option>
+          <option value="empty">Return an empty list</option>
+          <option value="fails">Fail (the list returns a 404, and sign-ups fail)</option>
+        </select>
+        <p class="hint">Change this, then search again or send the form, to see each state.</p>
+      </div>
+    </details>
+
+    <section class="find" aria-labelledby="find-heading">
+      <h2 id="find-heading">Workshops</h2>
+      <form id="filters" role="search" action="#results" method="get">
+        <div class="field">
+          <label for="q">Search by name</label>
+          <input id="q" name="q" type="search" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="when">When</label>
+          <select id="when" name="when">
+            <option value="any">Any time</option>
+            <option value="evening">Weekday evenings</option>
+            <option value="weekend">Weekends</option>
+          </select>
+        </div>
+      </form>
+      <div id="results" class="results" aria-live="polite">
+        <noscript><p class="state">The list needs JavaScript. Without it, call the front desk to ask what is on.</p></noscript>
+      </div>
+    </section>
+
+    <section class="signup" aria-labelledby="signup-heading">
+      <h2 id="signup-heading">Reserve a place</h2>
+      <form id="signup" action="#signup" method="post">
+        <div data-form-summary class="form-summary" hidden></div>
+        <div class="field">
+          <label for="name">Your name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="workshop">Workshop</label>
+          <select id="workshop" name="workshop" required>
+            <option value="">Choose a workshop</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="places">Places <span class="hint">(1 to 4)</span></label>
+          <input id="places" name="places" type="number" inputmode="numeric" min="1" max="4" value="1" required>
+        </div>
+        <div class="field check">
+          <input id="consent" name="consent" type="checkbox" required>
+          <label for="consent">I agree to be contacted about this workshop</label>
+        </div>
+        <button type="submit" class="primary">Reserve</button>
+        <p data-form-status class="form-status"></p>
+      </form>
+    </section>
+  </main>
+
+  <dialog id="details-dialog" aria-labelledby="dialog-title">
+    <h2 id="dialog-title"></h2>
+    <p id="dialog-meta" class="hint"></p>
+    <p id="dialog-summary"></p>
+    <form method="dialog">
+      <button type="submit">Close</button>
+    </form>
+  </dialog>
+
+  <footer class="site-footer">
+    <p>Demo page for the vyson-frontend-development skill. Fernside Workshops and every class listed are made up.</p>
+  </footer>
+</body>
+</html>

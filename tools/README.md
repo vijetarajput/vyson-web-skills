@@ -20,7 +20,7 @@ This one command runs everything below. If it ends with `RESULT: PASSED` lines a
 | `npm run check:links` | Checks every relative link in every Markdown file in the repository. |
 | `npm run check` | All of the above, in order. |
 
-While `skills/` is empty (pre-alpha), `npm run validate` prints a note and passes. That is expected.
+If `skills/` is ever empty (it holds five skills now), `npm run validate` prints a note and passes. That is expected.
 
 ## The skill validator
 
@@ -61,11 +61,29 @@ Checks relative links in all Markdown files under the repository (default) or th
 
 ## Checkers that ship inside a skill
 
-A skill may carry its own small checker, so it keeps working after the skill is installed into someone's project. The first one is [`motion-lint.mjs`](../skills/vyson-css-motion/scripts/motion-lint.mjs) in `vyson-css-motion`. It has no dependencies and is tested by `tools/test/motion-lint.test.mjs`. It is a **static checker** (it reads files and never opens a browser), so passing it is not a browser test; the manual browser steps are in the skill's `references/verification.md`. It is not part of `npm run validate`; run it on a website's files:
+A skill may carry its own small checkers, so they keep working after the skill is installed into someone's project. There are six tools in five skills. All have no dependencies. Five are **static checkers** (they read files and never open a browser), so passing them is not a browser test. One, `browser-check.mjs`, is a **browser test**: it starts a Chrome or Edge that is already installed, so it needs one on the computer. None is part of `npm run validate`; run them on a website's files:
+
+| Checker | Skill | Tests | What it covers | Manual browser steps |
+|---|---|---|---|---|
+| [`motion-lint.mjs`](../skills/vyson-css-motion/scripts/motion-lint.mjs) | `vyson-css-motion` | `tools/test/motion-lint.test.mjs` | Motion rules (14) | the skill's `references/verification.md` |
+| [`design-lint.mjs`](../skills/vyson-premium-website-design/scripts/design-lint.mjs) | `vyson-premium-website-design` | `tools/test/design-lint.test.mjs` | Page basics, headings, focus, text size, token contrast, external files (18 rules) | the skill's `references/quality-checks.md` |
+| [`3d-lint.mjs`](../skills/vyson-3d-interactive-web/scripts/3d-lint.mjs) | `vyson-3d-interactive-web` | `tools/test/3d-lint.test.mjs` | Loop that cannot stop, reduced motion, pixel ratio, canvas name, fallback, context loss, files from other websites, asset size (14 rules) | the skill's `references/performance-and-fallbacks.md` |
+| [`frontend-lint.mjs`](../skills/vyson-frontend-development/scripts/frontend-lint.mjs) | `vyson-frontend-development` | `tools/test/frontend-lint.test.mjs` | Labels, HTML built from variables, `eval`, secrets, `fetch` handling, inline handlers, blocking scripts, debugging code (15 rules) | the skill's `references/quality-and-security.md` |
+| [`site-audit.mjs`](../skills/vyson-website-quality-engineering/scripts/site-audit.mjs) | `vyson-website-quality-engineering` | `tools/test/site-audit.test.mjs` | A whole built site: links and files, language, viewport, titles, headings, alt text, labels, favicon, previews, heavy files, other websites (28 rules) | the skill's `references/accessibility-checks.md` |
+| [`browser-check.mjs`](../skills/vyson-website-quality-engineering/scripts/browser-check.mjs) | `vyson-website-quality-engineering` | `tools/test/browser-check.test.mjs` | **Browser test.** Sideways scrolling, tap-target size, text size, console errors, failed requests, layout shift, keyboard focus, reduced motion (14 rules) | the same reference |
 
 ```powershell
 node skills/vyson-css-motion/scripts/motion-lint.mjs path/to/site
+node skills/vyson-premium-website-design/scripts/design-lint.mjs path/to/site
+node skills/vyson-3d-interactive-web/scripts/3d-lint.mjs path/to/site
+node skills/vyson-frontend-development/scripts/frontend-lint.mjs path/to/site
+node skills/vyson-website-quality-engineering/scripts/site-audit.mjs path/to/built-site
+node skills/vyson-website-quality-engineering/scripts/browser-check.mjs path/to/built-site
 ```
+
+`tools/framework-checks/` holds optional checks for the React hook and the Vue composable in `vyson-frontend-development`. They need real React and Vue, which this repository does not depend on, so they are **not** part of `npm test`. `node tools/framework-checks/run.mjs` installs pinned versions in a temporary folder (telemetry off), runs the checks and deletes the folder. It exits 3 with "NOT PERFORMED" when the packages cannot be installed. These are logic checks in Node, not browser tests. `frontend-lint.mjs` also reads `.vue` files (the `<script>` blocks and `v-html`).
+
+`browser-check.mjs` is one headless run on one computer (not a phone, not Firefox or Safari). Its tests in `tools/test/browser-check.test.mjs` that open a real browser are skipped when no Chrome or Edge is found, or when the environment variable `VYSON_SKIP_BROWSER_TESTS` is set to `1` (PowerShell: `$env:VYSON_SKIP_BROWSER_TESTS = "1"`). `skills/vyson-3d-interactive-web/scripts/serve.mjs` is a small local server for trying module and model files; it is not a checker.
 
 ## How the code is organized
 
