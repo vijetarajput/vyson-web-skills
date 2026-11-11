@@ -2,9 +2,9 @@
 
 This roadmap shows intent, not promises. Dates depend on testing results.
 
-## v0.1 (Beta: written and checked, not yet published)
+## v0.1 (Beta: pushed to `main`, not tagged)
 
-State on 11 November 2026: all five skills are written and pass `npm run check`. **Not verified:** any agent loading or following a skill, running the eval files with an agent, browsers other than headless Chrome 157 on one Windows 10 PC, real phones and GPUs, installing the four newer skills from GitHub (tested from a local folder only), and `skills update`.
+State on 12 November 2026: all five skills are written, pass `npm run check`, and install from the public GitHub repository with `--skill '*'` (file placement only). **Not verified:** any agent loading or following a skill, running the eval files with an agent, browsers other than headless Chrome 157 on one Windows 10 PC, real phones and GPUs, installing each newer skill on its own from GitHub, `skills update`, and independent external testing.
 
 Goal: five good, tested skills (one per pillar), one working audit script, and a small honest benchmark.
 
@@ -26,7 +26,7 @@ Goal: five good, tested skills (one per pillar), one working audit script, and a
 | 4 | The design skill | `vyson-premium-website-design` written as a draft, awaiting review. |
 | 5 | The 3D skill with example and fallback | `vyson-3d-interactive-web` written as a draft with an example, awaiting review. |
 | 6 | The frontend and quality skills, and the audit tools | `vyson-frontend-development` and `vyson-website-quality-engineering` (with `site-audit.mjs` and `browser-check.mjs`) written as drafts with examples, awaiting review. |
-| 7 | Release: install guides tested on Cursor, Claude Code and Codex, benchmark v0, tag `v0.1.0` | Not started. Open items: run the eval files and the benchmark with agents, check that each agent loads the skills, publish, and test installing from GitHub. |
+| 7 | Release: install guides tested on Cursor, Claude Code and Codex, benchmark v0, tag `v0.1.0` | Not started. Open items: run the eval files and the benchmark with agents, check that each agent loads the skills, tag the release, and test `skills update`. (Installing all five skills from GitHub was tested after the beta push.) |
 
 If a day reveals a problem in the process, we fix the process before building more skills.
 

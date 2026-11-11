@@ -17,9 +17,10 @@ An open-source toolkit of **Agent Skills** that help AI coding agents (Cursor, C
 We would rather tell you what is not proven than have you find out later.
 
 - **No agent-level results yet.** No AI coding agent has been confirmed to find, load or follow any of the five skills. The test prompts in [`evals/`](evals/) are written but **have never been run with an agent**. The one with/without experiment, for `vyson-css-motion`, had one run per condition and is **inconclusive**: it does not show that a skill helps ([report](bench/experiments/css-motion-pilot-001/README.md)).
-- **GitHub installation is not yet verified.** Installing `vyson-css-motion` from the public GitHub repository was tested on 10 November 2026. Installing the other four skills, or all five at once, was tested **only from a local folder** (11 November 2026). The four newer skills reach GitHub with this beta, so installing them from GitHub is untested. `skills update` is untested.
+- **Installation is verified; agent behaviour is not.** After the beta push (commit `dd92dbb`), `--list` on the public GitHub repository found all five skills, and `--skill '*'` installed all five into both `.agents/skills/` and `.claude/skills/` in a temporary folder with telemetry off. That shows the files arrive where the installer says. It does **not** show that Cursor, Claude Code, Codex or any other agent loads or follows them. `skills update` is **untested**, and the four newer skills were not each installed on their own from GitHub (only `vyson-css-motion` was, on 10 November 2026).
+- **React, Vue, Next.js, Nuxt.** The React and Vue helpers were tested in Node only. Next.js and Nuxt were not tested at all.
 - **Limited browser and device testing.** Every browser check ran in **headless Chrome 157 on one Windows 10 computer**, with software-rendered WebGL for the 3D example. **Not tested:** Firefox, Safari, Edge by hand, a real phone or tablet, a real GPU, a screen reader, a slow network, Linux and macOS.
-- **Not independent.** The examples and the checkers were written by the same AI agent as the skills, so they are not independent tests.
+- **Not independent.** The examples and the checkers were written by the same AI agent as the skills, so they are not independent tests. Nothing here has had independent external testing yet.
 - **No guarantees.** Nothing here guarantees a result, a speed, an accessibility level, security or compatibility. Numbers in the skills are VYSON defaults, not measurements. The checkers cannot certify anything.
 
 Skill status: `vyson-css-motion` is a **pilot**. The other four have the metadata status **draft** until they have been tried with real agents.
@@ -72,14 +73,16 @@ You need **Node.js 22.20 or newer**. VYSON installs through the open `skills` in
 
 | Install | Tested? |
 |---|---|
-| `vyson-css-motion` from the public GitHub repository | **Yes**, 10 November 2026 |
-| The other four skills, or all five with `--skill '*'`, from a **local folder** (a copy of this repository) | **Yes**, 11 November 2026 |
-| The other four skills, or all five, from the **public GitHub repository** | **No, not yet verified** |
+| `--list` on the **public GitHub repository** | **Yes.** Found all five skills (after the beta push, commit `dd92dbb`) |
+| All five with `--skill '*'` from the **public GitHub repository** | **Yes.** All five installed into both `.agents/skills/` and `.claude/skills/` (temporary folder, telemetry off) |
+| `vyson-css-motion` on its own from the public GitHub repository | **Yes**, 10 November 2026 |
+| Each of the other four skills on its own, and all five, from a **local folder** (a copy of this repository) | **Yes**, 11 November 2026 |
+| Each of the other four skills on its own from the public GitHub repository | **No.** Only the all-five install was run from GitHub |
 | `skills update` | **No** |
 | macOS, Linux, other `skills` versions | **No** |
-| An agent loading and following an installed skill | **No** (all five skills) |
+| An agent loading and following an installed skill | **No** (all five skills). File installation and discovery are verified; agent behaviour is not |
 
-Tests ran on Windows 10 with project-level installs and `--copy`. Details and limits: [integrations/README.md](integrations/README.md).
+Tests ran on Windows 10 with Skills CLI 1.7.6, project-level installs and `--copy`. The all-five GitHub test checked that the five skill folders arrived; it did not compare file contents or run the checkers on the installed copies (the local-folder tests did both). Details and limits: [integrations/README.md](integrations/README.md).
 
 ### Install all five skills
 
@@ -231,7 +234,7 @@ See [ROADMAP.md](ROADMAP.md) for the full plan and [CHANGELOG.md](CHANGELOG.md) 
 
 | Stage | Goal | State |
 |---|---|---|
-| v0.1 Beta | Five skills (one per pillar), checkers, examples, install tests | Written and checked by this repository's tools. Not done: agent-level tests of the skills, GitHub install verification for the four newer skills, wider browser and device testing |
+| v0.1 Beta | Five skills (one per pillar), checkers, examples, install tests | Written and checked by this repository's tools. Install from GitHub verified for file placement. Not done: agent-level tests of the skills, `skills update`, wider browser and device testing, independent external testing |
 | v1.0 | About 15 skills across the five pillars | Planned |
 | Later | Plugin manifests, a documentation website, a before-and-after gallery built from real benchmark runs | Not scheduled |
 

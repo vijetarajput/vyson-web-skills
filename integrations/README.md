@@ -8,9 +8,11 @@ These three agents are the project's targets (decision 4 in `docs/decisions.md`)
 
 | Agent | Status |
 |---|---|
-| Cursor | Install file placement tested from a local folder and from GitHub (see below). Not yet confirmed that Cursor loads and uses the skill. |
-| Claude Code | Install file placement tested from a local folder and from GitHub. The Claude Code program **is installed** on the test PC (see "What is installed on the test PC" below), but loading of the skill has **not been tested**. |
-| Codex | Install file placement tested from a local folder and from GitHub. The Codex command-line program was **not found** on the test PC. A Codex data folder was found, but that proves nothing about skills (see "What is installed on the test PC" below). Discovery and use of the skill are **untested**. |
+| Cursor | **Tested:** the installer places the files in the folder it documents for Cursor, from a local folder and from GitHub (see below). **Not verified:** that Cursor loads or follows any VYSON skill. |
+| Claude Code | **Tested:** the installer places the files in the folder it documents for Claude Code, from a local folder and from GitHub. **Not verified:** that Claude Code loads or follows any VYSON skill. The program **is installed** on the test PC (see "What is installed on the test PC" below) but was never run against a skill. |
+| Codex | **Tested:** the installer places the files in the folder it documents for Codex, from a local folder and from GitHub. **Not verified:** that Codex loads or follows any VYSON skill. The Codex command-line program was **not found** on the test PC, and a Codex data folder proves nothing about skills (see "What is installed on the test PC" below). |
+
+In short: **installation and file placement are tested; actual agent loading and skill execution are not verified for any agent.**
 
 Other agents that support the open [Agent Skills](https://agentskills.io/specification) format should work, but are **untested** and we make no promise for them.
 
@@ -44,7 +46,8 @@ Other agents that support the open [Agent Skills](https://agentskills.io/specifi
     |---|---|
     | `vyson-css-motion` from the **public GitHub repository** | **Tested** on 10 November 2026 (section "GitHub install test"). |
     | The other four skills, and `--skill '*'`, from a **local folder** | **Tested** on 11 November 2026 (section "Local install test of the four draft skills"). |
-    | The other four skills, and `--skill '*'`, from the **public GitHub repository** | **Untested.** They are not published yet. Test it once after publishing. |
+    | `--list` and `--skill '*'` (all five skills) on the **public GitHub repository** | **Tested** after the beta push, commit `dd92dbb` (section "GitHub install test of all five skills"). |
+| Each of the four newer skills on its own from the **public GitHub repository** | **Untested.** Only the all-five install was run from GitHub. |
     | `skills update` for any VYSON skill | **Untested.** |
 2. **Manual copy:** copy a folder from `skills/` into the agent's skills folder. Each guide will give exact PowerShell commands.
 
@@ -63,7 +66,7 @@ Tested with `skills` 1.7.6, Node.js 22, Windows 10, using a throwaway probe skil
 | Was the installed skill still valid? | Yes. `node tools/validate-skills.mjs <folder> --profile spec` passed on the installed copy. |
 | Was anything written to the home folder? | No. Nothing was created in `~/.agents`, `~/.claude/skills` or `~/.cursor/skills`. |
 
-**Watch out:** the installer looks in `skills/` first. Only if it finds nothing there does it search the whole repository. While `skills/` was empty, `npx skills add` on this repository listed our template and the intentionally broken test fixtures (7 "skills"). Now that `skills/` holds real skills, it lists those and not the template or the fixtures. Run from a local copy of this repository on 11 November 2026 it listed all five skills (see "Local install test of the four draft skills"). The public GitHub repository listed only `vyson-css-motion` when it was tested on 10 November 2026, because the other four were not published yet; a GitHub listing of all five has **not** been tested.
+**Watch out:** the installer looks in `skills/` first. Only if it finds nothing there does it search the whole repository. While `skills/` was empty, `npx skills add` on this repository listed our template and the intentionally broken test fixtures (7 "skills"). Now that `skills/` holds real skills, it lists those and not the template or the fixtures. Run from a local copy of this repository on 11 November 2026 it listed all five skills (see "Local install test of the four draft skills"). The public GitHub repository listed only `vyson-css-motion` when it was tested on 10 November 2026, because the other four were not published yet. After the beta push it listed all five (section "GitHub install test of all five skills").
 
 ## Local install test with the real skill (Day 3 findings)
 
@@ -88,7 +91,7 @@ Same setup as above: `skills` 1.7.6, Node.js, Windows 10, telemetry off, tempora
 
 ## Local install test of the four draft skills (11 November 2026)
 
-Setup: the working copy of this repository (not yet published), `skills` **1.7.6** run offline from the package cache (`npx --offline`, so nothing was downloaded), Node.js 24, **Windows 10**, telemetry switched off (`DISABLE_TELEMETRY=1`, `DO_NOT_TRACK=1`), an empty temporary project folder, `--copy`, `-a cursor -a claude-code -a codex`, `-y`. The temporary folder was deleted afterwards.
+Setup: the working copy of this repository (not yet published at that time), `skills` **1.7.6** run offline from the package cache (`npx --offline`, so nothing was downloaded), Node.js 24, **Windows 10**, telemetry switched off (`DISABLE_TELEMETRY=1`, `DO_NOT_TRACK=1`), an empty temporary project folder, `--copy`, `-a cursor -a claude-code -a codex`, `-y`. The temporary folder was deleted afterwards.
 
 | Question | Result |
 |---|---|
@@ -102,7 +105,7 @@ Setup: the working copy of this repository (not yet published), `skills` **1.7.6
 
 **What this shows:** the four draft skills are in the folder shape the installer expects, can be installed one at a time, and keep working after being copied on their own.
 
-**What this does not show:** that installing from GitHub works for them (they are not published, so that is **untested**), or that any agent loads or follows them (**untested**). Everything listed under "Not tested" above still applies.
+**What this does not show:** that installing from GitHub works for them (this section predates publishing; the GitHub test is in the section "GitHub install test of all five skills" below), or that any agent loads or follows them (**not verified**). Everything listed under "Not tested" above still applies.
 
 ## GitHub install test (10 November 2026)
 
@@ -132,6 +135,27 @@ Setup: public repository `vijetarajput/vyson-web-skills` at commit `b01f875`, `s
 - Private repositories and access tokens.
 - Any Skills CLI version other than 1.7.6, including the unpinned `npx skills ...` form. These results are specific to that version, and the installer is a separate third-party tool that may change.
 - The installer's behaviour in a normal interactive terminal. All tests ran in a non-interactive agent terminal, so the question that `npx` itself can ask in a normal terminal before downloading a package (and any prompts from the installer) were not seen.
+
+## GitHub install test of all five skills (after the beta push)
+
+Setup: public repository `vijetarajput/vyson-web-skills` at commit `dd92dbb` (the first commit that contains all five skills), `skills` **1.7.6**, Node.js 24, **Windows 10**, an empty temporary project folder (deleted afterwards), telemetry switched off (`DISABLE_TELEMETRY=1`, `DO_NOT_TRACK=1`, so what the installer sends with telemetry on was not observed), project-level install, `-a cursor -a claude-code -a codex --copy -y`. Run on the night of 11 to 12 November 2026.
+
+| Question | Result |
+|---|---|
+| `npx skills@1.7.6 add vijetarajput/vyson-web-skills --list` | **Passed.** Found 5 skills: `vyson-3d-interactive-web`, `vyson-css-motion`, `vyson-frontend-development`, `vyson-premium-website-design` and `vyson-website-quality-engineering`. Nothing was installed. |
+| `npx skills@1.7.6 add vijetarajput/vyson-web-skills --skill '*' -a cursor -a claude-code -a codex --copy -y` | **Passed.** All five skills were installed. `.agents/skills/` held the five skill folders with 8, 7, 11, 10 and 7 files (in the order `vyson-3d-interactive-web`, `vyson-css-motion`, `vyson-frontend-development`, `vyson-premium-website-design`, `vyson-website-quality-engineering`), and `.claude/skills/` held the same five folders. |
+
+**What this shows:** from the public GitHub repository the installer discovers all five skills and copies them to the two folders it documents for Cursor, Claude Code and Codex. The file counts match the source folders.
+
+**What this does not show:**
+
+- That any agent loads or follows the skills. **Not verified.** No agent was started.
+- That the installed copies are byte-identical or pass the validator and checkers. This GitHub run did not compare contents or run them; the local-folder tests above did both.
+- That each of the four newer skills installs on its own from GitHub. Only the all-five command was run.
+- That the real home folder stayed untouched. This run used a project-level install in a temporary folder, but, unlike the 10 November test, it did not use a temporary home folder and did not compare the real one before and after.
+- `skills update`, macOS, Linux, other Skills CLI versions and a normal interactive terminal. All **untested**.
+
+Being a target agent, or being a folder the installer writes to, is not official support or a verified integration for any agent.
 
 ## What is installed on the test PC
 

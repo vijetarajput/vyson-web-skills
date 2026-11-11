@@ -4,13 +4,13 @@ All notable changes to this project are recorded here. The format is based on [K
 
 ## [Unreleased]
 
-### v0.1 Beta summary (not yet published or tagged)
+### v0.1 Beta summary (pushed to `main`, not tagged)
 
-This section summarises everything below for the first public beta. Nothing here has been released.
+This section summarises everything below for the first public beta. No version tag or release has been created.
 
 - **Five skills:** `vyson-css-motion` (pilot), `vyson-premium-website-design`, `vyson-3d-interactive-web`, `vyson-frontend-development` and `vyson-website-quality-engineering` (drafts). Each has an example in `examples/`, an eval file in `evals/` and its own checker script. All five pass the skill validator in strict mode.
-- **Verified:** `npm run check` (automated tests, template and skill validation, Markdown link check), the checkers on their example sites, the examples in headless Chrome, and the installer from a local folder.
-- **Not verified:** any agent loading or following a skill; running the eval files with an agent; Firefox, Safari, a real phone or GPU, a screen reader, Linux and macOS; installing the four newer skills from the public GitHub repository; `skills update`. Installing `vyson-css-motion` from GitHub was tested on 10 November 2026.
+- **Verified:** `npm run check` (automated tests, template and skill validation, Markdown link check), the checkers on their example sites, the examples in headless Chrome, the installer from a local folder, and, after the push (commit `dd92dbb`), `--list` and `--skill '*'` on the public GitHub repository, which found and installed all five skills into `.agents/skills/` and `.claude/skills/` in a temporary folder (telemetry off). `vyson-css-motion` alone was also installed from GitHub on 10 November 2026. That is file installation only.
+- **Not verified:** any agent loading or following a skill; running the eval files with an agent; Firefox, Safari, a real phone or GPU, a screen reader, Linux and macOS; installing each of the four newer skills on its own from GitHub; `skills update`; React and Vue helpers outside Node; Next.js and Nuxt; independent external testing.
 
 ### Added
 - Project foundation: README, contribution guide, code of conduct, security policy, roadmap.
@@ -49,6 +49,7 @@ This section summarises everything below for the first public beta. Nothing here
 - README: a "Which skill do I need?" table with framework status, install-all, list, remove and update commands (list and remove tested from a local copy; update untested), and the local `--skill '*'` test.
 
 ### Changed
+- `README.md`, `integrations/README.md`, `CHANGELOG.md` and `ROADMAP.md` record the GitHub install test made after the beta push (all five skills found by `--list` and installed by `--skill '*'`, file placement only, no agent started), and keep the limits visible: agent loading unverified, `skills update` untested, each newer skill not installed on its own from GitHub.
 - `README.md`, `ROADMAP.md`, `skills/README.md`, `examples/README.md`, `evals/README.md`, `tools/README.md` and `integrations/README.md` describe all five skills. The installation section lists the `--skill` name of each skill and records a local-folder install test of the four draft skills (Skills CLI 1.7.6, offline from the package cache, Windows 10); installing them from GitHub is untested until they are published. `ROADMAP.md` now names `vyson-premium-website-design` as the v0.1 design skill in place of the planned `vyson-brief-to-direction`.
 - `bench/README.md` now reports the one-run pilot honestly and keeps it apart from the planned three-repeat benchmark.
 - `ROADMAP.md` links to the pilot report and labels it as one run per condition with known confounds.
