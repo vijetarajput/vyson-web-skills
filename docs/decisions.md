@@ -35,6 +35,12 @@ This file records decisions the maintainer has approved. Change a decision only 
 |---|---|---|---|
 | 13 | Installation | **Ship a small project-level copier** (`tools/install-skills.mjs`) that writes to each agent's **documented** skill folder. Keep the third-party `npx skills` CLI as an optional GitHub fetch method, with its Cursor limit recorded. No extra npm dependencies, no telemetry, no global install without `--global` and `--confirm-global`. | Decision 3 avoided a custom CLI. In one real Next.js session (not repeated), Skills CLI 1.7.6 put Cursor skills in `.agents/skills/`, which Cursor's catalog did not list. Cursor's documented project path is `.cursor/skills/`. VYSON now copies to the documented path and still does not claim the agent loaded the skill. |
 
+## Approved on 2026-11-12 (maintainer instruction: ready-to-use product)
+
+| # | Decision | Chosen option | Why |
+|---|---|---|---|
+| 14 | How the skills behave | **Implement first, ask last.** When a user asks for work, each skill runs *understand, plan internally, implement, verify, present* in one pass. It decides small choices itself and asks only when it is genuinely blocked. It still asks first before committing, pushing, deploying, deleting or replacing important user files, real form submissions, and paid or tracking services. The five skills are used through **exactly five prompts** (`docs/five-prompts.md`, also stored in each skill's `references/prompt.md`), in a fixed order: design, frontend, 3D, motion, quality. They share one hand-off file, `VYSON-NOTES.md`, in which each skill edits only its own section. | The maintainer wants a developer to install, paste five prompts and get a working site, without approval rounds. This replaces the "approve each step" habit of decision 5 **for the skills' behaviour**; the maintainer's own review of repository changes is unchanged. No end-to-end agent run is recorded yet, so the result is untested. |
+
 ## Defaults adopted from the proposal (change only on request)
 
 | Topic | Default |

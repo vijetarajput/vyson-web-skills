@@ -23,18 +23,29 @@ Detail lives in four reference files and two bundled tools. Read them when the s
 
 ## When not to use
 
-- Scroll-timelines, pinned sections, SVG morphing or complex sequences that need a timeline library. Say so, and tell the user a library such as GSAP or Motion may be a better fit. Check the license first (see `THIRD_PARTY.md` in the VYSON repository if present). Do not add it unless the user agrees.
+- Scroll-timelines, pinned sections, SVG morphing or complex sequences that need a timeline library. Say so, and tell the user a library such as GSAP or Motion may be a better fit. Check the license first (see `THIRD_PARTY.md` in the VYSON repository if present). Do not add it without the user's say-so; build the CSS-only version meanwhile.
 - 3D scenes, WebGL and canvas animation.
 - Pure copy or layout changes with no motion request.
 - Native mobile apps.
 
+## How this skill runs
+
+Default: **understand, plan internally, implement, verify, present.** When the user asks for motion, add it to the project in one pass. Do not stop at a list of ideas, and do not ask the user to approve the moments or the style: decide, build, and list the moments in the report.
+
+- **Your lane.** CSS motion for the existing page: entrances, reveals, hover and press feedback, panels, page transitions. Keep the design and every working feature as they are. Do not touch a 3D or canvas scene (that is `vyson-3d-interactive-web`); the hand-off names the elements to leave alone.
+- **Read first.** The main CSS, existing motion (see below), the page markup, and `VYSON-NOTES.md` if it exists: the "Design" section gives the tone, the "Frontend" section the class names and states, the "3D" section the elements not to touch.
+- **Ask only when blocked**, meaning there is no page to add motion to. One short question. Otherwise choose a default (calm) and list it in the report.
+- **Ask first only for** committing, pushing, deploying, deleting or replacing important user files, and adding an animation library. If a need is beyond plain CSS, build the CSS-only version and say what a library could add.
+
+Defaults, stack placement, the hand-off format and a worked example: [workflow.md](references/workflow.md). The one-paste prompt for this skill: [prompt.md](references/prompt.md).
+
 ## Before you start
 
-Work out answers from the project first. Ask the user only for what you cannot find out.
+Work out answers from the project first and read its files. Ask nothing unless you are blocked (see above).
 
 1. **Find the project type.** Plain HTML, or a framework? Where is the main CSS? Is there a design-token file?
 2. **Find existing motion.** Search the CSS for `transition`, `animation`, `@keyframes`, `scroll-behavior` and `prefers-reduced-motion`. Search scripts for `addEventListener('scroll'` and for animation libraries. Do not duplicate or fight what exists.
-3. **Find the tone.** A calm law firm and a playful snack brand need different speed and distance. If it is not clear, ask one question: "Should the motion feel calm and subtle, or lively and bold?" Default to calm.
+3. **Find the tone.** A calm law firm and a playful snack brand need different speed and distance. Take it from the design direction or the copy. If it is not clear, use calm and subtle and say so.
 4. **Find the browsers that matter.** If unknown, assume current versions of Chrome, Edge, Firefox and Safari, and keep every newer CSS feature as an optional extra.
 
 ## The motion contract
@@ -58,7 +69,7 @@ Choose **3 to 5 moments** for the whole page. More is not better. For each, writ
 | Explain a change | A panel that opens instead of jumping. |
 | Add personality (use sparingly) | A card lift, an underline that draws in. |
 
-If a moment has no purpose, drop it. Show the user the short list before building when the request is open-ended.
+If a moment has no purpose, drop it. Do not show the list for approval; build it and put it in the report.
 
 ### 2. Add the tokens
 
@@ -134,13 +145,14 @@ Never state frame rates, scores or load times that you did not measure.
 ## Output
 
 - Edited or new CSS (and, only if recipe 2 or 7 is used, one small script file).
-- A short motion summary for the user, as described in step 8.
+- A short motion summary for the user, as described in step 8, and the "Motion" section of `VYSON-NOTES.md` (the hand-off).
 - No new dependencies. No animation library.
 
 ## Acceptance checks
 
 The work is finished only when all of these are true:
 
+- [ ] The motion is implemented in the project (not only suggested), no approval was requested for choices the skill could make, and the design and features still work.
 - [ ] There are 5 or fewer motion moments, each with a stated purpose.
 - [ ] Only `transform` and `opacity` are animated, apart from the documented disclosure-panel exception.
 - [ ] No `transition: all`, and no animation of layout properties.
@@ -167,6 +179,8 @@ The work is finished only when all of these are true:
 
 Load these only when needed. They are one level deep and do not link to each other.
 
+- [workflow.md](references/workflow.md): defaults to decide alone, when you are blocked, safeguards, wiring per stack, the hand-off section, a worked example.
+- [prompt.md](references/prompt.md): the single prompt a user pastes to run this skill.
 - [recipes.md](references/recipes.md): ten copy-ready patterns with HTML, CSS and script.
 - [performance-budget.md](references/performance-budget.md): the budget table and how to check each limit.
 - [reduced-motion.md](references/reduced-motion.md): what to remove, what to keep, patterns, testing.

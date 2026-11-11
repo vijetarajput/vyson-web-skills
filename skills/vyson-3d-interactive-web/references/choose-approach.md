@@ -15,7 +15,7 @@ Weak jobs, which usually mean the answer is "no":
 - "Shows we are a technical company."
 - A slowly rotating shape behind the headline that carries no information.
 
-Then run this test. If you can answer yes to any line, offer that cheaper option first.
+Then run this test. If you can answer yes to any line, use that cheaper option as the main visual and keep the 3D version, if the user asked for it, as small as the job allows.
 
 | Question | If yes, use |
 |---|---|
@@ -51,7 +51,7 @@ Rules of thumb:
 
 Name the library, its licence and the exact version you install. Check the licence from the official source (the package's repository or npm page) before recommending it, and re-check before each release. Three.js and React Three Fiber are MIT licensed (read on 10 November 2026). Their versions change quickly and their APIs move between versions, so pin the version in `package.json` and read that version's documentation, not memory.
 
-Do not install a package the user did not agree to. If the project has no package manager, a plain WebGL scene needs none.
+Use the project's package manager and the official package. Do not install a paid or closed-licence package. If the project has no package manager, use plain WebGL or a 2D canvas, which need none.
 
 ## Models, textures and other assets
 

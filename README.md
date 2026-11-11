@@ -10,13 +10,14 @@ An open-source toolkit of **Agent Skills** that help AI coding agents (Cursor, C
 
 ## Contents
 
-[Limitations](#limitations-read-this-first) · [The five skills](#the-five-skills) · [Which skill should I use?](#which-skill-should-i-use) · [Frameworks](#frameworks) · [Installation](#installation) · [Examples](#examples) · [Checking tools and tests](#checking-tools-and-tests) · [Repository structure](#repository-structure) · [Contributing](#contributing) · [Licensing and attribution](#licensing-and-attribution) · [Roadmap](#roadmap)
+[Limitations](#limitations-read-this-first) · [The five skills](#the-five-skills) · [Which skill should I use?](#which-skill-should-i-use) · [Frameworks](#frameworks) · [Installation](#installation) · [The five prompts](#use-the-five-skills-five-prompts) · [Examples](#examples) · [Checking tools and tests](#checking-tools-and-tests) · [Repository structure](#repository-structure) · [Contributing](#contributing) · [Licensing and attribution](#licensing-and-attribution) · [Roadmap](#roadmap)
 
 ## Limitations (read this first)
 
 We would rather tell you what is not proven than have you find out later.
 
 - **No agent-level results yet.** No AI coding agent has been confirmed to find, load or follow any of the five skills. The test prompts in [`evals/`](evals/) are written but **have never been run with an agent**. The one with/without experiment, for `vyson-css-motion`, had one run per condition and is **inconclusive**: it does not show that a skill helps ([report](bench/experiments/css-motion-pilot-001/README.md)).
+- **The five-prompt workflow has not been proven.** The prompts in [docs/five-prompts.md](docs/five-prompts.md) are checked by this repository's tests for structure only. No agent has followed all five on a real website project yet, so a complete, working site from the five prompts is a design goal, not a result.
 - **Installation is verified; agent behaviour is not.** Files can be copied into each agent's documented folder. That is **not** the same as the agent listing the skill in its catalog. In one real Cursor session (12 November 2026, not repeated), files that Skills CLI 1.7.6 wrote to `.agents/skills/` did **not** appear in Cursor's skill catalog, although Cursor's docs list that folder. VYSON's copier uses `.cursor/skills/` for Cursor. After any install, open a **new** agent session and ask which VYSON skills it can see. `skills update` is **untested**.
 - **React, Vue, Next.js, Nuxt.** The React and Vue helpers were tested in Node only. Next.js and Nuxt were not tested at all.
 - **Limited browser and device testing.** Every browser check ran in **headless Chrome 157 on one Windows 10 computer**, with software-rendered WebGL for the 3D example. **Not tested:** Firefox, Safari, Edge by hand, a real phone or tablet, a real GPU, a screen reader, a slow network, Linux and macOS.
@@ -31,11 +32,11 @@ Each skill installs on its own. Every skill has its own checker, an example in [
 
 | Skill | What it helps you do | Bundled helpers |
 |---|---|---|
-| **`vyson-premium-website-design`** | Make a site look decided, not generated. Write a short direction note (audience, feeling, one signature move), then set type, colour, spacing, layout, imagery and finishing details. | 6 references, a design-token stylesheet, `design-lint.mjs` (18 rules) |
-| **`vyson-css-motion`** *(pilot)* | Add CSS-only motion that stays fast and accessible: page-load entrances, scroll reveals, hovers, an accordion, a marquee, page transitions, a progress bar. Includes reduced-motion handling and a mobile fallback. | 10 recipes, a starter stylesheet, `motion-lint.mjs` (14 rules) |
-| **`vyson-3d-interactive-web`** | Decide whether 3D is worth it, then add the lightest option (CSS, 2D canvas, plain WebGL or Three.js) with a performance budget, a fallback ladder (high, low, still image, no WebGL), reduced motion and context-loss handling. | 4 references, `canvas-stage.js`, a local server, `3d-lint.mjs` (14 rules) |
-| **`vyson-frontend-development`** | Build forms, data loading, dialogs, tabs and menus that work without JavaScript first and fail politely: every state visible (loading, empty, error, success), no HTML built from variables, safe handling of secrets and storage. | 5 references, `fetch-state.js`, `form-helpers.js`, a React hook, a Vue composable, `frontend-lint.mjs` (15 rules) |
-| **`vyson-website-quality-engineering`** | Check a finished site before launch and report honestly: a static audit of the built files, a real-browser check, the manual checks a tool cannot do, and a report that keeps the three apart. | 4 references, `site-audit.mjs` (28 rules), `browser-check.mjs` (14 rules) |
+| **`vyson-premium-website-design`** | Make a site look decided, not generated. Write a short direction note (audience, feeling, one signature move), then set type, colour, spacing, layout, imagery and finishing details. | 8 references (incl. workflow and prompt), a design-token stylesheet, `design-lint.mjs` (18 rules) |
+| **`vyson-css-motion`** *(pilot)* | Add CSS-only motion that stays fast and accessible: page-load entrances, scroll reveals, hovers, an accordion, a marquee, page transitions, a progress bar. Includes reduced-motion handling and a mobile fallback. | 6 references (incl. workflow and prompt) with 10 recipes, a starter stylesheet, `motion-lint.mjs` (14 rules) |
+| **`vyson-3d-interactive-web`** | Decide whether 3D is worth it, then add the lightest option (CSS, 2D canvas, plain WebGL or Three.js) with a performance budget, a fallback ladder (high, low, still image, no WebGL), reduced motion and context-loss handling. | 6 references (incl. workflow and prompt), `canvas-stage.js`, a local server, `3d-lint.mjs` (14 rules) |
+| **`vyson-frontend-development`** | Build forms, data loading, dialogs, tabs and menus that work without JavaScript first and fail politely: every state visible (loading, empty, error, success), no HTML built from variables, safe handling of secrets and storage. | 7 references (incl. workflow and prompt), `fetch-state.js`, `form-helpers.js`, a React hook, a Vue composable, `frontend-lint.mjs` (15 rules) |
+| **`vyson-website-quality-engineering`** | Check a finished site before launch and report honestly: a static audit of the built files, a real-browser check, the manual checks a tool cannot do, and a report that keeps the three apart. | 6 references (incl. workflow and prompt), `site-audit.mjs` (28 rules), `browser-check.mjs` (14 rules) |
 
 Each skill names the others in its "when not to use" section, so an agent can hand a task to the right one. VYSON does not try to replace library-specific skill packs (see [Licensing and attribution](#licensing-and-attribution)).
 
@@ -112,17 +113,9 @@ node tools/install-skills.mjs --to path\to\your\website --agent cursor --skill v
 - Skips a skill that is already installed and identical.
 - **Never overwrites** a skill whose files differ (your edits stay).
 - Stays **project-level** unless you pass `--global` **and** `--confirm-global`.
-- Prints installed names, exact paths, file verification, discovery status (**pending** until a new session lists the skill), recovery steps, and a ready-to-copy prompt.
+- Prints installed names, exact paths, file verification, discovery status (**pending** until a new session lists the skill), recovery steps, and the prompt to paste.
 
-Example prompt (also printed after install):
-
-```text
-Please follow the installed VYSON skill "vyson-premium-website-design".
-Read its SKILL.md first and do what it says, including any "Before you start" steps.
-Do not skip the skill. Do not invent a different process.
-Install path for Cursor: .cursor/skills/vyson-premium-website-design/
-If this skill is not in your skill catalog, say so and stop. Do not pretend you loaded it.
-```
+The prompts are described in [Use the five skills](#use-the-five-skills-five-prompts) below. After a successful copy the installer prints the step 1 prompt (or the prompt of the one skill you installed) and the path of all five prompt files. It does not claim the agent has loaded the skill.
 
 ### If the agent does not list the skills
 
@@ -143,11 +136,27 @@ $env:DO_NOT_TRACK = "1"
 npx skills@1.7.6 add vijetarajput/vyson-web-skills --skill '*' --copy
 ```
 
-What has been tested with that CLI is recorded in [integrations/README.md](integrations/README.md). `skills update` is **untested**. macOS, Linux and other CLI versions are **untested**.
+What has been tested with that CLI is recorded in [integrations/README.md](integrations/README.md). Those tests used earlier commits, before the workflow and prompt files existed, so installing the current `main` with the Skills CLI is **untested**. The VYSON copier (run from a clone of this repository, as above) was tested on the current files. `skills update` is **untested**. macOS, Linux and other CLI versions are **untested**.
 
 ### Telemetry note
 
 The VYSON copier sends nothing. The optional `skills` CLI (Vercel Labs, MIT) documents anonymous usage data on by default. Opt out with `DISABLE_TELEMETRY=1` or `DO_NOT_TRACK=1` before running it. We have not audited it. See [THIRD_PARTY.md](THIRD_PARTY.md#skills-cli-telemetry).
+
+## Use the five skills: five prompts
+
+After installing, open your website project (empty or existing) and paste **one prompt per skill, in this order, each in a new agent chat**. Every prompt tells the agent to read the project, decide small choices itself, build the result, check it and report. It asks a question only if it cannot continue at all.
+
+| Step | Skill | Result |
+|---|---|---|
+| 1 | `vyson-premium-website-design` | Visual direction, tokens, responsive polished pages |
+| 2 | `vyson-frontend-development` | A working site: structure, navigation, forms, data, every state |
+| 3 | `vyson-3d-interactive-web` | One purposeful 3D or interactive visual, with fallbacks |
+| 4 | `vyson-css-motion` | Restrained, accessible motion |
+| 5 | `vyson-website-quality-engineering` | Whole-site checks, safe fixes, an honest launch report |
+
+The prompts are in [docs/five-prompts.md](docs/five-prompts.md). The same text is installed with each skill, in `references/prompt.md`. The skills share one hand-off file, `VYSON-NOTES.md`, at your project root, and each edits only its own section. They never commit, push, deploy, overwrite your work or submit real forms without your say-so.
+
+**Not verified:** no agent has yet followed all five prompts on a real project. The structure of the prompts and skills is checked by this repository's tests, not the outcome. Treat your first run as a test and read each report.
 
 ## Examples
 

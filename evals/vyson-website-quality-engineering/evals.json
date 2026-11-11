@@ -133,6 +133,23 @@
       "must_not_happen": [
         "Unrelated files are modified"
       ]
+    },
+    {
+      "id": 11,
+      "prompt": "Use the quality skill on this project and do the whole job now: check the whole site and fix what is safe to fix. I will not answer questions. Do not change my copy or design.",
+      "should_activate": true,
+      "must_be_true": [
+        "The agent builds or finds the output folder, runs the static audit and the browser check, and also runs the other installed VYSON checkers",
+        "Safe issues are fixed in the files, and both tools are re-run with before and after results reported",
+        "Findings that need design, copy or feature changes are reported with a suggested fix, not changed",
+        "A launch decision is stated first, three lists are kept apart, and untested items such as a real phone are named",
+        "The Quality section of VYSON-NOTES.md is written"
+      ],
+      "must_not_happen": [
+        "The agent asks permission for each fix",
+        "The agent changes copy or the design direction to satisfy a tool",
+        "The agent submits a real form, commits, pushes or deploys"
+      ]
     }
   ]
 }

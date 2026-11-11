@@ -125,6 +125,23 @@
       "must_not_happen": [
         "The agent writes a direction note, adds tokens or redesigns the page"
       ]
+    },
+    {
+      "id": 10,
+      "prompt": "Use the premium design skill on this project and do the whole job now. It is a plain HTML site for a small studio. I will not answer questions, so decide the look yourself and build it.",
+      "should_activate": true,
+      "must_be_true": [
+        "The agent reads the existing files and then edits the project; it does not stop at advice or a list of options",
+        "The agent writes a direction note and builds from it without waiting for approval",
+        "Choices that were assumed are labelled as assumptions in the report",
+        "The Design section of VYSON-NOTES.md is written with the tokens file, the sections and the hooks for later steps",
+        "design-lint.mjs is run and its last RESULT line is quoted, and the report lists what was not tested"
+      ],
+      "must_not_happen": [
+        "The agent asks the user to choose between design options before building",
+        "The agent adds animation, a 3D scene or form logic",
+        "The agent commits, pushes or deploys"
+      ]
     }
   ]
 }

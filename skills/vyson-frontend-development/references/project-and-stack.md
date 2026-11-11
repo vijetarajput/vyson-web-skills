@@ -34,7 +34,7 @@ Rules:
 - Do not mix two frameworks in one page.
 - If the user asked for plain HTML, give plain HTML.
 - Never rewrite a working project into a different stack unless asked.
-- Name every new dependency, its licence and its version in the report, and ask before adding it. Pin the version and prefer packages with an MIT, Apache-2.0, BSD or ISC licence. Check the licence from the package's official page.
+- Prefer no new dependency. Name every new dependency, its licence and its version in the report. Ask first only if it is paid, closed-licence or tracks visitors. Pin the version and prefer packages with an MIT, Apache-2.0, BSD or ISC licence. Check the licence from the package's official page.
 
 ## Structure for a small site
 

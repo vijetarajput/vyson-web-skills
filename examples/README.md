@@ -2,6 +2,8 @@
 
 Small demo websites that show what each skill produces. Examples are proof: a visitor should be able to see the result before installing anything.
 
+Each `prompt.md` here is the record of one single-skill example run. These are **not** the five user-facing prompts: those are in [docs/five-prompts.md](../docs/five-prompts.md), and no end-to-end run of them has been recorded yet.
+
 Planned layout, one folder per skill:
 
 ```text

@@ -79,7 +79,7 @@ The tools do not run a screen reader, and neither should the report pretend they
 
 ## Optional automated tools
 
-axe-core (MPL-2.0) and Lighthouse (Apache-2.0) check more rules than the bundled tools, including some contrast checks. Run them if the project already has them or the user agrees to add them (see tools-and-automation). Their results are still partial: say "axe-core found no violations in the rules it runs", not "no accessibility problems".
+axe-core (MPL-2.0) and Lighthouse (Apache-2.0) check more rules than the bundled tools, including some contrast checks. Run them if the project already has them; otherwise name them in the report as an optional next step (see tools-and-automation). Their results are still partial: say "axe-core found no violations in the rules it runs", not "no accessibility problems".
 
 ## What to write in the report
 

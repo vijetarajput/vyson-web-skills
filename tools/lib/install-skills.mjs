@@ -85,8 +85,47 @@ function copyFileTree(src, dest) {
   }
 }
 
-function usagePrompt(skillName, agent, isGlobal = false) {
+// The order in which the five prompts are meant to be used.
+export const PROMPT_ORDER = [
+  'vyson-premium-website-design',
+  'vyson-frontend-development',
+  'vyson-3d-interactive-web',
+  'vyson-css-motion',
+  'vyson-website-quality-engineering',
+];
+
+/** The first ```text block of <skill>/references/prompt.md, or null. */
+export function readSkillPrompt(sourceSkillsDir, skillName) {
+  try {
+    const text = fs
+      .readFileSync(path.join(sourceSkillsDir, skillName, 'references', 'prompt.md'), 'utf8')
+      .replace(/\r\n/g, '\n');
+    const m = text.match(/```text\n([\s\S]*?)\n```/);
+    return m ? m[1] : null;
+  } catch {
+    return null;
+  }
+}
+
+// When the skills ship their prompts, print the real prompt (and where all of
+// them are). Otherwise fall back to a short "follow this skill" prompt.
+function usagePrompt(skillName, agent, isGlobal, sourceSkillsDir, installedNames) {
   const folder = isGlobal ? `~/${agent.globalDir}` : agent.projectDir;
+  const real = readSkillPrompt(sourceSkillsDir, skillName);
+  if (real) {
+    const step = PROMPT_ORDER.indexOf(skillName) + 1;
+    const withPrompts = PROMPT_ORDER.filter(
+      (n) => installedNames.includes(n) && readSkillPrompt(sourceSkillsDir, n),
+    );
+    const lines = [];
+    if (withPrompts.length > 1) {
+      lines.push('Your prompts are installed with the skills. Use them in this order, each in a new chat:');
+      for (const n of withPrompts) lines.push(`  ${PROMPT_ORDER.indexOf(n) + 1}. ${folder}/${n}/references/prompt.md`);
+      lines.push('');
+    }
+    lines.push(`--- Prompt${step ? ` ${step} of 5` : ''}: copy this into a new agent chat ---`, real, '---');
+    return lines.join('\n');
+  }
   return [
     '--- Copy this into a new agent chat ---',
     `Please follow the installed VYSON skill "${skillName}".`,
@@ -335,7 +374,15 @@ export function installSkills(opts) {
     counts: { copied, skippedIdentical, conflicts, requested: requested.length },
     skills,
     discovery,
-    usagePrompt: promptSkill ? usagePrompt(promptSkill, agent, Boolean(opts.global)) : '',
+    usagePrompt: promptSkill
+      ? usagePrompt(
+          promptSkill,
+          agent,
+          Boolean(opts.global),
+          sourceSkillsDir,
+          skills.filter((s) => s.status === 'installed' || s.status === 'already-identical').map((s) => s.name),
+        )
+      : '',
     notes,
   };
 }

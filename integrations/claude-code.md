@@ -12,7 +12,7 @@ node tools/install-skills.mjs --to path\to\your\website --agent claude-code
 
 ## After install
 
-Start a new Claude Code session in the website folder. Claude Code's own docs say it watches `.claude/skills/` for changes, but that if the folder did not exist when the session started you should run `/reload-skills` (**VYSON has not verified either**). Ask it to list its skills. Only treat a VYSON skill as loaded if it names it.
+Start a new Claude Code session in the website folder. Claude Code's own docs say it watches `.claude/skills/` for changes, but that if the folder did not exist when the session started you should run `/reload-skills` (**VYSON has not verified either**). Ask it to list its skills. Only treat a VYSON skill as loaded if it names it. Then paste the five prompts in order, each in a new session ([docs/five-prompts.md](../docs/five-prompts.md), or each skill's `references/prompt.md`). The prompts have not been run end to end with Claude Code.
 
 ## What is verified
 

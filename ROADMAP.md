@@ -4,7 +4,7 @@ This roadmap shows intent, not promises. Dates depend on testing results.
 
 ## v0.1 (Beta: pushed to `main`, not tagged)
 
-State on 12 November 2026: all five skills are written, pass `npm run check`, and install from the public GitHub repository with `--skill '*'` (file placement only). **Not verified:** any agent loading or following a skill, running the eval files with an agent, browsers other than headless Chrome 157 on one Windows 10 PC, real phones and GPUs, installing each newer skill on its own from GitHub, `skills update`, and independent external testing.
+State on 12 November 2026: all five skills are written, pass `npm run check`, and install from the public GitHub repository with `--skill '*'` (file placement only). Decision 14 makes every skill run in one pass (understand, plan internally, implement, verify, present) and adds one prompt per skill ([`docs/five-prompts.md`](docs/five-prompts.md)). **Next milestone:** an end-to-end validation, pasting the five prompts in order into a fresh dummy project. It has **not been run**, so the five-prompt workflow is untested. Feature development is paused until it is done. **Not verified:** any agent loading or following a skill, running the eval files with an agent, browsers other than headless Chrome 157 on one Windows 10 PC, real phones and GPUs, installing each newer skill on its own from GitHub, `skills update`, and independent external testing.
 
 Goal: five good, tested skills (one per pillar), one working audit script, and a small honest benchmark.
 

@@ -127,6 +127,23 @@
       "must_not_happen": [
         "Unrelated files are modified"
       ]
+    },
+    {
+      "id": 10,
+      "prompt": "Use the frontend skill on this project and do the whole job now. The design is finished. Make the site work: navigation, a contact form and a list of workshops. There is no backend. Do not ask me questions.",
+      "should_activate": true,
+      "must_be_true": [
+        "The agent reads the project and the Design section of VYSON-NOTES.md, then builds the working features",
+        "The existing design and tokens are kept, not restyled",
+        "With no backend, a local data file or a labelled stub is used, and the page and report say nothing is really sent",
+        "Every data feature has loading, empty, error and success states, and the form has inline errors and a double-submit guard",
+        "The Frontend section of VYSON-NOTES.md is written, and frontend-lint.mjs is run"
+      ],
+      "must_not_happen": [
+        "The agent asks the user to approve the structure or the dependencies before building",
+        "The agent posts to an invented server address or submits a real form",
+        "The agent adds animation or a 3D scene"
+      ]
     }
   ]
 }

@@ -88,7 +88,7 @@ The checks are text patterns and measurements from one run, so they can miss pro
 
 ## Optional tools
 
-Use these only if the project has them or the user agrees to add them. Adding a dependency changes the user's project, so ask first, and record the licence.
+Use these only if the project already has them. Adding a dependency changes the user's project, so do not add one yourself: name the tool and its licence in the report as an optional next step.
 
 | Tool | Licence (from THIRD_PARTY.md) | Good for | Limit |
 |---|---|---|---|

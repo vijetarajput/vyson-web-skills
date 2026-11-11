@@ -25,7 +25,7 @@ Detail lives in six reference files and two bundled tools. Read them when the st
 
 - **Motion.** Entrance animations, scroll reveals, hover animation, page transitions: use the `vyson-css-motion` skill if it is installed. This skill sets up the page so motion has room to work (reserved space, clear states), and adds no animation of its own. If the request has both, do the design first, then motion.
 - 3D scenes, WebGL and product viewers.
-- Application logic, data, accounts, payments, back-end work, or a complex web application interface. This skill is about the visual and structural quality of sites that present something.
+- Application logic, data, accounts, payments, back-end work, or a complex web application interface: use `vyson-frontend-development`. This skill is about the visual and structural quality of sites that present something.
 - Pure copywriting, SEO strategy, or content planning with no page to build.
 - Copying another site. Never reproduce a named site's layout, copy or assets. Describe what the user likes in your own words and design something new.
 
@@ -40,9 +40,20 @@ Every site you produce must meet all four. They are explained in the reference f
 
 The numbers in this skill are VYSON design defaults, not measured results. Do not claim that the result converts better, loads faster or scores higher anywhere unless you measured it.
 
+## How this skill runs
+
+Default: **understand, plan internally, implement, verify, present.** When the user asks for a design, build it in the project in one pass. Do not stop at advice, a mood board or a list of options, and do not ask for approval of choices you can make yourself: write the direction note, build from it, and put the note in your report.
+
+- **Your lane.** You own how the site looks and how its pages are structured: tokens, layout, type, colour, imagery, every section with real copy, responsive CSS. Behaviour belongs to `vyson-frontend-development`, 3D to `vyson-3d-interactive-web`, motion to `vyson-css-motion`, the final audit to `vyson-website-quality-engineering`. Leave clean hooks for them and write your hand-off in `VYSON-NOTES.md`.
+- **Empty project.** Create a small plain HTML/CSS site (or use the framework the user named). With no brand given, invent one, label it as a demo and list it as placeholder.
+- **Ask only when blocked**, meaning there is nothing to build in or nothing to infer the site from. One short question. Otherwise pick a default and list it in the report.
+- **Ask first only for** committing, pushing, deploying, deleting or replacing important user files, submitting real forms, or adding a paid or tracking service. Edit existing files in place with small changes.
+
+Defaults, stack placement, the hand-off format and a worked example: [workflow.md](references/workflow.md). The one-paste prompt for this skill: [prompt.md](references/prompt.md).
+
 ## Before you start
 
-Work out answers from the project first. Ask the user only for what you cannot find out, and ask at most three questions.
+Work out answers from the project first and read the files. Ask nothing unless you are blocked (see above).
 
 1. **Find the project type.** Plain HTML, or a framework? Where is the main CSS? Are there design tokens, a brand guide, a logo, fonts or image folders?
 2. **Find the brand.** Existing colours, fonts, logo and tone. Keep them. Do not "improve" a brand you were not asked to change.
@@ -50,7 +61,7 @@ Work out answers from the project first. Ask the user only for what you cannot f
 4. **Find the job of the page.** The one action a visitor should take.
 5. **Find the browsers that matter.** If unknown, assume current Chrome, Edge, Firefox and Safari, and treat every newer CSS feature as an optional extra with a plain fallback.
 
-If the user wants no extra files, give the direction note in your reply instead of creating `DESIGN.md`.
+Read `VYSON-NOTES.md` first if it exists. If the user wants no extra files, give the direction note in your reply instead of creating it.
 
 ## Steps
 
@@ -58,7 +69,7 @@ If the user wants no extra files, give the direction note in your reply instead 
 
 Open [visual-direction.md](references/visual-direction.md). Fill in the table: audience, job of the page, three feelings and three non-feelings, a direction type, **one signature move**, type, colour, layout stance, imagery and available content. Use two or three concrete sentences, not adjectives like "modern" and "clean".
 
-If the request is open-ended, show the note to the user and wait for a yes before building. If the user already gave a clear brief, build and show the note afterwards.
+Do not wait for approval, whether the request is open-ended or detailed. Build from the note and show it in the report.
 
 ### 2. Set up the tokens
 
@@ -130,14 +141,15 @@ Finish with a short report in plain language, in the structure given at the end 
 
 - New or edited HTML and CSS, the token file, and any images or SVG the page needs (with credits).
 - A short direction note (a file or part of the reply).
-- A report as described in step 9.
+- A report as described in step 9, and the "Design" section of `VYSON-NOTES.md` (the hand-off).
 - No new dependencies and no external fonts or images. No animation of its own.
 
 ## Acceptance checks
 
 The work is finished only when all of these are true:
 
-- [ ] A direction note exists, with one signature move used at least three times.
+- [ ] The design is built in the project (pages, tokens, CSS), not only described, and no approval was requested for choices the skill could make.
+- [ ] A direction note exists, with one signature move used at least three times, and the hand-off section is written.
 - [ ] The first thing a visitor notices is the headline or key visual, and there is one primary action per view.
 - [ ] Colours, fonts, spacing and radius come from tokens, with one type scale and one spacing scale.
 - [ ] At most two font families (three stacks counting code), and a recorded licence for every font file, image and icon, or none used.
@@ -165,6 +177,8 @@ The work is finished only when all of these are true:
 
 Load these only when needed. They are one level deep and do not link to each other.
 
+- [workflow.md](references/workflow.md): defaults to decide alone, when you are blocked, where files go in plain HTML, React, Next.js and Vue, the hand-off section, a worked example.
+- [prompt.md](references/prompt.md): the single prompt a user pastes to run this skill.
 - [visual-direction.md](references/visual-direction.md): the direction note, six direction types, signature moves, signs of a generic template.
 - [layout-and-hierarchy.md](references/layout-and-hierarchy.md): the hierarchy test, page structure, section patterns, grid, whitespace, hero and calls to action.
 - [typography-and-spacing.md](references/typography-and-spacing.md): fonts and licences, the type scale, line length, headings, spacing rules.

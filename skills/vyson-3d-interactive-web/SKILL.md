@@ -34,7 +34,7 @@ Detail lives in four reference files and three bundled tools. Read them when the
 
 A 3D feature is finished only when all five are true.
 
-- **It earns its place.** There is a one-line job for the scene ("lets a buyer inspect the product from every side"), and a still image would do that job worse. If not, recommend the image.
+- **It earns its place.** There is a one-line job for the scene ("lets a buyer inspect the product from every side"), and a still image would do that job worse. If not, build the lighter option instead and say why.
 - **The page works without it.** Real text, a still image or drawing, and the key facts are in the HTML. The scene is added on top.
 - **It stays light.** A stated budget (see [performance-and-fallbacks.md](references/performance-and-fallbacks.md)), a capped pixel ratio, and drawing only while visible.
 - **It respects the visitor.** `prefers-reduced-motion` turns off automatic movement. Phones and "save data" get a lighter version or the still image. Touch scrolling still works. Everything the scene offers is reachable with a keyboard-operable control.
@@ -42,9 +42,21 @@ A 3D feature is finished only when all five are true.
 
 The numbers in this skill are VYSON defaults, not measured results. Do not claim a frame rate, a load time or a score unless you measured it on a named device.
 
+## How this skill runs
+
+Default: **understand, plan internally, implement, verify, present.** When the user asks for a 3D or interactive experience, build one in the project in one pass. Do not stop at recommendations, and do not ask the user to approve the approach, the library or the placement: decide, build, and explain the decisions in the report.
+
+- **Your lane.** One purposeful scene or interactive visual, wired into the existing page, with its fallback. You keep the site's design and working features as they are. CSS animation of the rest of the page belongs to `vyson-css-motion`; the final audit belongs to `vyson-website-quality-engineering`.
+- **Read first.** `package.json`, the page and component that should host the scene, the CSS tokens, and the "Design" and "Frontend" sections of `VYSON-NOTES.md` (they name the container for the scene and the fallback inside it).
+- **Never answer with only "use an image".** If 3D is weak for this site, build the lightest interactive visual that does a real job (a 2D canvas, a CSS 3D tilt, a small WebGL shape), keep the still image as its fallback, and say why in the report.
+- **Ask only when blocked**, meaning there is nothing to build in. One short question. Otherwise choose a default and list it in the report.
+- **Ask first only for** committing, pushing, deploying, deleting or replacing important user files, loading anything from a remote address, and adding a paid or closed-licence asset or library.
+
+Defaults, stack placement, the hand-off format and a worked example: [workflow.md](references/workflow.md). The one-paste prompt for this skill: [prompt.md](references/prompt.md).
+
 ## Before you start
 
-Work out what you can from the project. Ask the user only for what you cannot find out, and ask at most three questions.
+Work out what you can from the project and read its files. Ask nothing unless you are blocked (see above).
 
 1. **Find the project type.** Plain HTML, Vite, Next.js, React, Vue? Is Three.js (or React Three Fiber) already installed? What is the build and where do static files go?
 2. **Find the assets.** Is there a model, texture or image? What is its licence? Never invent a licence or use a model of unknown origin.
@@ -56,11 +68,11 @@ Work out what you can from the project. Ask the user only for what you cannot fi
 
 ### 1. Decide whether 3D is right
 
-Write the job of the scene in one line, then run the test in [choose-approach.md](references/choose-approach.md): would a photo, a looping video or a CSS effect do the job? If yes, say so and offer that, and build 3D only if the user still wants it.
+Write the job of the scene in one line, then run the test in [choose-approach.md](references/choose-approach.md): would a photo, a looping video or a CSS effect do the job? If yes, build that lighter option as the visual, and say so in the report. If the user asked for 3D or an interactive experience, still deliver one, in the lightest form that does a real job.
 
 ### 2. Choose the lightest approach
 
-Use the table in [choose-approach.md](references/choose-approach.md). In short: CSS for flat depth effects, a 2D canvas for particles and charts, plain WebGL for one simple shape or shader, Three.js for models, materials and lighting, React Three Fiber only if the project is already React. Do not add a library to draw one cube. If a library is needed, name it, state its licence, pin the version, and ask before adding a dependency the project does not have.
+Use the table in [choose-approach.md](references/choose-approach.md). In short: CSS for flat depth effects, a 2D canvas for particles and charts, plain WebGL for one simple shape or shader, Three.js for models, materials and lighting, React Three Fiber only if the project is already React. Do not add a library to draw one cube. If a library is needed and the project has a package manager, use the official package, check its licence on its official listing, pin the version and list it in the report. In a project with no package manager, use plain WebGL or canvas instead of adding library files.
 
 ### 3. Build the page shell first
 
@@ -118,14 +130,15 @@ Give a short report in plain language: the scene's job and approach, the budget 
 ## Output
 
 - The page shell (HTML, CSS), the scene code, the stage helper copied into the project, and any local model or texture files with credits.
-- A fallback for every rung of the ladder, and a report as in step 9.
+- A fallback for every rung of the ladder, a report as in step 9, and the "3D" section of `VYSON-NOTES.md` (the hand-off).
 - No remote scripts, no CDN, no telemetry. No dependency added without telling the user.
 
 ## Acceptance checks
 
 The work is finished only when all of these are true:
 
-- [ ] The scene has a one-line job, and a still image would not do it as well (or the user chose 3D anyway).
+- [ ] The experience is built into the page (not only described), no approval was requested for choices the skill could make, and the existing design and features still work.
+- [ ] The scene has a one-line job, and a still image would not do it as well (or the user asked for 3D and the lightest form was used).
 - [ ] The page has real text, a fallback image or drawing, and the key facts without the scene.
 - [ ] The canvas has an `aria-label` and a nearby text description, and its size is reserved in CSS.
 - [ ] Every action the scene offers has a real button with a visible focus ring and a touch target of at least 44 by 44 CSS pixels (never under 24 by 24).
@@ -151,6 +164,8 @@ The work is finished only when all of these are true:
 
 Load these only when needed. They are one level deep and do not link to each other.
 
+- [workflow.md](references/workflow.md): defaults to decide alone, when you are blocked, safeguards, mounting per stack, the hand-off section, a worked example.
+- [prompt.md](references/prompt.md): the single prompt a user pastes to run this skill.
 - [choose-approach.md](references/choose-approach.md): does 3D earn its place, the approach table, asset licences, loading models.
 - [performance-and-fallbacks.md](references/performance-and-fallbacks.md): the budget, the fallback ladder, pausing, memory, reduced motion, browser and device checks, the checker rules.
 - [threejs-patterns.md](references/threejs-patterns.md): a safe Three.js setup, loading and disposing models, React Three Fiber notes, mounting in Vue, React and Next.js.

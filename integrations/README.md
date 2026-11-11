@@ -10,7 +10,9 @@ Recommended install (from a clone of this repository):
 node tools/install-skills.mjs --to path\to\your\website --agent cursor
 ```
 
-The rest of this page is the older Skills CLI 1.7.6 file-placement record. That CLI is optional. For Cursor it writes to `.agents/skills/`, which did not load into Cursor's catalog in one real session (not repeated).
+After installing, paste the five prompts in order ([docs/five-prompts.md](../docs/five-prompts.md)). They have not been run end to end with any agent.
+
+The rest of this page is the older Skills CLI 1.7.6 file-placement record. Its tests ran on earlier commits, before each skill had `references/workflow.md` and `references/prompt.md`. That CLI is optional. For Cursor it writes to `.agents/skills/`, which did not load into Cursor's catalog in one real session (not repeated).
 
 ## Target agents for v0.1 (file placement tested; use by the agent not verified)
 

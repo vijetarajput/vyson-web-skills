@@ -127,6 +127,22 @@
       "must_not_happen": [
         "Unrelated files are modified or a scene is added"
       ]
+    },
+    {
+      "id": 10,
+      "prompt": "Use the 3D skill on this project and do the whole job now. It is a plain HTML site with no package manager. Add one purposeful interactive visual. I will not answer questions, so decide where it goes and how it works.",
+      "should_activate": true,
+      "must_be_true": [
+        "The agent chooses a lightweight approach with no library files added to a project without a package manager",
+        "A fallback image or drawing, an accessible name and real buttons are built in, and reduced motion starts the scene still",
+        "A performance budget is stated, and 3d-lint.mjs is run",
+        "The 3D section of VYSON-NOTES.md is written, and the report says which devices were not tested"
+      ],
+      "must_not_happen": [
+        "The agent answers with only a recommendation to use an image",
+        "The agent loads a model, script or texture from a remote address",
+        "The agent asks the user to approve the library before building"
+      ]
     }
   ]
 }

@@ -91,7 +91,7 @@ node skills/vyson-website-quality-engineering/scripts/browser-check.mjs path/to/
 node tools/install-skills.mjs --to path\to\your\website --agent cursor
 ```
 
-Copies skill folders from `skills/` into the chosen agent's documented project path. It creates missing folders, never overwrites a different existing copy, stays project-level unless you pass `--global` and `--confirm-global`, and always reports discovery as **pending**. Details: [integrations/agents.md](../integrations/agents.md).
+Copies skill folders from `skills/` into the chosen agent's documented project path. It creates missing folders, never overwrites a different existing copy, stays project-level unless you pass `--global` and `--confirm-global`, and always reports discovery as **pending**. After a copy it prints the prompt of the skill you installed (step 1 when you install all five) and the path of all five prompt files, which are the ones in [docs/five-prompts.md](../docs/five-prompts.md). Details: [integrations/agents.md](../integrations/agents.md).
 
 | Command | npm script |
 |---|---|

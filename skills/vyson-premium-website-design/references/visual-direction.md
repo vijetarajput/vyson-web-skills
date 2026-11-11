@@ -6,7 +6,7 @@ Contents: the direction note, the direction types, how to pick a signature move,
 
 ## The direction note
 
-Write this note (8 to 12 lines) before you build. Keep it in the project, for example in a short `DESIGN.md`, or in your reply if the user wants no new files. Fill in every line. If a line is a guess, label it a guess.
+Write this note (8 to 12 lines) before you build. Keep it in the project: in the "Design" section of `VYSON-NOTES.md` (or in the project's own `DESIGN.md` if it already has one), or in your reply if the user wants no new files. Fill in every line. If a line is a guess, label it a guess.
 
 | Line | What to write | Example |
 |---|---|---|
@@ -22,7 +22,7 @@ Write this note (8 to 12 lines) before you build. Keep it in the project, for ex
 | Imagery | Photos, illustration, drawing, type only, product | "Line drawings, no stock photos" |
 | Content available | What real text and images exist, and what is missing | "Real project names; no photos yet" |
 
-If the request is open-ended, show this note to the user and wait for a yes before building. If the user already has a brand, take the note from the brand and only fill the lines it leaves open.
+If the request is open-ended, choose every line yourself, write the note and build from it. Do not wait for a yes; the note goes in your report, where the user can ask for a change. If the user already has a brand, take the note from the brand and only fill the lines it leaves open.
 
 ## Direction types
 
@@ -82,12 +82,11 @@ To get away from the look without adding noise: decide the signature move, make 
 - If a style guide and the user's request disagree, follow the style guide and mention the conflict.
 - Do not copy a competitor's or another site's layout or wording. Describe what you like in your own words and build something new.
 
-## When to ask the user
+## When you are really blocked
 
-Ask at most three questions, and only when the answer changes the result. Good questions:
+Do not ask about taste. Work the answers out from the project and the request, and write your assumptions in the direction note. Ask one short question only when the work cannot start without the answer, for example:
 
-1. "What is the one thing a visitor should do on this page?"
-2. "Is there a brand (logo, colours, fonts) I must follow?"
-3. "Name two sites you like and one thing you like about each." (Use them to understand taste only. Do not copy them.)
+1. There is no project folder and nothing in the request says what the site is for.
+2. The request names a brand to follow but the brand files cannot be found.
 
-If the user does not answer, state your assumptions in the direction note and continue.
+Everything else (the one action on the page, the direction type, the colours) you decide, label as an assumption and keep going. If the user gave links to sites they like, use them to understand taste only. Do not copy them.

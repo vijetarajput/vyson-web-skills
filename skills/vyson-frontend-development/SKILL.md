@@ -29,7 +29,7 @@ Detail lives in five reference files, four helper modules and one static checker
 - **3D and canvas.** Use `vyson-3d-interactive-web` if it is installed.
 - **Auditing a finished site** for accessibility, speed, links and SEO: use `vyson-website-quality-engineering` if it is installed. This skill carries its own small checker for code-level problems only.
 - Back-end work (databases, authentication servers, payments). This skill covers what runs in the browser and how it talks to a server. When a task needs a server, say what the server must do and do not pretend the browser can do it.
-- Large web applications with routing, state libraries and a team's architecture rules. Follow the project's existing patterns and ask.
+- Large web applications with routing, state libraries and a team's architecture rules. Follow the project's existing patterns and keep your changes inside them.
 
 ## The frontend contract
 
@@ -43,9 +43,21 @@ A feature is finished only when all five are true.
 
 The numbers in this skill are VYSON defaults, not measured results. Do not claim that something is "secure", "fully accessible" or "production-ready". Say what was and was not checked.
 
+## How this skill runs
+
+Default: **understand, plan internally, implement, verify, present.** When the user asks for a working site or feature, build it in the project in one pass. Do not stop at recommendations, and do not ask the user to approve architecture or small choices: decide, build, and explain the decisions in the report.
+
+- **Your lane.** You turn the designed pages into a working site: file and component structure for the project's framework, navigation, forms, data, dialogs, tabs and menus, with every state. You keep the visual design (use its tokens and classes; do not restyle). No 3D and no animation: those are `vyson-3d-interactive-web` and `vyson-css-motion`. Leave clean hooks for them (stable class names, an empty container with a fallback for a scene) and write the hand-off in `VYSON-NOTES.md`.
+- **Read first.** `package.json`, the entry files, existing components and pages, the CSS tokens, and the "Design" section of `VYSON-NOTES.md` if it exists.
+- **No real backend?** Use a local data file or a clearly labelled stub, and list what a real server must do. Never post to an invented address or submit a real form.
+- **Ask only when blocked**, meaning there is nothing to build in or a required value only the user has (a real API address they asked you to use, with no way to find it). One short question. Otherwise choose a default and list it in the report.
+- **Ask first only for** committing, pushing, deploying, deleting or replacing important user files, real submissions or real data, changing credentials, and adding a paid, closed-licence or tracking dependency.
+
+Defaults, stack placement, the hand-off format and a worked example: [workflow.md](references/workflow.md). The one-paste prompt for this skill: [prompt.md](references/prompt.md).
+
 ## Before you start
 
-Work out answers from the project. Ask the user only for what you cannot find out, and ask at most three questions.
+Work out answers from the project and read its files. Ask nothing unless you are blocked (see above).
 
 1. **Find the stack.** Plain HTML, Vite, Next.js, React, Vue or Nuxt, something else? Package manager, Node version, test and lint commands, TypeScript or not. Follow what is there.
 2. **Find the data.** Is there an API? Its address, the shape of its answers, its errors, whether it needs a key or cookie. If there is no real API, use a local file or a clearly labelled stub and say so.
@@ -57,7 +69,7 @@ Work out answers from the project. Ask the user only for what you cannot find ou
 
 ### 1. Choose the stack and structure
 
-Use the project's stack. For a new small site, use plain HTML, CSS and ES modules, and add a framework only when the interface needs it (see [project-and-stack.md](references/project-and-stack.md)). Keep the diff small: do not restructure files the user did not ask about. Name every dependency you want to add, with its licence and version, and ask first.
+Use the project's stack. For a new small site, use plain HTML, CSS and ES modules, and add a framework only when the interface needs it (see [project-and-stack.md](references/project-and-stack.md)). Keep the diff small: do not restructure files the user did not ask about. Prefer no new dependency. If one is truly needed, check its licence on its official listing, pin the version, add it and list it in the report; ask first only if it is paid, closed-licence or tracks visitors.
 
 ### 2. Write the markup first
 
@@ -120,13 +132,14 @@ Finish with a short report in plain language: what was built and which stack, th
 ## Output
 
 - Working HTML, CSS and JavaScript (or the project's equivalent), the helper modules copied into the project, and any local data or stub files, clearly labelled.
-- A report as in step 9.
+- A report as in step 9, and the "Frontend" section of `VYSON-NOTES.md` (the hand-off).
 - No remote scripts, no tracking, no telemetry. No dependency added without telling the user.
 
 ## Acceptance checks
 
 The work is finished only when all of these are true:
 
+- [ ] The working site is built in the project (not only described), the existing design was kept, and no approval was requested for choices the skill could make.
 - [ ] The page works with the native HTML first: forms have `action`, `method`, labels and native validation attributes.
 - [ ] Every control has a visible label and a name, and nothing relies on a placeholder as a label.
 - [ ] Every asynchronous feature shows loading, empty, error (with retry) and success states.
@@ -152,6 +165,8 @@ The work is finished only when all of these are true:
 
 Load these only when needed. They are one level deep and do not link to each other. Read `frameworks.md` when the project uses React, Next.js or Vue.
 
+- [workflow.md](references/workflow.md): defaults to decide alone, when you are blocked, safeguards, structure per stack, the hand-off section, a worked example.
+- [prompt.md](references/prompt.md): the single prompt a user pastes to run this skill.
 - [project-and-stack.md](references/project-and-stack.md): reading a project, choosing a stack, structure, dependencies, local servers, progressive enhancement.
 - [html-forms-and-widgets.md](references/html-forms-and-widgets.md): semantic HTML, the form recipe, native dialog and details, tabs and menus.
 - [state-data-and-errors.md](references/state-data-and-errors.md): the states of async UI, fetching, stale answers, retries, storage, URL state, edge cases.

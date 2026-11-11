@@ -112,7 +112,7 @@ describe(`${NAME}: the quality contract is written down`, () => {
 
   it('every reference file is linked from SKILL.md, and no reference links to another file', () => {
     const refs = fs.readdirSync(path.join(SKILL_DIR, 'references')).filter((f) => f.endsWith('.md'));
-    assert.equal(refs.length, 4);
+    assert.equal(refs.length, 6);
     for (const ref of refs) {
       assert.ok(skillMd.includes(`(references/${ref})`), `${ref} is not linked from SKILL.md`);
       assert.doesNotMatch(read(SKILL_DIR, 'references', ref), /\]\([^)]*\.md/, `${ref} links to another file`);

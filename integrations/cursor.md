@@ -24,7 +24,7 @@ That creates `.cursor/skills/` if it is missing, copies the skill folders, and r
 
 1. Open a **new** Cursor Agent chat in the website project. If the skills are missing, restart Cursor (its docs say it discovers skills when it starts) and look under Customize > Skills.
 2. Ask: "Which VYSON skills appear in your skill catalog?"
-3. Only treat a skill as loaded if the agent names it.
+3. Only treat a skill as loaded if the agent names it. Then paste the five prompts in order, each in a new Agent chat ([docs/five-prompts.md](../docs/five-prompts.md), or each skill's `references/prompt.md`). The prompts have not been run end to end with Cursor.
 4. If none appear, see recovery in [agents.md](agents.md) and the installer's printed report.
 
 ## What is verified

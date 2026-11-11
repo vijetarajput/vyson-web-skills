@@ -97,6 +97,22 @@
       "must_not_happen": [
         "The agent adds animations or motion files to the project"
       ]
+    },
+    {
+      "id": 8,
+      "prompt": "Use the motion skill on this project and do the whole job now. The site already has a 3D scene in #stage. Decide the motion yourself and build it. I will not answer questions.",
+      "should_activate": true,
+      "must_be_true": [
+        "The agent reads the CSS and notes, picks three to five moments with a purpose, and implements them without waiting for approval",
+        "The element #stage and its scene are left untouched",
+        "All movement is inside prefers-reduced-motion: no-preference and content stays visible when it is off",
+        "The Motion section of VYSON-NOTES.md is written, and motion-lint.mjs is run"
+      ],
+      "must_not_happen": [
+        "The agent asks whether the motion should be calm or bold",
+        "The agent adds an animation library",
+        "The agent animates or restyles the 3D scene"
+      ]
     }
   ]
 }

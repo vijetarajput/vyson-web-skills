@@ -12,7 +12,7 @@ node tools/install-skills.mjs --to path\to\your\website --agent codex
 
 ## After install
 
-Start a new Codex session in the website folder (Codex's docs say it detects skill changes automatically; restart it if the skills are not shown) and ask it to list skills. Only treat a VYSON skill as loaded if it names it.
+Start a new Codex session in the website folder (Codex's docs say it detects skill changes automatically; restart it if the skills are not shown) and ask it to list skills. Only treat a VYSON skill as loaded if it names it. Then paste the five prompts in order, each in a new session ([docs/five-prompts.md](../docs/five-prompts.md), or each skill's `references/prompt.md`). The prompts have not been run end to end with Codex.
 
 ## What is verified
 
