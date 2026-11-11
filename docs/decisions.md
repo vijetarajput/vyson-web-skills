@@ -29,6 +29,12 @@ This file records decisions the maintainer has approved. Change a decision only 
 |---|---|---|---|
 | 12 | Reuse and adoption | **Reuse first, licence checked.** Adapt open-source skills, components and workflows only when a licence file permits it, keep the notice, and record it in `THIRD_PARTY.md`. Original VYSON work stays under this repository's MIT licence and stays distinguishable from adapted material, which keeps its own copyright notice and licence text (Apache-2.0 also needs a note of changes and any NOTICE file). Material with no licence file or an unclear licence is never copied; write it independently. No partnership, endorsement or verified integration is implied without evidence. Do not duplicate skills that already exist; point to them. Build for daily usefulness and easy adoption (React, Next.js, Vue and plain HTML/CSS/JS where relevant, no forced dependencies), and never exaggerate compatibility, performance, quality or adoption. | The maintainer asked for maximum genuine adoption and reuse. This replaces the earlier "originality only" rule in `AGENTS.md` and `CONTRIBUTING.md`. The contribution legal model below is now "MIT plus a licence statement in the pull request template". |
 
+## Approved on 2026-11-12 (maintainer instruction after a real Cursor install)
+
+| # | Decision | Chosen option | Why |
+|---|---|---|---|
+| 13 | Installation | **Ship a small project-level copier** (`tools/install-skills.mjs`) that writes to each agent's **documented** skill folder. Keep the third-party `npx skills` CLI as an optional GitHub fetch method, with its Cursor limit recorded. No extra npm dependencies, no telemetry, no global install without `--global` and `--confirm-global`. | Decision 3 avoided a custom CLI. In one real Next.js session (not repeated), Skills CLI 1.7.6 put Cursor skills in `.agents/skills/`, which Cursor's catalog did not list. Cursor's documented project path is `.cursor/skills/`. VYSON now copies to the documented path and still does not claim the agent loaded the skill. |
+
 ## Defaults adopted from the proposal (change only on request)
 
 | Topic | Default |

@@ -49,5 +49,6 @@ If a day reveals a problem in the process, we fix the process before building mo
 
 ## Deliberately not planned
 
-- Our own installer command, background hooks, or telemetry (extra maintenance and trust risk).
+- Background hooks or telemetry.
+- A large package-manager-style installer. v0.1 ships only a small local copier (`tools/install-skills.mjs`) that writes to documented agent folders (decision 13).
 - A general component library (other projects already do this well).

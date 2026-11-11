@@ -11,6 +11,7 @@
     "validate": "node tools/validate-skills.mjs",
     "validate:template": "node tools/validate-skills.mjs templates/skill-template --profile spec",
     "check:links": "node tools/check-links.mjs",
+    "install-skills": "node tools/install-skills.mjs",
     "test": "node --test \"tools/test/**/*.test.mjs\"",
     "check": "npm run test && npm run validate:template && npm run validate && npm run check:links"
   }

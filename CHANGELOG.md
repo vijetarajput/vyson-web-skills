@@ -13,6 +13,8 @@ This section summarises everything below for the first public beta. No version t
 - **Not verified:** any agent loading or following a skill; running the eval files with an agent; Firefox, Safari, a real phone or GPU, a screen reader, Linux and macOS; installing each of the four newer skills on its own from GitHub; `skills update`; React and Vue helpers outside Node; Next.js and Nuxt; independent external testing.
 
 ### Added
+- Project-level skill copier `tools/install-skills.mjs`: agent-specific folders (Cursor `.cursor/skills/`, Claude Code `.claude/skills/`, Codex `.agents/skills/`), missing-directory creation, one skill or all five, no overwrite of different existing files, no global install without `--global --confirm-global`, hash verification, and an onboarding report that keeps **file install** separate from **agent discovery** (always pending until a new session lists the skill). Mapping and Cursor finding: `integrations/agents.md`. Tests: `tools/test/install-skills.test.mjs`.
+
 - Project foundation: README, contribution guide, code of conduct, security policy, roadmap.
 - Folder structure for skills, examples, evals, benchmarks, integrations, docs, templates and tools.
 - Third-party license manifest (`THIRD_PARTY.md`).

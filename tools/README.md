@@ -14,7 +14,7 @@ This one command runs everything below. If it ends with `RESULT: PASSED` lines a
 
 | Command | What it does |
 |---|---|
-| `npm test` | Runs the automated tests (valid skills, invalid skills, links, command-line behavior). |
+| `npm test` | Runs the automated tests (valid skills, invalid skills, links, installer, command-line behavior). |
 | `npm run validate:template` | Checks `templates/skill-template/` against the Agent Skills specification only. |
 | `npm run validate` | Checks every skill in `skills/` against the specification **and** the VYSON project rules. |
 | `npm run check:links` | Checks every relative link in every Markdown file in the repository. |
@@ -85,11 +85,25 @@ node skills/vyson-website-quality-engineering/scripts/browser-check.mjs path/to/
 
 `browser-check.mjs` is one headless run on one computer (not a phone, not Firefox or Safari). Its tests in `tools/test/browser-check.test.mjs` that open a real browser are skipped when no Chrome or Edge is found, or when the environment variable `VYSON_SKIP_BROWSER_TESTS` is set to `1` (PowerShell: `$env:VYSON_SKIP_BROWSER_TESTS = "1"`). `skills/vyson-3d-interactive-web/scripts/serve.mjs` is a small local server for trying module and model files; it is not a checker.
 
+## Skill installer
+
+```powershell
+node tools/install-skills.mjs --to path\to\your\website --agent cursor
+```
+
+Copies skill folders from `skills/` into the chosen agent's documented project path. It creates missing folders, never overwrites a different existing copy, stays project-level unless you pass `--global` and `--confirm-global`, and always reports discovery as **pending**. Details: [integrations/agents.md](../integrations/agents.md).
+
+| Command | npm script |
+|---|---|
+| `node tools/install-skills.mjs --help` | `npm run install-skills -- --help` |
+| `node tools/install-skills.mjs --list-agents` | `npm run install-skills -- --list-agents` |
+
 ## How the code is organized
 
 ```text
 tools/
 ├── validate-skills.mjs   command-line entry point for the validator
+├── install-skills.mjs    copy skills into an agent's documented folder
 ├── check-links.mjs       command-line entry point for the link checker
 ├── lib/
 │   ├── issues.mjs        the rule catalog: code, severity, plain-English fix
@@ -99,6 +113,8 @@ tools/
 │   ├── validate-skill.mjs  specification checks for one skill
 │   ├── rules-project.mjs   VYSON project rules and eval-file checks
 │   ├── discover.mjs      finds skill folders
+│   ├── agents.mjs        agent ids and documented skill folders
+│   ├── install-skills.mjs  copy logic (no overwrites, hash check)
 │   └── report.mjs        success and failure reports (text and JSON)
 └── test/
     ├── *.test.mjs        automated tests (built-in `node:test`)

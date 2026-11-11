@@ -17,7 +17,7 @@ An open-source toolkit of **Agent Skills** that help AI coding agents (Cursor, C
 We would rather tell you what is not proven than have you find out later.
 
 - **No agent-level results yet.** No AI coding agent has been confirmed to find, load or follow any of the five skills. The test prompts in [`evals/`](evals/) are written but **have never been run with an agent**. The one with/without experiment, for `vyson-css-motion`, had one run per condition and is **inconclusive**: it does not show that a skill helps ([report](bench/experiments/css-motion-pilot-001/README.md)).
-- **Installation is verified; agent behaviour is not.** After the beta push (commit `dd92dbb`), `--list` on the public GitHub repository found all five skills, and `--skill '*'` installed all five into both `.agents/skills/` and `.claude/skills/` in a temporary folder with telemetry off. That shows the files arrive where the installer says. It does **not** show that Cursor, Claude Code, Codex or any other agent loads or follows them. `skills update` is **untested**, and the four newer skills were not each installed on their own from GitHub (only `vyson-css-motion` was, on 10 November 2026).
+- **Installation is verified; agent behaviour is not.** Files can be copied into each agent's documented folder. That is **not** the same as the agent listing the skill in its catalog. In one real Cursor session (12 November 2026, not repeated), files that Skills CLI 1.7.6 wrote to `.agents/skills/` did **not** appear in Cursor's skill catalog, although Cursor's docs list that folder. VYSON's copier uses `.cursor/skills/` for Cursor. After any install, open a **new** agent session and ask which VYSON skills it can see. `skills update` is **untested**.
 - **React, Vue, Next.js, Nuxt.** The React and Vue helpers were tested in Node only. Next.js and Nuxt were not tested at all.
 - **Limited browser and device testing.** Every browser check ran in **headless Chrome 157 on one Windows 10 computer**, with software-rendered WebGL for the 3D example. **Not tested:** Firefox, Safari, Edge by hand, a real phone or tablet, a real GPU, a screen reader, a slow network, Linux and macOS.
 - **Not independent.** The examples and the checkers were written by the same AI agent as the skills, so they are not independent tests. Nothing here has had independent external testing yet.
@@ -67,35 +67,34 @@ Reproduce the Node checks with `node tools/framework-checks/run.mjs` (it install
 
 ## Installation
 
-You need **Node.js 22.20 or newer**. VYSON installs through the open `skills` installer (a separate third-party tool, see the telemetry note below), pinned to the one version we tested, **1.7.6**. Run the commands inside your own project folder. The examples are PowerShell; the commands themselves are the same in other shells, except for the quoting of `'*'`.
+You need **Node.js 22 or newer**. Clone this repository, then copy skills into **your website folder**. The copier is a small Node script in this repo. It does not use the network, does not add packages, and does not install globally unless you pass two explicit flags.
 
-### What has been tested
+**Installation is not discovery.** Matching files on disk do not mean the agent loaded the skill. After a copy, open a **new** agent session and ask which VYSON skills it can see.
 
-| Install | Tested? |
-|---|---|
-| `--list` on the **public GitHub repository** | **Yes.** Found all five skills (after the beta push, commit `dd92dbb`) |
-| All five with `--skill '*'` from the **public GitHub repository** | **Yes.** All five installed into both `.agents/skills/` and `.claude/skills/` (temporary folder, telemetry off) |
-| `vyson-css-motion` on its own from the public GitHub repository | **Yes**, 10 November 2026 |
-| Each of the other four skills on its own, and all five, from a **local folder** (a copy of this repository) | **Yes**, 11 November 2026 |
-| Each of the other four skills on its own from the public GitHub repository | **No.** Only the all-five install was run from GitHub |
-| `skills update` | **No** |
-| macOS, Linux, other `skills` versions | **No** |
-| An agent loading and following an installed skill | **No** (all five skills). File installation and discovery are verified; agent behaviour is not |
+### Where files go
 
-Tests ran on Windows 10 with Skills CLI 1.7.6, project-level installs and `--copy`. The all-five GitHub test checked that the five skill folders arrived; it did not compare file contents or run the checkers on the installed copies (the local-folder tests did both). Details and limits: [integrations/README.md](integrations/README.md).
+| Agent | `--agent` | Project folder |
+|---|---|---|
+| Cursor | `cursor` | `.cursor/skills/` |
+| Claude Code | `claude-code` | `.claude/skills/` |
+| Codex | `codex` | `.agents/skills/` |
 
-### Install all five skills
+Do not assume `.agents/skills/` is read by every agent. Full table and the Cursor finding: [integrations/agents.md](integrations/agents.md).
+
+### Install all five skills (recommended)
 
 ```powershell
-npx skills@1.7.6 add vijetarajput/vyson-web-skills --skill '*' -a cursor -a claude-code -a codex --copy -y
+git clone https://github.com/vijetarajput/vyson-web-skills.git
+cd vyson-web-skills
+node tools/install-skills.mjs --to path\to\your\website --agent cursor
 ```
+
+Passing `--agent` is the reliable way. If you leave it out, the script makes a best-effort guess from environment variables (only the Cursor signal has been seen in practice). When the guess is missing or unclear, it asks you, or stops and tells you to pass `--agent`. Run `node tools/install-skills.mjs --help` to see all options.
 
 ### Install one skill
 
-Change the `--skill` name:
-
 ```powershell
-npx skills@1.7.6 add vijetarajput/vyson-web-skills --skill vyson-frontend-development -a cursor -a claude-code -a codex --copy -y
+node tools/install-skills.mjs --to path\to\your\website --agent cursor --skill vyson-premium-website-design
 ```
 
 | Skill | `--skill` name |
@@ -106,42 +105,49 @@ npx skills@1.7.6 add vijetarajput/vyson-web-skills --skill vyson-frontend-develo
 | Frontend development | `vyson-frontend-development` |
 | Website quality engineering | `vyson-website-quality-engineering` |
 
-To see what the installer finds before installing, leave out `--skill` and add `--list`:
+### What the copier does
 
-```powershell
-npx skills@1.7.6 add vijetarajput/vyson-web-skills --list
+- Creates the agent's skills folder if it is missing.
+- Copies `SKILL.md`, `references/`, `scripts/`, `assets/` and licence notices.
+- Skips a skill that is already installed and identical.
+- **Never overwrites** a skill whose files differ (your edits stay).
+- Stays **project-level** unless you pass `--global` **and** `--confirm-global`.
+- Prints installed names, exact paths, file verification, discovery status (**pending** until a new session lists the skill), recovery steps, and a ready-to-copy prompt.
+
+Example prompt (also printed after install):
+
+```text
+Please follow the installed VYSON skill "vyson-premium-website-design".
+Read its SKILL.md first and do what it says, including any "Before you start" steps.
+Do not skip the skill. Do not invent a different process.
+Install path for Cursor: .cursor/skills/vyson-premium-website-design/
+If this skill is not in your skill catalog, say so and stop. Do not pretend you loaded it.
 ```
 
-The command copies each skill into `.agents/skills/<name>/` (the folder the installer documents for Cursor and Codex) and `.claude/skills/<name>/` (for Claude Code), and writes a `skills-lock.json` file in your project. **We have not checked that any of these agents reads those folders.**
+### If the agent does not list the skills
 
-### List, update and remove
+1. Check that `<project>/.cursor/skills/<name>/SKILL.md` exists (or the Claude Code / Codex path above).
+2. Open a **fresh** agent chat in that project. If the skills are still missing, restart the agent. Cursor's docs say it discovers skills when it starts. Claude Code's docs say to run `/reload-skills` if `.claude/skills/` did not exist when the session began.
+3. Ask: "Which VYSON skills appear in your skill catalog?"
+4. For Cursor, do not rely on `.agents/skills/` alone.
 
-These are the commands from the installer's own `--help` for version 1.7.6.
+Agent guides: [Cursor](integrations/cursor.md), [Claude Code](integrations/claude-code.md), [Codex](integrations/codex.md).
 
-| Job | Command | Tested here |
-|---|---|---|
-| List installed skills | `npx skills@1.7.6 list` | Yes, from a local copy |
-| Remove one skill | `npx skills@1.7.6 remove vyson-3d-interactive-web -y` | Yes, from a local copy |
-| Update all installed skills | `npx skills@1.7.6 update` | **No** |
-| Update one skill | `npx skills@1.7.6 update vyson-css-motion` | **No** |
-| Update by hand | Delete the skill's folders in `.agents/skills/` and `.claude/skills/`, then run the install command again | No |
+### Optional: third-party Skills CLI 1.7.6
 
-Installed files are copies, so a skill does not change until you update it. Read [CHANGELOG.md](CHANGELOG.md) before updating. `update` accepts `-p` (project skills only), `-g` (global skills only) and `-y` (skip the scope question).
-
-### Manual copy
-
-Copy a folder from [`skills/`](skills/) into your agent's skills folder (for example `.agents/skills/` or `.claude/skills/` in your project). Avoid symlinks on Windows. Per-agent copy guides are planned, not written.
-
-### Telemetry note
-
-`skills` is a separate third-party installer (Vercel Labs, MIT licence), not part of this project. According to its documentation it sends anonymous usage data by default, which can include the repository and skill names for public GitHub repositories. According to that documentation, either of these PowerShell commands switches it off for the current window when run before the install command:
+This still works as a file copier for some folders, and it can fetch from GitHub. It is a separate tool with its own telemetry (see below), and it needs **Node.js 22.20 or newer**. **For Cursor it writes to `.agents/skills/`, which did not load in one real Cursor session (not repeated).** Prefer `tools/install-skills.mjs` for Cursor.
 
 ```powershell
 $env:DISABLE_TELEMETRY = "1"
 $env:DO_NOT_TRACK = "1"
+npx skills@1.7.6 add vijetarajput/vyson-web-skills --skill '*' --copy
 ```
 
-These settings belong to the installer. We have not audited it and did not observe its network traffic (our tests ran with telemetry switched off). VYSON adds no telemetry, no background hooks and no instructions fetched from the internet. See [THIRD_PARTY.md](THIRD_PARTY.md#skills-cli-telemetry).
+What has been tested with that CLI is recorded in [integrations/README.md](integrations/README.md). `skills update` is **untested**. macOS, Linux and other CLI versions are **untested**.
+
+### Telemetry note
+
+The VYSON copier sends nothing. The optional `skills` CLI (Vercel Labs, MIT) documents anonymous usage data on by default. Opt out with `DISABLE_TELEMETRY=1` or `DO_NOT_TRACK=1` before running it. We have not audited it. See [THIRD_PARTY.md](THIRD_PARTY.md#skills-cli-telemetry).
 
 ## Examples
 
@@ -201,7 +207,7 @@ A **static check** reads files and never opens a browser. The browser check serv
 | [`skills/`](skills/) | **The product:** one folder per skill (`SKILL.md`, `references/`, `assets/`, `scripts/`) |
 | [`examples/`](examples/) | One demo site per skill, with the prompt and honest notes |
 | [`evals/`](evals/) | One `evals.json` per skill: test prompts, including cases where the skill should not activate (written, not yet run with an agent) |
-| [`tools/`](tools/) | The validator, the link checker, the test suite and the optional React/Vue checks (`tools/framework-checks/`) |
+| [`tools/`](tools/) | The validator, the skill copier (`install-skills.mjs`), the link checker, the test suite and the optional React/Vue checks |
 | [`bench/`](bench/) | The CSS Motion pilot experiment records and the repeat plan |
 | [`integrations/`](integrations/) | Install notes and the install test results for each agent |
 | [`docs/`](docs/) | Validator rules and the project's approved decisions |
@@ -234,7 +240,7 @@ See [ROADMAP.md](ROADMAP.md) for the full plan and [CHANGELOG.md](CHANGELOG.md) 
 
 | Stage | Goal | State |
 |---|---|---|
-| v0.1 Beta | Five skills (one per pillar), checkers, examples, install tests | Written and checked by this repository's tools. Install from GitHub verified for file placement. Not done: agent-level tests of the skills, `skills update`, wider browser and device testing, independent external testing |
+| v0.1 Beta | Five skills (one per pillar), checkers, examples, install tests | Written and checked by this repository's tools. A small copier writes to documented agent folders. Skills CLI GitHub install still verified for file placement only. Not done: agent catalog discovery, `skills update`, wider browser and device testing, independent external testing |
 | v1.0 | About 15 skills across the five pillars | Planned |
 | Later | Plugin manifests, a documentation website, a before-and-after gallery built from real benchmark runs | Not scheduled |
 

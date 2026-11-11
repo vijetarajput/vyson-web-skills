@@ -2,13 +2,23 @@
 
 Short install guides, one per AI coding agent. The skills themselves are written once in [`skills/`](../skills/). Integrations only explain how to get them into each tool.
 
+**Start here:** [agents.md](agents.md) (path mapping), then [cursor.md](cursor.md), [claude-code.md](claude-code.md), [codex.md](codex.md).
+
+Recommended install (from a clone of this repository):
+
+```powershell
+node tools/install-skills.mjs --to path\to\your\website --agent cursor
+```
+
+The rest of this page is the older Skills CLI 1.7.6 file-placement record. That CLI is optional. For Cursor it writes to `.agents/skills/`, which did not load into Cursor's catalog in one real session (not repeated).
+
 ## Target agents for v0.1 (file placement tested; use by the agent not verified)
 
 These three agents are the project's targets (decision 4 in `docs/decisions.md`). Being a target is not support, endorsement or a verified integration.
 
 | Agent | Status |
 |---|---|
-| Cursor | **Tested:** the installer places the files in the folder it documents for Cursor, from a local folder and from GitHub (see below). **Not verified:** that Cursor loads or follows any VYSON skill. |
+| Cursor | **Tested:** Skills CLI 1.7.6 places files in `.agents/skills/` (the folder that CLI documents for Cursor). In one real website test on 12 November 2026 (not repeated), those files were **not** in Cursor's skill catalog, although Cursor's docs list that folder. VYSON's copier uses `.cursor/skills/` instead. **Not verified:** that Cursor loads or follows any VYSON skill. |
 | Claude Code | **Tested:** the installer places the files in the folder it documents for Claude Code, from a local folder and from GitHub. **Not verified:** that Claude Code loads or follows any VYSON skill. The program **is installed** on the test PC (see "What is installed on the test PC" below) but was never run against a skill. |
 | Codex | **Tested:** the installer places the files in the folder it documents for Codex, from a local folder and from GitHub. **Not verified:** that Codex loads or follows any VYSON skill. The Codex command-line program was **not found** on the test PC, and a Codex data folder proves nothing about skills (see "What is installed on the test PC" below). |
 
@@ -176,12 +186,13 @@ Notes:
 - The Codex data folder does **not** prove that the Codex command-line program is installed, that Codex can be started from a terminal, or that Codex finds and uses VYSON skills. It only shows that some Codex software has been used on this PC at some point. Codex remains **untested** for this project.
 - Other computers will differ. Only this one PC was checked.
 
-Planned layout (guides are written on Day 7 of the [roadmap](../ROADMAP.md), after real testing):
+Current layout:
 
 ```text
 integrations/
-├── cursor/
-├── claude-code/
-├── codex/
-└── generic/
+├── README.md       this file (Skills CLI 1.7.6 test record)
+├── agents.md       agent-to-path mapping and discovery rules
+├── cursor.md
+├── claude-code.md
+└── codex.md
 ```
