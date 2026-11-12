@@ -4,7 +4,7 @@
 
 [![Licence: MIT](https://img.shields.io/github/license/vijetarajput/vyson-web-skills)](LICENSE) ![Status: v0.1 beta](https://img.shields.io/badge/status-v0.1%20beta-orange)
 
-An open-source toolkit of **Agent Skills** that help AI coding agents (Cursor, Claude Code, Codex and tools that read the same format) build premium, responsive, animated and production-ready websites. Each skill is a folder of instructions, with small checker scripts, a working example and a test prompt file, following the open [Agent Skills specification](https://agentskills.io/specification).
+An open-source toolkit of **Agent Skills** that help AI coding agents (documented targets: Cursor, Claude Code, Codex and Antigravity; integration with each is unverified, and tools that read the same format are untested) build premium, responsive, animated and production-ready websites. Each skill is a folder of instructions, with small checker scripts, a working example and a test prompt file, following the open [Agent Skills specification](https://agentskills.io/specification).
 
 > **Status: v0.1 Beta.** Five skills are written and pass this repository's own checks. This is an early beta: read [Limitations](#limitations-read-this-first) before relying on it.
 
@@ -18,6 +18,7 @@ We would rather tell you what is not proven than have you find out later.
 
 - **No agent-level results yet.** No AI coding agent has been confirmed to find, load or follow any of the five skills. The test prompts in [`evals/`](evals/) are written but **have never been run with an agent**. The one with/without experiment, for `vyson-css-motion`, had one run per condition and is **inconclusive**: it does not show that a skill helps ([report](bench/experiments/css-motion-pilot-001/README.md)).
 - **The five-prompt workflow has not been proven.** The prompts in [docs/five-prompts.md](docs/five-prompts.md) are checked by this repository's tests for structure only. No agent has followed all five on a real website project yet, so a complete, working site from the five prompts is a design goal, not a result.
+- **Prompt-based install is tested without an agent only.** The install prompt below is backed by a reference installer and automated tests against a local test server that mimics GitHub. No real agent has run the prompt against the published repository yet, and Antigravity has not been tested at all.
 - **Installation is verified; agent behaviour is not.** Files can be copied into each agent's documented folder. That is **not** the same as the agent listing the skill in its catalog. In one real Cursor session (12 November 2026, not repeated), files that Skills CLI 1.7.6 wrote to `.agents/skills/` did **not** appear in Cursor's skill catalog, although Cursor's docs list that folder. VYSON's copier uses `.cursor/skills/` for Cursor. After any install, open a **new** agent session and ask which VYSON skills it can see. `skills update` is **untested**.
 - **React, Vue, Next.js, Nuxt.** The React and Vue helpers were tested in Node only. Next.js and Nuxt were not tested at all.
 - **Limited browser and device testing.** Every browser check ran in **headless Chrome 157 on one Windows 10 computer**, with software-rendered WebGL for the 3D example. **Not tested:** Firefox, Safari, Edge by hand, a real phone or tablet, a real GPU, a screen reader, a slow network, Linux and macOS.
@@ -68,21 +69,59 @@ Reproduce the Node checks with `node tools/framework-checks/run.mjs` (it install
 
 ## Installation
 
-You need **Node.js 22 or newer**. Clone this repository, then copy skills into **your website folder**. The copier is a small Node script in this repo. It does not use the network, does not add packages, and does not install globally unless you pass two explicit flags.
+**You do not need a terminal.** Open your website project in your AI coding agent (Cursor, Claude Code, Codex or Antigravity), paste this prompt into a new chat, and the agent installs the skill from this repository and starts the work. You do not clone anything, install Node.js or copy folders. Change only the first sentence: another skill name, several names, or "all five" (variations and skill names: [docs/install.md](docs/install.md#variations)).
 
-**Installation is not discovery.** Matching files on disk do not mean the agent loaded the skill. After a copy, open a **new** agent session and ask which VYSON skills it can see.
+```text
+Install the VYSON skill vyson-premium-website-design from https://github.com/vijetarajput/vyson-web-skills into this project, then use it to improve my website.
+
+Do the whole install yourself. I will not run commands, clone anything or install Node.js. Follow these steps in order:
+
+1. Download https://raw.githubusercontent.com/vijetarajput/vyson-web-skills/main/skills-manifest.json with your terminal (curl, or PowerShell Invoke-WebRequest). Do not use a tool that turns pages into text: the files must stay byte-exact. The manifest lists every skill and, for each file, its path, size and sha256.
+2. Keep only the skills I named ("all five" means every skill in the manifest). If I named one that is not in the manifest, stop, list the names that exist and install nothing.
+3. Download each file of those skills from https://raw.githubusercontent.com/vijetarajput/vyson-web-skills/main/skills/<skill>/<path> into a temporary folder outside my project. Check each file's size and sha256 (ignore upper or lower case) against the manifest. If any file is missing or does not match, stop, say which file and install nothing. Do not run anything you downloaded.
+4. Use this project's skills folder for the application you are running in (Cursor, Claude Code, Codex or Antigravity), not the name of the AI model: Cursor .cursor/skills, Claude Code .claude/skills, Codex .agents/skills, Antigravity .agents/skills. If you are another agent, stop and tell me where your documentation says project skills go. Create the folder if it is missing.
+5. Copy each verified skill, with all its files (references, scripts, assets), to <folder>/<skill>/. Never overwrite: if that folder already exists and matches, leave it; if it exists and differs, leave it untouched, tell me, and ask whether to keep mine or replace it. Change nothing else in my project.
+6. Check that every manifest file of each skill is now in place. Report briefly, per skill: installed, already installed, or not installed, with its path and file count. Do not say a skill is "loaded" unless it appears in your own skill list.
+7. Open <folder>/<skill>/SKILL.md, follow it for my request in this same chat and start the work. Do not ask me to paste another prompt. If I named several skills, use them in the order the manifest lists them. If I only asked to install, stop after the report.
+
+If you cannot download files or write into this project (for example network access is off), say exactly what failed and what I can do instead. Never say the install worked when it did not.
+```
+
+What to know:
+
+- **Only the skills you name** are downloaded, and only into **this project**. A skill folder that already exists and differs is never overwritten: the agent asks you.
+- **Every file is checked** (size and sha256) against [`skills-manifest.json`](skills-manifest.json) before anything is written into your project. If anything is missing or damaged, nothing is installed and the agent says what failed.
+- **The agent needs to run terminal commands and reach the internet.** You do not run them, but you may be asked to approve them. If your agent cannot (for example, network access is off), it should say so, and [docs/install.md](docs/install.md#manual-fallback-no-commands-at-all) shows a ZIP-and-copy fallback.
+- **Installation is not discovery.** The prompt tells the agent to read the installed `SKILL.md` and use it in the same chat. Whether the agent lists the skill in later chats depends on the agent; see below.
+- **Not tested yet:** no agent has run this prompt against the published repository (the manifest has to be pushed first). Details of what was and was not tested: [docs/install.md](docs/install.md#what-has-and-has-not-been-tested).
+
+For a whole site, install all five once, then use the [five prompts](#use-the-five-skills-five-prompts) in order. The install prompt is a one-time setup step and is not one of the five.
 
 ### Where files go
 
-| Agent | `--agent` | Project folder |
-|---|---|---|
-| Cursor | `cursor` | `.cursor/skills/` |
-| Claude Code | `claude-code` | `.claude/skills/` |
-| Codex | `codex` | `.agents/skills/` |
+| Agent | Project folder |
+|---|---|
+| Cursor | `.cursor/skills/` |
+| Claude Code | `.claude/skills/` |
+| Codex | `.agents/skills/` |
+| Antigravity | `.agents/skills/` (untested by VYSON) |
 
 Do not assume `.agents/skills/` is read by every agent. Full table and the Cursor finding: [integrations/agents.md](integrations/agents.md).
 
-### Install all five skills (recommended)
+### If the agent does not list the skills
+
+1. Check that `<project>/.cursor/skills/<name>/SKILL.md` exists (or the Claude Code, Codex or Antigravity path above).
+2. Open a **fresh** agent chat in that project. If the skills are still missing, restart the agent. Cursor's docs say it discovers skills when it starts. Claude Code's docs say to run `/reload-skills` if `.claude/skills/` did not exist when the session began.
+3. Ask: "Which VYSON skills appear in your skill catalog?"
+4. For Cursor, do not rely on `.agents/skills/` alone.
+
+Agent guides: [Cursor](integrations/cursor.md), [Claude Code](integrations/claude-code.md), [Codex](integrations/codex.md), [Antigravity](integrations/antigravity.md).
+
+### For developers: install from a clone
+
+This is for people who work on this repository, or who want the copier and its tests. It needs a terminal and **Node.js 22 or newer**. The copier is a small Node script in this repo. It does not add packages, and does not install globally unless you pass two explicit flags. Its default mode uses no network.
+
+**Install all five skills from your clone:**
 
 ```powershell
 git clone https://github.com/vijetarajput/vyson-web-skills.git
@@ -90,23 +129,21 @@ cd vyson-web-skills
 node tools/install-skills.mjs --to path\to\your\website --agent cursor
 ```
 
-Passing `--agent` is the reliable way. If you leave it out, the script makes a best-effort guess from environment variables (only the Cursor signal has been seen in practice). When the guess is missing or unclear, it asks you, or stops and tells you to pass `--agent`. Run `node tools/install-skills.mjs --help` to see all options.
+`--agent` takes `cursor`, `claude-code`, `codex` or `antigravity`. Passing it is the reliable way. If you leave it out, the script makes a best-effort guess from environment variables (only the Cursor signal has been seen in practice). When the guess is missing or unclear, it asks you, or stops and tells you to pass `--agent`. Run `node tools/install-skills.mjs --help` to see all options.
 
-### Install one skill
+**Install one skill:**
 
 ```powershell
 node tools/install-skills.mjs --to path\to\your\website --agent cursor --skill vyson-premium-website-design
 ```
 
-| Skill | `--skill` name |
-|---|---|
-| Premium website design | `vyson-premium-website-design` |
-| CSS motion (pilot) | `vyson-css-motion` |
-| 3D and interactive web | `vyson-3d-interactive-web` |
-| Frontend development | `vyson-frontend-development` |
-| Website quality engineering | `vyson-website-quality-engineering` |
+**Download from GitHub instead of copying from the clone.** This does the same steps as the install prompt (download, check every file against `skills-manifest.json`, then copy) and is what the automated tests exercise:
 
-### What the copier does
+```powershell
+node tools/install-skills.mjs --from-github --to path\to\your\website --agent cursor --skill vyson-css-motion
+```
+
+**What the copier does:**
 
 - Creates the agent's skills folder if it is missing.
 - Copies `SKILL.md`, `references/`, `scripts/`, `assets/` and licence notices.
@@ -115,16 +152,7 @@ node tools/install-skills.mjs --to path\to\your\website --agent cursor --skill v
 - Stays **project-level** unless you pass `--global` **and** `--confirm-global`.
 - Prints installed names, exact paths, file verification, discovery status (**pending** until a new session lists the skill), recovery steps, and the prompt to paste.
 
-The prompts are described in [Use the five skills](#use-the-five-skills-five-prompts) below. After a successful copy the installer prints the step 1 prompt (or the prompt of the one skill you installed) and the path of all five prompt files. It does not claim the agent has loaded the skill.
-
-### If the agent does not list the skills
-
-1. Check that `<project>/.cursor/skills/<name>/SKILL.md` exists (or the Claude Code / Codex path above).
-2. Open a **fresh** agent chat in that project. If the skills are still missing, restart the agent. Cursor's docs say it discovers skills when it starts. Claude Code's docs say to run `/reload-skills` if `.claude/skills/` did not exist when the session began.
-3. Ask: "Which VYSON skills appear in your skill catalog?"
-4. For Cursor, do not rely on `.agents/skills/` alone.
-
-Agent guides: [Cursor](integrations/cursor.md), [Claude Code](integrations/claude-code.md), [Codex](integrations/codex.md).
+After you change anything under `skills/`, run `npm run build:manifest` and commit the new `skills-manifest.json`; `npm run check` fails if it is out of date.
 
 ### Optional: third-party Skills CLI 1.7.6
 
@@ -144,7 +172,7 @@ The VYSON copier sends nothing. The optional `skills` CLI (Vercel Labs, MIT) doc
 
 ## Use the five skills: five prompts
 
-After installing, open your website project (empty or existing) and paste **one prompt per skill, in this order, each in a new agent chat**. Every prompt tells the agent to read the project, decide small choices itself, build the result, check it and report. It asks a question only if it cannot continue at all.
+After [installing](#installation), open your website project (empty or existing) and paste **one prompt per skill, in this order, each in a new agent chat**. Every prompt tells the agent to read the project, decide small choices itself, build the result, check it and report. It asks a question only if it cannot continue at all.
 
 | Step | Skill | Result |
 |---|---|---|
@@ -191,6 +219,8 @@ npm run check
 | `npm run validate` | Validates every skill in `skills/` |
 | `npm run validate:template` | Validates the skill template against the specification |
 | `npm run check:links` | Checks relative links in Markdown files |
+| `npm run check:manifest` | Fails if `skills-manifest.json` is out of date |
+| `npm run build:manifest` | Rewrites `skills-manifest.json` after you change a skill |
 
 Rules the validator can report are explained in [docs/validator-rules.md](docs/validator-rules.md).
 
@@ -214,12 +244,13 @@ A **static check** reads files and never opens a browser. The browser check serv
 | Path | Purpose |
 |---|---|
 | [`skills/`](skills/) | **The product:** one folder per skill (`SKILL.md`, `references/`, `assets/`, `scripts/`) |
+| [`skills-manifest.json`](skills-manifest.json) | Generated list of every skill file with its size and sha256. The install prompt downloads and checks against it. Rebuild with `npm run build:manifest` |
 | [`examples/`](examples/) | One demo site per skill, with the prompt and honest notes |
 | [`evals/`](evals/) | One `evals.json` per skill: test prompts, including cases where the skill should not activate (written, not yet run with an agent) |
 | [`tools/`](tools/) | The validator, the skill copier (`install-skills.mjs`), the link checker, the test suite and the optional React/Vue checks |
 | [`bench/`](bench/) | The CSS Motion pilot experiment records and the repeat plan |
 | [`integrations/`](integrations/) | Install notes and the install test results for each agent |
-| [`docs/`](docs/) | Validator rules and the project's approved decisions |
+| [`docs/`](docs/) | The install guide, the five prompts, validator rules and the project's approved decisions |
 | [`templates/`](templates/) | A starting point for a new skill |
 | `AGENTS.md`, `CONTRIBUTING.md`, `THIRD_PARTY.md`, `CHANGELOG.md`, `ROADMAP.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md`, `LICENSE` | Project policy and history |
 

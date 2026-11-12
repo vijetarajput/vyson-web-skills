@@ -4,7 +4,7 @@ import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { REPO_ROOT, TOOLS_DIR, makeTempDir, removeDir, makeSkill, writeFiles } from './helpers.mjs';
-import { AGENTS, AGENT_IDS, detectAgent, getAgent } from '../lib/agents.mjs';
+import { AGENTS, AGENT_IDS, detectAgent, getAgent, otherKnownSkillDirs } from '../lib/agents.mjs';
 import { compareHashMaps, hashTree, installSkills, isVysonSkillsRepo, listSkillNames } from '../lib/install-skills.mjs';
 
 const INSTALL = path.join(TOOLS_DIR, 'install-skills.mjs');
@@ -37,6 +37,19 @@ describe('agent mapping', () => {
     assert.equal(AGENTS.cursor.projectDir, '.cursor/skills');
     assert.equal(AGENTS['claude-code'].projectDir, '.claude/skills');
     assert.equal(AGENTS.codex.projectDir, '.agents/skills');
+    assert.equal(AGENTS.antigravity.projectDir, '.agents/skills');
+    assert.deepEqual([...AGENT_IDS].sort(), ['antigravity', 'claude-code', 'codex', 'cursor']);
+  });
+
+  it('marks Antigravity as documented only (never tested by VYSON)', () => {
+    assert.equal(AGENTS.antigravity.filePlacement, 'documented-only');
+    assert.equal(AGENTS.antigravity.globalDir, '.gemini/config/skills');
+  });
+
+  it('does not list a folder shared with the chosen agent as "also found"', () => {
+    assert.deepEqual(otherKnownSkillDirs('codex'), ['.cursor/skills', '.claude/skills']);
+    assert.deepEqual(otherKnownSkillDirs('antigravity'), ['.cursor/skills', '.claude/skills']);
+    assert.deepEqual(otherKnownSkillDirs('cursor'), ['.claude/skills', '.agents/skills']);
   });
 
   it('does not treat .agents/skills as Cursor\'s install path', () => {
@@ -54,6 +67,12 @@ describe('agent mapping', () => {
     assert.equal(getAgent('Cursor').id, 'cursor');
     assert.equal(getAgent('claude').id, 'claude-code');
     assert.equal(getAgent('unknown'), null);
+    assert.equal(getAgent('Antigravity').id, 'antigravity');
+    assert.equal(getAgent('agy').id, 'antigravity');
+  });
+
+  it('never guesses Antigravity from the environment', () => {
+    assert.equal(detectAgent({ ANTIGRAVITY: '1' }).id, null);
   });
 
   it('detects a single reliable signal', () => {

@@ -4,7 +4,11 @@ Project path VYSON uses: **`.cursor/skills/<skill-name>/SKILL.md`**
 
 Docs checked on 12 November 2026: [Cursor Agent Skills](https://cursor.com/docs/skills). Cursor also documents `.agents/skills/`. In one real project session (not repeated), files in `.agents/skills/` were **not** listed in the Agent catalog, so VYSON installs Cursor skills to `.cursor/skills/`. Cursor's docs also read `.claude/skills/` and `.codex/skills/` for compatibility, so installing the same skills for Claude Code and Cursor in one project may show duplicates (untested).
 
-## Install
+## Install by prompt (no terminal)
+
+Open the website project in Cursor, switch to **Agent** mode, and paste the install prompt from [docs/install.md](../docs/install.md). The agent downloads the skill with its own terminal tool, checks every file, installs into `.cursor/skills/`, and starts the work in the same chat. Cursor may ask you to approve the commands. That prompt has **not** been run in Cursor against the published repository yet. Cursor reads its skill list when it starts, so the prompt tells the agent to open the installed `SKILL.md` directly instead of waiting for the catalog.
+
+## Developer install (from a clone)
 
 From a clone of this repository:
 

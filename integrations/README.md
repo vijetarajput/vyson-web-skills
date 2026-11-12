@@ -2,9 +2,11 @@
 
 Short install guides, one per AI coding agent. The skills themselves are written once in [`skills/`](../skills/). Integrations only explain how to get them into each tool.
 
-**Start here:** [agents.md](agents.md) (path mapping), then [cursor.md](cursor.md), [claude-code.md](claude-code.md), [codex.md](codex.md).
+**Start here:** [agents.md](agents.md) (path mapping), then [cursor.md](cursor.md), [claude-code.md](claude-code.md), [codex.md](codex.md), [antigravity.md](antigravity.md) (documented path only, untested).
 
-Recommended install (from a clone of this repository):
+Recommended install for users: paste the install prompt from [docs/install.md](../docs/install.md). It needs no terminal, clone or Node.js; the agent does the work. It has not been run by an agent against the published repository yet.
+
+Install for developers (from a clone of this repository):
 
 ```powershell
 node tools/install-skills.mjs --to path\to\your\website --agent cursor
@@ -14,17 +16,18 @@ After installing, paste the five prompts in order ([docs/five-prompts.md](../doc
 
 The rest of this page is the older Skills CLI 1.7.6 file-placement record. Its tests ran on earlier commits, before each skill had `references/workflow.md` and `references/prompt.md`. That CLI is optional. For Cursor it writes to `.agents/skills/`, which did not load into Cursor's catalog in one real session (not repeated).
 
-## Target agents for v0.1 (file placement tested; use by the agent not verified)
+## Documented target agents for v0.1 (file placement tested for three; use by the agent not verified)
 
-These three agents are the project's targets (decision 4 in `docs/decisions.md`). Being a target is not support, endorsement or a verified integration.
+These four agents are the project's documented targets: Cursor, Claude Code and Codex (decision 4 in `docs/decisions.md`), plus Antigravity, whose folder is documented but which has not been tested at all. Being a target is not support, endorsement or a verified integration. No real agent has run the install prompt in [docs/install.md](../docs/install.md).
 
 | Agent | Status |
 |---|---|
 | Cursor | **Tested:** Skills CLI 1.7.6 places files in `.agents/skills/` (the folder that CLI documents for Cursor). In one real website test on 12 November 2026 (not repeated), those files were **not** in Cursor's skill catalog, although Cursor's docs list that folder. VYSON's copier uses `.cursor/skills/` instead. **Not verified:** that Cursor loads or follows any VYSON skill. |
 | Claude Code | **Tested:** the installer places the files in the folder it documents for Claude Code, from a local folder and from GitHub. **Not verified:** that Claude Code loads or follows any VYSON skill. The program **is installed** on the test PC (see "What is installed on the test PC" below) but was never run against a skill. |
 | Codex | **Tested:** the installer places the files in the folder it documents for Codex, from a local folder and from GitHub. **Not verified:** that Codex loads or follows any VYSON skill. The Codex command-line program was **not found** on the test PC, and a Codex data folder proves nothing about skills (see "What is installed on the test PC" below). |
+| Antigravity | **Documented path only** (`.agents/skills/`, see [antigravity.md](antigravity.md)). **Nothing tested:** not file placement, not the install prompt, not skill loading. |
 
-In short: **installation and file placement are tested; actual agent loading and skill execution are not verified for any agent.**
+In short: **file placement is tested for Cursor, Claude Code and Codex (not Antigravity); actual agent loading, skill execution and the install prompt are not verified for any agent.**
 
 Other agents that support the open [Agent Skills](https://agentskills.io/specification) format should work, but are **untested** and we make no promise for them.
 

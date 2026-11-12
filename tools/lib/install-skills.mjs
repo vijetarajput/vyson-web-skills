@@ -6,12 +6,12 @@
 // - Identical existing copies are left as they are.
 // - File copy success is not agent discovery.
 
-import crypto from 'node:crypto';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { toPosix, walkFiles, safeReadDir } from './fs-utils.mjs';
 import { AGENTS, AGENT_IDS, getAgent, detectAgent, otherKnownSkillDirs } from './agents.mjs';
+import { fingerprint } from './content-hash.mjs';
 
 export { AGENTS, AGENT_IDS, getAgent, detectAgent };
 
@@ -45,6 +45,9 @@ export function listSkillNames(skillsDir) {
 
 /**
  * SHA-256 of every file under `dir`, keyed by posix relative path.
+ * Text files are hashed with Windows line endings turned into Unix ones, so a
+ * copy that only differs in line endings counts as identical (and the hashes
+ * match the skills manifest).
  * @param {string} dir
  * @returns {Map<string, string>}
  */
@@ -55,8 +58,7 @@ export function hashTree(dir) {
     const rel = toPosix(path.relative(dir, file));
     const base = path.basename(file);
     if (SKIP_NAMES.has(base)) continue;
-    const buf = fs.readFileSync(file);
-    map.set(rel, crypto.createHash('sha256').update(buf).digest('hex'));
+    map.set(rel, fingerprint(fs.readFileSync(file), rel).sha256);
   }
   return map;
 }
@@ -147,7 +149,39 @@ function nextStepFor(agent) {
   if (agent.id === 'claude-code') {
     return `Start a new Claude Code session in this project. ${ask} Claude Code's docs say that if .claude/skills did not exist when a session started, you run /reload-skills in that session.`;
   }
+  if (agent.id === 'antigravity') {
+    return `Start a new Antigravity session in this project. Its docs say the agent is shown the list of skills on every turn, but VYSON has not tested Antigravity. ${ask}`;
+  }
   return `Start a new ${agent.name} session in this project (restart it if the skills are not listed; its docs say it detects changes automatically). ${ask}`;
+}
+
+/**
+ * The checks that need no source files: known agent, global confirmed, and not
+ * the VYSON repository itself. Returns a failed result, or null when all pass.
+ * Used before any download so a bad request fails before the network is touched.
+ * @param {{ targetDir: string, agentId: string, global?: boolean, confirmGlobal?: boolean, allowSelf?: boolean }} opts
+ */
+export function precheckInstall(opts) {
+  const targetDir = path.resolve(opts.targetDir);
+  const fail = (error, agent) => ({ ok: false, code: 2, error, agent, targetDir, skills: [], notes: [] });
+
+  const agent = getAgent(opts.agentId);
+  if (!agent) return fail(`Unknown agent "${opts.agentId}". Use one of: ${AGENT_IDS.join(', ')}.`, null);
+
+  if (opts.global && !opts.confirmGlobal) {
+    return fail(
+      'Global install is off by default. Pass both --global and --confirm-global if you really want files in your home folder.',
+      agent,
+    );
+  }
+
+  if (!opts.global && isVysonSkillsRepo(targetDir) && !opts.allowSelf) {
+    return fail(
+      'That folder is the VYSON skills repository, not a website. Pass --to your-website-folder. To install here anyway, pass --allow-self.',
+      agent,
+    );
+  }
+  return null;
 }
 
 /**
@@ -171,44 +205,9 @@ export function installSkills(opts) {
   const notes = [];
   const skills = [];
 
+  const refused = precheckInstall(opts);
+  if (refused) return refused;
   const agent = getAgent(opts.agentId);
-  if (!agent) {
-    return {
-      ok: false,
-      code: 2,
-      error: `Unknown agent "${opts.agentId}". Use one of: ${AGENT_IDS.join(', ')}.`,
-      agent: null,
-      targetDir,
-      skills,
-      notes,
-    };
-  }
-
-  if (opts.global && !opts.confirmGlobal) {
-    return {
-      ok: false,
-      code: 2,
-      error:
-        'Global install is off by default. Pass both --global and --confirm-global if you really want files in your home folder.',
-      agent,
-      targetDir,
-      skills,
-      notes,
-    };
-  }
-
-  if (!opts.global && isVysonSkillsRepo(targetDir) && !opts.allowSelf) {
-    return {
-      ok: false,
-      code: 2,
-      error:
-        'That folder is the VYSON skills repository, not a website. Pass --to your-website-folder. To install here anyway, pass --allow-self.',
-      agent,
-      targetDir,
-      skills,
-      notes,
-    };
-  }
 
   if (!fs.existsSync(sourceSkillsDir) || !fs.statSync(sourceSkillsDir).isDirectory()) {
     return {
@@ -398,6 +397,7 @@ export function formatInstallReport(result) {
   }
   lines.push(`Agent: ${result.agent.name} (${result.agent.id})`);
   lines.push(`Target: ${result.targetDir}`);
+  if (result.source && !result.destRoot) lines.push(`Source: ${result.source.description}`);
   if (!result.destRoot) {
     // The install stopped before any folder was touched.
     lines.push('');
@@ -406,6 +406,7 @@ export function formatInstallReport(result) {
     lines.push('RESULT: NOTHING INSTALLED.');
     return lines.join('\n');
   }
+  if (result.source) lines.push(`Source: ${result.source.description}`);
   lines.push(`Install folder: ${result.destRoot}`);
   lines.push(`File verification: ${result.fileVerification}`);
   lines.push(`Discovery: ${result.discovery.status} — ${result.discovery.meaning}`);

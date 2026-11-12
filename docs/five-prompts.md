@@ -18,7 +18,7 @@ One prompt for each VYSON skill, to be pasted **in this order**, each into a **n
 
 ## Before you start
 
-1. Install the skills: see [Installation in the README](../README.md#installation).
+1. Install the skills once: paste the install prompt from [install.md](install.md) (it needs no terminal; choose "all five"). That prompt is a one-time setup step and is not one of the five.
 2. Open your website project (empty or existing) in your agent.
 3. In the step 1 prompt, fill in the "About the site" line, or delete it if the project already shows what the site is.
 

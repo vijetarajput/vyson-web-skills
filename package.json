@@ -12,7 +12,9 @@
     "validate:template": "node tools/validate-skills.mjs templates/skill-template --profile spec",
     "check:links": "node tools/check-links.mjs",
     "install-skills": "node tools/install-skills.mjs",
+    "build:manifest": "node tools/build-manifest.mjs",
+    "check:manifest": "node tools/build-manifest.mjs --check",
     "test": "node --test \"tools/test/**/*.test.mjs\"",
-    "check": "npm run test && npm run validate:template && npm run validate && npm run check:links"
+    "check": "npm run test && npm run validate:template && npm run validate && npm run check:manifest && npm run check:links"
   }
 }

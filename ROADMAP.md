@@ -4,7 +4,7 @@ This roadmap shows intent, not promises. Dates depend on testing results.
 
 ## v0.1 (Beta: pushed to `main`, not tagged)
 
-State on 12 November 2026: all five skills are written, pass `npm run check`, and install from the public GitHub repository with `--skill '*'` (file placement only). Decision 14 makes every skill run in one pass (understand, plan internally, implement, verify, present) and adds one prompt per skill ([`docs/five-prompts.md`](docs/five-prompts.md)). **Next milestone:** an end-to-end validation, pasting the five prompts in order into a fresh dummy project. It has **not been run**, so the five-prompt workflow is untested. Feature development is paused until it is done. **Not verified:** any agent loading or following a skill, running the eval files with an agent, browsers other than headless Chrome 157 on one Windows 10 PC, real phones and GPUs, installing each newer skill on its own from GitHub, `skills update`, and independent external testing.
+State on 12 November 2026: all five skills are written, pass `npm run check`, and install from the public GitHub repository with `--skill '*'` (file placement only). Decision 14 makes every skill run in one pass (understand, plan internally, implement, verify, present) and adds one prompt per skill ([`docs/five-prompts.md`](docs/five-prompts.md)). A zero-terminal install prompt ([`docs/install.md`](docs/install.md), decision 15) is written and backed by a tested reference installer; **no agent has run it against the published repository yet** (the generated `skills-manifest.json` must be pushed first). **Next milestone:** an end-to-end validation, installing with that prompt and then pasting the five prompts in order into a fresh dummy project. It has **not been run**, so the install prompt and the five-prompt workflow are untested. Feature development is paused until it is done. **Not verified:** any agent loading or following a skill, running the eval files with an agent, browsers other than headless Chrome 157 on one Windows 10 PC, real phones and GPUs, installing each newer skill on its own from GitHub, `skills update`, and independent external testing.
 
 Goal: five good, tested skills (one per pillar), one working audit script, and a small honest benchmark.
 
@@ -26,7 +26,7 @@ Goal: five good, tested skills (one per pillar), one working audit script, and a
 | 4 | The design skill | `vyson-premium-website-design` written as a draft, awaiting review. |
 | 5 | The 3D skill with example and fallback | `vyson-3d-interactive-web` written as a draft with an example, awaiting review. |
 | 6 | The frontend and quality skills, and the audit tools | `vyson-frontend-development` and `vyson-website-quality-engineering` (with `site-audit.mjs` and `browser-check.mjs`) written as drafts with examples, awaiting review. |
-| 7 | Release: install guides tested on Cursor, Claude Code and Codex, benchmark v0, tag `v0.1.0` | Not started. Open items: run the eval files and the benchmark with agents, check that each agent loads the skills, tag the release, and test `skills update`. (Installing all five skills from GitHub was tested after the beta push.) |
+| 7 | Release: install guides and the install prompt tried on the documented target agents (Cursor, Claude Code, Codex, Antigravity), benchmark v0, tag `v0.1.0` | Not started. No real agent has run the install prompt, and Antigravity has not been tested at all. Open items: run the eval files and the benchmark with agents, check that each agent loads the skills, tag the release, and test `skills update`. (Installing all five skills from GitHub was tested after the beta push.) |
 
 If a day reveals a problem in the process, we fix the process before building more skills.
 
@@ -50,5 +50,5 @@ If a day reveals a problem in the process, we fix the process before building mo
 ## Deliberately not planned
 
 - Background hooks or telemetry.
-- A large package-manager-style installer. v0.1 ships only a small local copier (`tools/install-skills.mjs`) that writes to documented agent folders (decision 13).
+- A large package-manager-style installer. v0.1 ships only a small copier (`tools/install-skills.mjs`, with an optional `--from-github` mode) that writes to documented agent folders (decision 13), plus an install prompt that makes the user's agent do the same steps (decision 15).
 - A general component library (other projects already do this well).

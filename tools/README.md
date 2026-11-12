@@ -97,13 +97,22 @@ Copies skill folders from `skills/` into the chosen agent's documented project p
 |---|---|
 | `node tools/install-skills.mjs --help` | `npm run install-skills -- --help` |
 | `node tools/install-skills.mjs --list-agents` | `npm run install-skills -- --list-agents` |
+| `node tools/install-skills.mjs --from-github --to <folder> --agent <id> [--skill <name>]` | `npm run install-skills -- --from-github ...` |
+| `node tools/build-manifest.mjs` (`--check` only compares) | `npm run build:manifest` / `npm run check:manifest` |
+
+`--agent` takes `cursor`, `claude-code`, `codex` or `antigravity` (Antigravity has not been tested).
+
+**`--from-github`** downloads `skills-manifest.json` and the requested skills from the public repository (default branch `main`, or `--ref <branch, tag or commit>`), checks every file's size and sha256 in a temporary folder, and only then installs with the same never-overwrite copier. If a file is missing or damaged, nothing is installed and the exit code is 1. `--base-url <address>` points it at another server; the tests use that with a local server. It is the tested reference of the install prompt in [docs/install.md](../docs/install.md): end users do not need to run it, because their agent does the same steps. Without `--from-github`, a clone with `skills-manifest.json` is also checked: listed files that are missing stop the install.
+
+**`skills-manifest.json`** (repository root) lists every skill file with its size and sha256 (taken after Windows line endings are changed to LF, because GitHub serves LF). It is generated. After you change anything in `skills/`, run `npm run build:manifest` and commit the file. `npm run check` (through `check:manifest`) and a test fail when it is out of date.
 
 ## How the code is organized
 
 ```text
 tools/
 ├── validate-skills.mjs   command-line entry point for the validator
-├── install-skills.mjs    copy skills into an agent's documented folder
+├── install-skills.mjs    copy skills into an agent's documented folder (or --from-github)
+├── build-manifest.mjs    write or check skills-manifest.json
 ├── check-links.mjs       command-line entry point for the link checker
 ├── lib/
 │   ├── issues.mjs        the rule catalog: code, severity, plain-English fix
@@ -115,6 +124,9 @@ tools/
 │   ├── discover.mjs      finds skill folders
 │   ├── agents.mjs        agent ids and documented skill folders
 │   ├── install-skills.mjs  copy logic (no overwrites, hash check)
+│   ├── content-hash.mjs  the one way a file is fingerprinted (LF-normalised sha256)
+│   ├── manifest.mjs      build, validate and compare skills-manifest.json
+│   ├── github-install.mjs  download, verify, then install (reference for the prompt)
 │   └── report.mjs        success and failure reports (text and JSON)
 └── test/
     ├── *.test.mjs        automated tests (built-in `node:test`)

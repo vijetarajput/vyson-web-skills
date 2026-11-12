@@ -57,6 +57,18 @@ export const AGENTS = {
     notes:
       'OpenAI documents Codex repository skills at .agents/skills/ (its page does not list .codex/skills/, so VYSON does not install there). Skills CLI 1.7.6 file placement into .agents/skills/ was tested. The Codex CLI was not found on the test PC, and Codex loading or following a VYSON skill has not been verified.',
   },
+  antigravity: {
+    id: 'antigravity',
+    name: 'Antigravity',
+    projectDir: '.agents/skills',
+    globalDir: '.gemini/config/skills',
+    docsUrl: 'https://antigravity.google/docs/skills',
+    docsCheckedOn: '2026-11-12',
+    filePlacement: 'documented-only',
+    catalogLoad: 'unverified',
+    notes:
+      'Antigravity\'s docs describe workspace skills at .agents/skills/<name>/SKILL.md (the older .agent/skills/ is still read) and global skills at ~/.gemini/config/skills/. Its docs say the agent is shown the list of skills on every turn. One third-party write-up (atamel.dev, July 2026) reports that .agents/skills/ was recognised by all three Antigravity products. VYSON has not tested Antigravity at all, so file placement and skill loading are both unverified.',
+  },
 };
 
 export const AGENT_IDS = Object.keys(AGENTS);
@@ -69,7 +81,14 @@ export const AGENT_IDS = Object.keys(AGENTS);
 export function getAgent(raw) {
   if (typeof raw !== 'string') return null;
   const id = raw.trim().toLowerCase().replace(/\s+/g, '-');
-  const aliases = { claude: 'claude-code', 'claude-code': 'claude-code', cursor: 'cursor', codex: 'codex' };
+  const aliases = {
+    claude: 'claude-code',
+    'claude-code': 'claude-code',
+    cursor: 'cursor',
+    codex: 'codex',
+    antigravity: 'antigravity',
+    agy: 'antigravity',
+  };
   const mapped = aliases[id];
   return mapped ? AGENTS[mapped] : null;
 }
@@ -109,9 +128,13 @@ export function detectAgent(env = process.env) {
 
 /**
  * Other project folders where a copy of the same skill might already exist.
- * Used to report duplicates, not to install into them.
+ * Used to report duplicates, not to install into them. Folders shared with
+ * the chosen agent (Codex and Antigravity both use .agents/skills) are left
+ * out, and each folder is listed once.
  * @param {string} agentId
  */
 export function otherKnownSkillDirs(agentId) {
-  return AGENT_IDS.filter((id) => id !== agentId).map((id) => AGENTS[id].projectDir);
+  const own = AGENTS[agentId]?.projectDir;
+  const dirs = AGENT_IDS.filter((id) => id !== agentId).map((id) => AGENTS[id].projectDir);
+  return [...new Set(dirs)].filter((d) => d !== own);
 }

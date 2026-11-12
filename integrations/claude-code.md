@@ -4,7 +4,11 @@ Project path VYSON uses: **`.claude/skills/<skill-name>/SKILL.md`**
 
 Docs checked on 12 November 2026: [Claude Code skills](https://code.claude.com/docs/en/skills).
 
-## Install
+## Install by prompt (no terminal)
+
+Open the website project in Claude Code and paste the install prompt from [docs/install.md](../docs/install.md). Claude Code runs the download and the checks itself and installs into `.claude/skills/`; it may ask you to approve the commands. The prompt has **not** been run in Claude Code against the published repository yet. The prompt tells the agent to open the installed `SKILL.md` directly, so the skill can be used in the same chat even though Claude Code's docs say a `.claude/skills/` folder that did not exist at session start needs `/reload-skills` for the skill list.
+
+## Developer install (from a clone)
 
 ```powershell
 node tools/install-skills.mjs --to path\to\your\website --agent claude-code
